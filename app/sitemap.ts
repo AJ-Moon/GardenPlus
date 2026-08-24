@@ -7,6 +7,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticRoutes = [
     { path: "", priority: 1, changeFrequency: "monthly" as const },
+    {
+      path: "/landscaping-lahore",
+      priority: 0.95,
+      changeFrequency: "monthly" as const,
+    },
     { path: "/services", priority: 0.9, changeFrequency: "monthly" as const },
     { path: "/portfolio", priority: 0.9, changeFrequency: "monthly" as const },
     { path: "/contact", priority: 0.8, changeFrequency: "yearly" as const },

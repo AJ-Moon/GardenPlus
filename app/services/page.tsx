@@ -4,17 +4,29 @@ import { Footer } from "@/components/footer";
 import { PageBanner } from "@/components/page-banner";
 import { CTASection } from "@/components/cta-section";
 import { ServiceSegments } from "@/components/service-segments";
+import { ServicesSeoSection } from "@/components/seo-content";
+import { createPageMetadata, servicesPageJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Our Services",
+export const metadata: Metadata = createPageMetadata({
+  title: "Landscaping, Garden Design, Lawn Care & Irrigation Services",
   description:
-    "Residential gardens, commercial landscaping, corporate grounds and large-scale developments — full design, build and maintenance from GardenPlus in Lahore.",
-  alternates: { canonical: "/services" },
-};
+    "Explore GardenPlus services: residential garden design, commercial landscaping, corporate grounds, lawn maintenance, irrigation systems, artificial grass, plant supply and large-scale projects in Lahore.",
+  path: "/services",
+  keywords: [
+    "garden design Lahore",
+    "lawn maintenance Lahore",
+    "irrigation systems Pakistan",
+    "artificial grass Pakistan",
+  ],
+});
 
 export default function ServicesPage() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesPageJsonLd) }}
+      />
       <Navigation />
 
       <PageBanner
@@ -25,6 +37,7 @@ export default function ServicesPage() {
       />
 
       <ServiceSegments />
+      <ServicesSeoSection />
 
       <CTASection />
 

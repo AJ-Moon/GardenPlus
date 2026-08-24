@@ -6,13 +6,19 @@ import { PageBanner } from "@/components/page-banner";
 import { CTASection } from "@/components/cta-section";
 import { Reveal } from "@/components/reveal";
 import { clients, testimonials } from "@/lib/site-content";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Clients & Testimonials",
+export const metadata: Metadata = createPageMetadata({
+  title: "Landscaping Clients & Testimonials in Lahore",
   description:
-    "GardenPlus is trusted by homeowners, hotels, developers and corporate campuses across Lahore. Read what our clients say about working with us.",
-  alternates: { canonical: "/clients" },
-};
+    "See why homeowners, hotels, developers and corporate campuses trust GardenPlus for landscaping, garden design, lawn maintenance and irrigation projects in Lahore.",
+  path: "/clients",
+  keywords: [
+    "commercial landscaping Lahore",
+    "corporate landscaping Pakistan",
+    "landscaping company Lahore reviews",
+  ],
+});
 
 export default function ClientsPage() {
   return (

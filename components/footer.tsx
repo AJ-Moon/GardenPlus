@@ -5,6 +5,7 @@ import { siteConfig, segments } from "@/lib/site-content";
 const companyLinks = [
   { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
+  { name: "Landscaping Lahore", href: "/landscaping-lahore" },
   { name: "Portfolio", href: "/portfolio" },
   { name: "Blog", href: "/blog" },
   { name: "Clients", href: "/clients" },

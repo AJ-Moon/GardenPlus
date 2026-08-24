@@ -7,13 +7,15 @@ import { PageBanner } from "@/components/page-banner";
 import { CTASection } from "@/components/cta-section";
 import { Reveal } from "@/components/reveal";
 import { siteConfig } from "@/lib/site-content";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About Us",
+export const metadata: Metadata = createPageMetadata({
+  title: "About GardenPlus - Lahore Landscaping Company Since 1990",
   description:
-    "Founded in 1990, GardenPlus has spent three decades designing, building and maintaining landscapes across Lahore for homeowners, businesses and developers.",
-  alternates: { canonical: "/about" },
-};
+    "Learn about GardenPlus, a Lahore landscaping company founded in 1990 for garden design, lawn care, plant supply, irrigation and outdoor transformation projects.",
+  path: "/about",
+  keywords: ["landscaping company Lahore", "garden design company Pakistan"],
+});
 
 const values = [
   {

@@ -8,7 +8,7 @@ function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const prefersReducedMotion = useReducedMotion();
-  const [displayValue, setDisplayValue] = useState(0);
+  const [displayValue, setDisplayValue] = useState(value);
 
   useEffect(() => {
     if (!isInView) return;
@@ -31,6 +31,7 @@ function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
       if (progress < 1) frame = requestAnimationFrame(tick);
     };
 
+    setDisplayValue(0);
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
   }, [isInView, value, prefersReducedMotion]);

@@ -20,7 +20,7 @@ export const siteConfig = {
   url: "https://gardenplus.pk",
   tagline: "Professional Landscaping & Gardening Services",
   description:
-    "GardenPlus delivers expert lawn maintenance, garden design, plant supply, irrigation systems and outdoor landscaping for residential, commercial and corporate clients across Lahore.",
+    "GardenPlus delivers landscaping services, garden design, lawn maintenance, irrigation systems, plant supply and outdoor transformations for homes, businesses, campuses and developments across Lahore, Pakistan and climate-similar Middle East projects.",
 
   phone: "+92 300 8450025",
   phoneHref: "+923008450025",
@@ -149,11 +149,12 @@ export const segments: Segment[] = [
     eyebrow: "For Homeowners",
     heading: "Residential Gardens",
     intro:
-      "Beautiful, low-maintenance gardens and lawns designed around your home and the way you actually live in it — from compact courtyards to full farmhouse estates.",
+      "Beautiful, low-maintenance garden design and lawn care in Lahore, planned around your home and the way you actually live in it - from compact courtyards to full farmhouse estates.",
     offerings: [
       "Full garden design & build",
-      "Lawn installation and year-round maintenance",
+      "Lawn installation and year-round lawn maintenance",
       "Drip and sprinkler irrigation",
+      "Artificial grass and low-maintenance turf options",
       "Seasonal planting and flower beds",
       "Paving, pathways and water features",
     ],
@@ -207,11 +208,12 @@ export const segments: Segment[] = [
     eyebrow: "Business Spaces",
     heading: "Commercial Projects",
     intro:
-      "Landscaping that earns its keep — entrances, courtyards and terraces for hotels, restaurants, retail and wellness spaces where first impressions convert.",
+      "Commercial landscaping that earns its keep - entrances, courtyards and terraces for hotels, restaurants, retail and wellness spaces where first impressions convert.",
     offerings: [
       "Entrance and frontage landscaping",
       "Courtyard and al fresco terrace design",
       "Scheduled maintenance contracts",
+      "Indoor and outdoor plants for guest-facing spaces",
       "Seasonal colour rotation",
       "Outdoor lighting and ambience",
     ],
@@ -266,11 +268,12 @@ export const segments: Segment[] = [
     eyebrow: "For Businesses",
     heading: "Corporate Landscaping",
     intro:
-      "Green space that supports employee wellbeing and brand image — campuses, plazas and rooftop gardens built to look composed every day of the year.",
+      "Corporate landscaping for employee wellbeing and brand image - campuses, plazas and rooftop gardens built to look composed every day of the year.",
     offerings: [
       "Campus and business park master planning",
       "Plaza, courtyard and rooftop gardens",
       "Sustainable, water-efficient irrigation",
+      "Smart irrigation systems and water-use audits",
       "Ongoing grounds maintenance",
       "Shaded walkways and seating landscapes",
     ],
@@ -325,11 +328,12 @@ export const segments: Segment[] = [
     eyebrow: "Major Developments",
     heading: "Large Scale Projects",
     intro:
-      "End-to-end landscaping for public parks, campuses, infrastructure and large communities — planned, planted and maintained by one accountable team.",
+      "End-to-end landscaping for public parks, campuses, infrastructure and large communities across Pakistan and GCC-style climates - planned, planted and maintained by one accountable team.",
     offerings: [
       "Master planning across multi-acre sites",
       "Native and climate-appropriate planting schemes",
       "Large-scale irrigation infrastructure",
+      "Plant nursery supply and phased plantation programs",
       "Phased delivery and handover",
       "Long-term maintenance programmes",
     ],

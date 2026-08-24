@@ -3,17 +3,27 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { PageBanner } from "@/components/page-banner";
 import { BlogIndex } from "@/components/blog-index";
+import { blogIndexJsonLd, createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Blog",
+export const metadata: Metadata = createPageMetadata({
+  title: "Landscaping, Garden Design & Plant Care Blog",
   description:
-    "Expert landscaping guides, plant advice and seasonal care checklists from the GardenPlus team — written for Lahore's climate.",
-  alternates: { canonical: "/blog" },
-};
+    "Read GardenPlus guides on garden design, lawn maintenance, irrigation systems, outdoor plants, indoor plants and seasonal landscaping for Lahore, Pakistan and hot climates.",
+  path: "/blog",
+  keywords: [
+    "garden design guide Lahore",
+    "outdoor plants Pakistan",
+    "irrigation system guide",
+  ],
+});
 
 export default function BlogPage() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogIndexJsonLd) }}
+      />
       <Navigation />
 
       <PageBanner

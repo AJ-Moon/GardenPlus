@@ -3,6 +3,7 @@ import { Inter, Cormorant_Garamond } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { siteConfig } from "@/lib/site-content";
+import { businessJsonLd, primaryKeywords } from "@/lib/seo";
 import "./globals.css";
 
 const inter = Inter({
@@ -27,19 +28,19 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
-  keywords: [
-    "landscaping Lahore",
-    "garden design",
-    "lawn maintenance",
-    "irrigation systems",
-    "plant supply",
-    "outdoor landscaping",
-    "residential garden",
-    "commercial landscaping",
-  ],
+  keywords: primaryKeywords,
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
-  alternates: { canonical: "/" },
+  publisher: siteConfig.name,
+  category: "Landscaping",
+  classification: "Landscaping, garden design, lawn maintenance, irrigation systems, plant nursery",
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en-PK": "/",
+      "x-default": "/",
+    },
+  },
   openGraph: {
     type: "website",
     locale: "en_PK",
@@ -47,16 +48,31 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: `${siteConfig.name} | ${siteConfig.tagline}`,
     description: siteConfig.description,
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "GardenPlus landscaping and garden design services in Lahore",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${siteConfig.name} | ${siteConfig.tagline}`,
     description: siteConfig.description,
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
   icons: {
     icon: [
@@ -66,52 +82,17 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-icon.png",
   },
+  formatDetection: {
+    telephone: true,
+    email: true,
+    address: true,
+  },
 };
 
 export const viewport: Viewport = {
   themeColor: "#1a3a2a",
   width: "device-width",
   initialScale: 1,
-};
-
-// Helps Google show the business with its address, phone and hours.
-const localBusinessJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "LandscapingBusiness",
-  name: siteConfig.name,
-  description: siteConfig.description,
-  url: siteConfig.url,
-  telephone: siteConfig.phone,
-  email: siteConfig.email,
-  foundingDate: String(siteConfig.founded),
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: siteConfig.address.line1,
-    addressLocality: "Lahore",
-    addressRegion: "Punjab",
-    addressCountry: "PK",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: siteConfig.coordinates.lat,
-    longitude: siteConfig.coordinates.lng,
-  },
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-      ],
-      opens: "09:00",
-      closes: "18:00",
-    },
-  ],
-  sameAs: siteConfig.social.map((s) => s.href),
 };
 
 export default function RootLayout({
@@ -136,7 +117,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(localBusinessJsonLd),
+            __html: JSON.stringify(businessJsonLd),
           }}
         />
       </body>

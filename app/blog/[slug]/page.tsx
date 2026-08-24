@@ -8,6 +8,7 @@ import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta-section";
 import { posts, getPost, sortedPosts, formatDate } from "@/lib/blog";
 import { siteConfig } from "@/lib/site-content";
+import { absoluteUrl, breadcrumbJsonLd, primaryKeywords } from "@/lib/seo";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -24,13 +25,24 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title: post.title,
     description: post.excerpt,
+    keywords: [post.category, ...primaryKeywords],
     alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
       type: "article",
+      url: absoluteUrl(`/blog/${post.slug}`),
+      siteName: siteConfig.name,
       title: post.title,
       description: post.excerpt,
       publishedTime: post.date,
+      authors: [siteConfig.name],
+      section: post.category,
       images: [{ url: post.image }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: [post.image],
     },
   };
 }
@@ -48,14 +60,23 @@ export default async function BlogPostPage({ params }: Params) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
+    "@id": `${siteConfig.url}/blog/${post.slug}#article`,
     headline: post.title,
     description: post.excerpt,
     image: post.image,
     datePublished: post.date,
-    author: { "@type": "Organization", name: siteConfig.name },
-    publisher: { "@type": "Organization", name: siteConfig.name },
+    dateModified: post.date,
+    articleSection: post.category,
+    author: { "@id": `${siteConfig.url}/#organization` },
+    publisher: { "@id": `${siteConfig.url}/#organization` },
     mainEntityOfPage: `${siteConfig.url}/blog/${post.slug}`,
   };
+
+  const breadcrumbs = breadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "Blog", path: "/blog" },
+    { name: post.title, path: `/blog/${post.slug}` },
+  ]);
 
   return (
     <main>
@@ -63,7 +84,7 @@ export default async function BlogPostPage({ params }: Params) {
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([jsonLd, breadcrumbs]) }}
       />
 
       {/* Hero */}
