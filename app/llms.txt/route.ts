@@ -1,6 +1,7 @@
 import { posts } from "@/lib/blog";
 import { segments, siteConfig } from "@/lib/site-content";
 import { absoluteUrl, primaryKeywords, seoFacts, serviceAreas } from "@/lib/seo";
+import { seoServicePages } from "@/lib/seo-service-pages";
 
 export const dynamic = "force-static";
 
@@ -14,6 +15,13 @@ export function GET() {
 
   const blogList = posts
     .map((post) => `- ${post.title}: ${absoluteUrl(`/blog/${post.slug}`)}`)
+    .join("\n");
+
+  const servicePageList = seoServicePages
+    .map(
+      (page) =>
+        `- ${page.h1}: ${absoluteUrl(`/services/${page.slug}`)} (${page.primaryKeyword})`,
+    )
     .join("\n");
 
   const body = `# ${siteConfig.name}
@@ -38,6 +46,9 @@ Areas and markets referenced on the site: ${serviceAreas.join(", ")}.
 - Portfolio: ${absoluteUrl("/portfolio")}
 - Blog: ${absoluteUrl("/blog")}
 - Contact: ${absoluteUrl("/contact")}
+
+## Dedicated Service Pages
+${servicePageList}
 
 ## Useful Articles
 ${blogList}

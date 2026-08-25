@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site-content";
 import { posts } from "@/lib/blog";
+import { seoServicePages } from "@/lib/seo-service-pages";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -26,6 +27,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: route.changeFrequency,
       priority: route.priority,
+    })),
+    ...seoServicePages.map((page) => ({
+      url: `${siteConfig.url}/services/${page.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
     })),
     ...posts.map((post) => ({
       url: `${siteConfig.url}/blog/${post.slug}`,

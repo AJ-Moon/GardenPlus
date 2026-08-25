@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 import { siteConfig, segments } from "@/lib/site-content";
+import { seoServicePageLinks } from "@/lib/seo-service-pages";
 
 const companyLinks = [
   { name: "About", href: "/about" },
@@ -99,6 +100,16 @@ export function Footer() {
                     className="rounded-sm text-background/70 transition-colors hover:text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-background"
                   >
                     {segment.heading}
+                  </Link>
+                </li>
+              ))}
+              {seoServicePageLinks.slice(0, 5).map((page) => (
+                <li key={page.href}>
+                  <Link
+                    href={page.href}
+                    className="rounded-sm text-background/70 transition-colors hover:text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-background"
+                  >
+                    {page.name}
                   </Link>
                 </li>
               ))}

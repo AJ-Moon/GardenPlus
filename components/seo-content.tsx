@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { primaryKeywords, serviceAreas } from "@/lib/seo";
 import { segments, siteConfig } from "@/lib/site-content";
+import { seoServicePageLinks } from "@/lib/seo-service-pages";
 
 export function HomeSeoSection() {
   return (
@@ -114,6 +115,23 @@ export function ServicesSeoSection() {
               </Link>
             </article>
           ))}
+        </div>
+
+        <div className="mt-14 border-t border-border pt-10">
+          <h3 className="font-serif text-3xl font-light text-foreground">
+            Popular service pages
+          </h3>
+          <div className="mt-6 flex flex-wrap gap-3">
+            {seoServicePageLinks.map((page) => (
+              <Link
+                key={page.href}
+                href={page.href}
+                className="rounded-sm border border-border px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              >
+                {page.name}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </section>
