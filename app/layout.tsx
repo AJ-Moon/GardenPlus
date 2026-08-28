@@ -87,6 +87,14 @@ export const metadata: Metadata = {
     email: true,
     address: true,
   },
+  // Set NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION / _BING_ in the hosting
+  // environment to verify the domain without redeploying a hard-coded token.
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+      : undefined,
+  },
 };
 
 export const viewport: Viewport = {
@@ -101,6 +109,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
       <body className="font-sans antialiased">
+        {/* Hero images are served from Unsplash — open the connection early so
+            the LCP image is not waiting on DNS and TLS. React hoists these. */}
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+
         {/* Keyboard users can jump straight past the nav */}
         <a
           href="#main"

@@ -7,6 +7,7 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta-section";
 import { createPageMetadata } from "@/lib/seo";
+import { altForPhoto } from "@/lib/site-content";
 import {
   getSeoServicePage,
   seoServicePages,
@@ -50,7 +51,7 @@ export default async function SeoServicePage({ params }: Params) {
       <header className="relative min-h-[72vh] overflow-hidden pt-28 md:pt-32">
         <Image
           src={page.image}
-          alt=""
+          alt={altForPhoto(page.image)}
           fill
           sizes="100vw"
           priority

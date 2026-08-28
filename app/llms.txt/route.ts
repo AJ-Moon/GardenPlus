@@ -2,6 +2,7 @@ import { posts } from "@/lib/blog";
 import { segments, siteConfig } from "@/lib/site-content";
 import { absoluteUrl, primaryKeywords, seoFacts, serviceAreas } from "@/lib/seo";
 import { seoServicePages } from "@/lib/seo-service-pages";
+import { seoLocations } from "@/lib/seo-locations";
 
 export const dynamic = "force-static";
 
@@ -21,6 +22,13 @@ export function GET() {
     .map(
       (page) =>
         `- ${page.h1}: ${absoluteUrl(`/services/${page.slug}`)} (${page.primaryKeyword})`,
+    )
+    .join("\n");
+
+  const locationList = seoLocations
+    .map(
+      (location) =>
+        `- ${location.h1}: ${absoluteUrl(`/landscaping/${location.slug}`)} (${location.primaryKeyword}); also covers ${location.nearby.join(", ")}`,
     )
     .join("\n");
 
@@ -46,9 +54,14 @@ Areas and markets referenced on the site: ${serviceAreas.join(", ")}.
 - Portfolio: ${absoluteUrl("/portfolio")}
 - Blog: ${absoluteUrl("/blog")}
 - Contact: ${absoluteUrl("/contact")}
+- Landscaping Cost Guide: ${absoluteUrl("/landscaping-cost-lahore")}
+- FAQs: ${absoluteUrl("/faqs")}
 
 ## Dedicated Service Pages
 ${servicePageList}
+
+## Area Pages In Lahore
+${locationList}
 
 ## Useful Articles
 ${blogList}

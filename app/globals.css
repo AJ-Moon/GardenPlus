@@ -129,8 +129,48 @@
   }
 }
 
+/* Hero entrance animations.
+   These used to be framer-motion `initial={{ opacity: 0 }}` props, which meant
+   the <h1> — the LCP element on almost every page — was serialised into the
+   server HTML with `opacity: 0` and only became visible once the JS bundle had
+   downloaded and hydrated. As pure CSS the text paints on the first frame and
+   the animation runs without JS, which is both faster and safer for crawlers.
+   `backwards` fill applies the start state during the stagger delay. */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hero-zoom {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes scroll-nudge {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
 @theme {
   --animate-marquee: marquee 45s linear infinite;
+  --animate-rise-in: rise-in 0.8s ease-out backwards;
+  --animate-hero-zoom: hero-zoom 1.5s ease-out backwards;
+  --animate-scroll-nudge: scroll-nudge 1.5s ease-in-out infinite;
 }
 
 @layer base {

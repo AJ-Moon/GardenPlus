@@ -7,6 +7,8 @@ import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta-section";
 import { createPageMetadata, lahorePageJsonLd, serviceAreas } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-content";
+import { seoServicePageLinks } from "@/lib/seo-service-pages";
+import { seoLocations } from "@/lib/seo-locations";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Landscaping Services Lahore - Garden Design, Lawn Care & Irrigation",
@@ -217,6 +219,69 @@ export default function LandscapingLahorePage() {
                 </p>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Hub links — this page is the parent for every area and service page */}
+      <section className="bg-background py-20 md:py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground">
+            Area by area
+          </p>
+          <h2 className="font-serif text-4xl font-light text-foreground md:text-5xl">
+            Landscaping across Lahore
+          </h2>
+          <p className="mt-5 max-w-2xl leading-8 text-muted-foreground">
+            Soil, shade, water pressure and plot size differ enough across the
+            city that the same design does not suit every area. These pages
+            cover what gardens in each part of Lahore actually need.
+          </p>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {seoLocations.map((location) => (
+              <Link
+                key={location.slug}
+                href={`/landscaping/${location.slug}`}
+                className="group rounded-sm border border-border p-6 transition-colors hover:border-primary/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              >
+                <h3 className="font-serif text-2xl text-foreground group-hover:text-primary">
+                  {location.name}
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                  {location.considerations[0].heading}
+                </p>
+              </Link>
+            ))}
+          </div>
+
+          <h2 className="mt-16 font-serif text-4xl font-light text-foreground md:text-5xl">
+            Services in detail
+          </h2>
+          <div className="mt-8 flex flex-wrap gap-3">
+            {seoServicePageLinks.map((page) => (
+              <Link
+                key={page.href}
+                href={page.href}
+                className="rounded-sm border border-border px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              >
+                {page.name}
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-12 flex flex-wrap gap-x-8 gap-y-3">
+            <Link
+              href="/landscaping-cost-lahore"
+              className="text-sm font-medium text-primary hover:underline"
+            >
+              What landscaping costs in Lahore
+            </Link>
+            <Link
+              href="/faqs"
+              className="text-sm font-medium text-primary hover:underline"
+            >
+              Landscaping questions answered
+            </Link>
           </div>
         </div>
       </section>

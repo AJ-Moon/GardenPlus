@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 import { siteConfig, segments } from "@/lib/site-content";
 import { seoServicePageLinks } from "@/lib/seo-service-pages";
+import { seoLocationLinks } from "@/lib/seo-locations";
 
 const companyLinks = [
   { name: "About", href: "/about" },
@@ -10,6 +11,8 @@ const companyLinks = [
   { name: "Portfolio", href: "/portfolio" },
   { name: "Blog", href: "/blog" },
   { name: "Clients", href: "/clients" },
+  { name: "FAQs", href: "/faqs" },
+  { name: "Landscaping Costs", href: "/landscaping-cost-lahore" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -115,6 +118,25 @@ export function Footer() {
               ))}
             </ul>
           </div>
+        </div>
+
+        {/* Areas — every location page linked from every page on the site */}
+        <div className="mt-14 border-t border-background/10 pt-8">
+          <h2 className="mb-5 text-sm font-medium uppercase tracking-wider text-background">
+            Areas We Cover in Lahore
+          </h2>
+          <ul className="flex flex-wrap gap-x-6 gap-y-3">
+            {seoLocationLinks.map((location) => (
+              <li key={location.href}>
+                <Link
+                  href={location.href}
+                  className="rounded-sm text-sm text-background/70 transition-colors hover:text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-background"
+                >
+                  {location.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* Bottom bar */}

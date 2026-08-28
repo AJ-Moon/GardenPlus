@@ -84,7 +84,10 @@ const stock = (id: string) =>
 
 /**
  * Named placeholder photos, each one checked to make sure it actually shows
- * a garden or landscaping work. Swap the value for "/projects/your-file.jpg"
+ * a garden or landscaping work. Re-check them periodically: Unsplash
+ * occasionally reassigns a photo ID, and five of these had silently become a
+ * beach, a bucket of plaster, a fabric swatch, an abstract render and a soil
+ * scoop before they were caught. Swap the value for "/projects/your-file.jpg"
  * as your own photography comes in — every usage across the site updates.
  */
 export const photos = {
@@ -95,10 +98,10 @@ export const photos = {
   nurseryField: stock("photo-1589923188900-85dae523342b"),
   raisedVegBeds: stock("photo-1584479898061-15742e14f50d"),
   resortPoolDusk: stock("photo-1596436889106-be35e843f974"),
-  lawnCloseUp: stock("photo-1595351298020-038700609878"),
+  lawnCloseUp: stock("photo-1458245201577-fc8a130b8829"),
   herbRaisedBeds: stock("photo-1524247108137-732e0f642303"),
-  plantingFlowers: stock("photo-1530968033775-2c92736b131e"),
-  tropicalFoliage: stock("photo-1416879595882-3373a0480b5b"),
+  plantingFlowers: stock("photo-1555955208-94f6fafea771"),
+  tropicalFoliage: stock("photo-1503149779833-1de50ebe5f8a"),
   succulents: stock("photo-1520302630591-fd1c66edc19d"),
   tulips: stock("photo-1468327768560-75b778cbb551"),
   gardenLawn: stock("photo-1568393691622-c7ba131d63b4"),
@@ -107,12 +110,54 @@ export const photos = {
   houseLawnTree: stock("photo-1600585154340-be6161a56a0c"),
   roseBed: stock("photo-1519378058457-4c29a0a2efac"),
   perennialBorder: stock("photo-1534710961216-75c88202f43e"),
-  lavender: stock("photo-1497604401993-f2e922e5cb0a"),
+  lavender: stock("photo-1499002238440-d264edd596ec"),
   gardenerAtWork: stock("photo-1605117882932-f9e32b03fea9"),
-  resortPoolPalms: stock("photo-1622547748225-3fc4abd2cca0"),
+  resortPoolPalms: stock("photo-1440558953273-969c107f78a4"),
   aerialNeighbourhood: stock("photo-1512699355324-f07e3106dae5"),
   parkPath: stock("photo-1441974231531-c6227db76b6e"),
 } as const;
+
+/**
+ * Alt text for each photo above. Decorative backdrops still pass alt="" at the
+ * call site; these are for images that carry meaning, and they are what image
+ * search has to go on. Describe the picture, not the page it sits on.
+ */
+export const photoAlt: Record<keyof typeof photos, string> = {
+  roseGardenPath: "Garden path lined with flowering rose bushes and clipped hedging",
+  lushGardenTrees: "Green garden with mature trees and dense underplanting",
+  campusLawn: "Wide mown lawn in front of a large institutional building",
+  estateHouseGarden: "Large house with a landscaped front lawn and mature planting",
+  nurseryField: "Nursery worker tending rows of young plants in a growing field",
+  raisedVegBeds: "Raised vegetable beds planted with leafy crops",
+  resortPoolDusk: "Resort swimming pool surrounded by planting and lit at dusk",
+  lawnCloseUp: "Lawn mower cutting a strip through healthy green grass",
+  herbRaisedBeds: "Gardener planting flowering plants into a bed beside a wall",
+  plantingFlowers: "Hands planting young flowering plants into prepared soil",
+  tropicalFoliage: "Dense tropical foliage with large glossy leaves",
+  succulents: "Mixed succulent planting in a drought-tolerant scheme",
+  tulips: "Bedding display of tulips in full flower",
+  gardenLawn: "Dog resting on a well-kept green family lawn",
+  pottedPlants: "Indoor plants in decorative pots beside a window",
+  woodlandPath: "Shaded woodland path running between tall trees",
+  houseLawnTree: "Modern house with a level lawn and a mature feature tree",
+  roseBed: "Bed of densely planted red roses in full bloom",
+  perennialBorder: "Layered perennial border with purple flowering plants",
+  lavender: "Rows of lavender in flower across a field",
+  gardenerAtWork: "Gardener mowing a lawn outside a house",
+  resortPoolPalms: "Swimming pool framed by tall palm trees",
+  aerialNeighbourhood: "Aerial view of a residential neighbourhood with gardens and street trees",
+  parkPath: "Path curving through a public park with trees on both sides",
+};
+
+/** Look up alt text from a photo URL, for pages that store the URL directly. */
+const photoUrlToAlt = Object.fromEntries(
+  (Object.keys(photos) as (keyof typeof photos)[]).map((key) => [
+    photos[key],
+    photoAlt[key],
+  ]),
+) as Record<string, string>;
+
+export const altForPhoto = (url: string) => photoUrlToAlt[url] ?? "";
 
 // ---------------------------------------------------------------------------
 // 4. SERVICES  (the four sections of the /services page)
