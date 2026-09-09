@@ -38,7 +38,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...seoServicePages.map((page) => ({
       url: `${siteConfig.url}/services/${page.slug}`,
       lastModified: contentUpdated,
-      images: [new URL(page.image, siteConfig.url).toString()],
+      images: page.image.startsWith("/")
+        ? [new URL(page.image, siteConfig.url).toString()]
+        : undefined,
       changeFrequency: "monthly" as const,
       priority: 0.85,
     })),
@@ -51,7 +53,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...posts.map((post) => ({
       url: `${siteConfig.url}/blog/${post.slug}`,
       lastModified: new Date(post.date),
-      images: [new URL(post.image, siteConfig.url).toString()],
+      images: post.image.startsWith("/")
+        ? [new URL(post.image, siteConfig.url).toString()]
+        : undefined,
       changeFrequency: "yearly" as const,
       priority: 0.5,
     })),
