@@ -14,9 +14,9 @@ import { Footer } from "@/components/footer";
 import { createPageMetadata, homePageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Landscaping Services in Lahore, Pakistan | GardenPlus",
+  title: "Landscaping Services in Lahore, Pakistan",
   description:
-    "GardenPlus is a Lahore landscaping company for garden design, lawn maintenance, irrigation systems, plant supply, artificial grass, commercial landscaping and large-scale outdoor projects.",
+    "GardenPlus provides landscape design, development, civil works, planting, lighting, irrigation and maintenance in Lahore. View our services and completed projects.",
   path: "/",
   keywords: [
     "landscaping services Lahore",

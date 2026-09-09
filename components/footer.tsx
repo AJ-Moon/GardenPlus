@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
-import { siteConfig, segments } from "@/lib/site-content";
-import { seoServicePageLinks } from "@/lib/seo-service-pages";
+import { siteConfig } from "@/lib/site-content";
+import { landscapeServices } from "@/lib/services";
 import { seoLocationLinks } from "@/lib/seo-locations";
 
 const companyLinks = [
@@ -96,23 +96,13 @@ export function Footer() {
               Services
             </h2>
             <ul className="space-y-4">
-              {segments.map((segment) => (
-                <li key={segment.slug}>
+              {landscapeServices.map((service) => (
+                <li key={service.slug}>
                   <Link
-                    href={`/services#${segment.slug}`}
-                    className="rounded-sm text-background/70 transition-colors hover:text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-background"
+                    href={service.href}
+                    className="rounded-sm text-sm text-background/70 transition-colors hover:text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-background"
                   >
-                    {segment.heading}
-                  </Link>
-                </li>
-              ))}
-              {seoServicePageLinks.slice(0, 5).map((page) => (
-                <li key={page.href}>
-                  <Link
-                    href={page.href}
-                    className="rounded-sm text-background/70 transition-colors hover:text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-background"
-                  >
-                    {page.name}
+                    {service.title}
                   </Link>
                 </li>
               ))}

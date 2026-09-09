@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { posts } from "@/lib/blog";
-import { segments, siteConfig, stats } from "@/lib/site-content";
+import { siteConfig, fullAddress } from "@/lib/site-content";
+import { landscapeServices } from "@/lib/services";
 
 export const primaryKeywords = [
   "landscaping services Lahore",
@@ -10,15 +11,9 @@ export const primaryKeywords = [
   "lawn maintenance Lahore",
   "garden maintenance Lahore",
   "irrigation system Pakistan",
-  "artificial grass Pakistan",
-  "vertical garden Pakistan",
-  "plant nursery Lahore",
   "plant supply Lahore",
   "lawn grass installation Lahore",
-  "rooftop garden Lahore",
-  "kitchen gardening Lahore",
   "hardscaping Lahore",
-  "tree pruning Lahore",
   "indoor plants Lahore",
   "swimming pool landscaping Lahore",
   "farmhouse landscaping Lahore",
@@ -26,8 +21,9 @@ export const primaryKeywords = [
   "landscape design Pakistan",
   "commercial landscaping Pakistan",
   "corporate landscaping Pakistan",
-  "Middle East landscape design",
-  "GCC landscaping consultancy",
+  "landscape lighting Lahore",
+  "landscape civil works Lahore",
+  "landscape BOQ Pakistan",
 ];
 
 export const serviceAreas = [
@@ -45,18 +41,13 @@ export const serviceAreas = [
   "Allama Iqbal Town",
   "Punjab",
   "Pakistan",
-  "Dubai",
-  "Abu Dhabi",
-  "Riyadh",
-  "Jeddah",
-  "Doha",
 ];
 
 export const seoFacts = [
   `${siteConfig.name} is a Lahore-based landscaping and gardening company founded in ${siteConfig.founded}.`,
-  "Core services include garden design, lawn maintenance, lawn grass installation, plant supply, drip and sprinkler irrigation, artificial grass, vertical gardens, rooftop and terrace gardens, kitchen gardening, hardscaping and pergolas, water features, tree pruning and removal, indoor and office plants, swimming pool landscaping, farmhouse and estate grounds, commercial landscaping, corporate grounds care, garden maintenance contracts, and large-scale landscape delivery.",
+  `Services: ${landscapeServices.map((service) => service.title).join(", ")}.`,
   "The company serves homeowners, developers, hospitality venues, offices, campuses, and public-space projects.",
-  "GardenPlus works with heat-tolerant planting, efficient irrigation, soil preparation, seasonal color, lawns, trees, rooftop gardens, terraces, and outdoor living areas suited to Pakistan and Middle East climates.",
+  `Address: ${fullAddress}`,
   `Contact: ${siteConfig.phone}, WhatsApp ${siteConfig.whatsapp}, ${siteConfig.email}.`,
 ];
 
@@ -76,7 +67,7 @@ export function createPageMetadata({
   return {
     title,
     description,
-    keywords: [...keywords, ...primaryKeywords],
+    keywords: keywords.length ? keywords : primaryKeywords,
     alternates: {
       canonical: path,
       languages: {
@@ -110,7 +101,7 @@ export function createPageMetadata({
 }
 
 const areaServed = serviceAreas.map((name) => ({
-  "@type": name.includes("Pakistan") ? "Country" : "City",
+  "@type": name === "Pakistan" ? "Country" : "Place",
   name,
 }));
 
@@ -132,13 +123,13 @@ export const businessJsonLd = {
           "@type": "ContactPoint",
           telephone: siteConfig.phone,
           contactType: "customer service",
-          areaServed: ["PK", "AE", "SA", "QA"],
+          areaServed: ["PK"],
           availableLanguage: ["English", "Urdu"],
         },
       ],
     },
     {
-      "@type": "LandscapingBusiness",
+      "@type": "HomeAndConstructionBusiness",
       "@id": `${siteConfig.url}/#local-business`,
       name: siteConfig.name,
       image: absoluteUrl("/opengraph-image"),
@@ -149,15 +140,10 @@ export const businessJsonLd = {
       description: siteConfig.description,
       address: {
         "@type": "PostalAddress",
-        streetAddress: siteConfig.address.line1,
+        streetAddress: fullAddress,
         addressLocality: "Lahore",
         addressRegion: "Punjab",
         addressCountry: "PK",
-      },
-      geo: {
-        "@type": "GeoCoordinates",
-        latitude: siteConfig.coordinates.lat,
-        longitude: siteConfig.coordinates.lng,
       },
       openingHoursSpecification: [
         {
@@ -188,24 +174,21 @@ export const businessJsonLd = {
     {
       "@type": "Service",
       "@id": `${siteConfig.url}/#landscaping-service`,
-      name: "Landscaping, garden design, lawn care, irrigation, and plant supply",
+      name: "Landscape design, development and maintenance",
       serviceType: "Landscaping services",
       provider: { "@id": `${siteConfig.url}/#local-business` },
       areaServed,
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "GardenPlus Landscaping Services",
-        itemListElement: segments.map((segment) => ({
-          "@type": "OfferCatalog",
-          name: segment.heading,
-          itemListElement: segment.offerings.map((offering) => ({
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: offering,
-              serviceType: segment.heading,
-            },
-          })),
+        itemListElement: landscapeServices.map((service) => ({
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: service.title,
+            description: service.description,
+            url: absoluteUrl(service.href),
+          },
         })),
       },
     },
@@ -220,65 +203,40 @@ export const homePageJsonLd = {
   name: `${siteConfig.name} - Landscaping Services in Lahore`,
   description: siteConfig.description,
   about: { "@id": `${siteConfig.url}/#landscaping-service` },
-  mainEntity: stats.map((stat) => ({
-    "@type": "PropertyValue",
-    name: stat.label,
-    value: `${stat.value}${stat.suffix}`,
-  })),
 };
 
 export const servicesPageJsonLd = {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "CollectionPage",
-      "@id": `${siteConfig.url}/services#webpage`,
-      url: absoluteUrl("/services"),
-      name: "GardenPlus Landscaping Services",
-      description:
-        "Residential gardens, commercial landscaping, corporate grounds, irrigation systems, plant supply, and large-scale landscape delivery.",
-      hasPart: segments.map((segment) => ({
-        "@type": "Service",
-        name: segment.heading,
-        description: segment.intro,
-        provider: { "@id": `${siteConfig.url}/#local-business` },
-        areaServed,
-        serviceType: segment.heading,
-        url: `${siteConfig.url}/services#${segment.slug}`,
-      })),
-    },
-    {
-      "@type": "FAQPage",
-      "@id": `${siteConfig.url}/services#faq`,
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "Does GardenPlus provide complete landscaping services in Lahore?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Yes. GardenPlus handles garden design, soil preparation, lawn installation, plant supply, irrigation systems, hardscape coordination, and ongoing maintenance for homes and businesses in Lahore.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Can GardenPlus work on commercial and corporate landscaping projects?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Yes. GardenPlus works on hotels, offices, campuses, retail frontages, residential developments, and public or semi-public green spaces with planned delivery and maintenance programs.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Does GardenPlus design water-efficient irrigation systems?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Yes. GardenPlus designs drip and sprinkler irrigation zones around plant type, sunlight, soil, and water-use needs so gardens stay healthy with less waste.",
-          },
-        },
-      ],
-    },
-  ],
+  "@type": "CollectionPage",
+  "@id": `${siteConfig.url}/services#webpage`,
+  url: absoluteUrl("/services"),
+  name: "GardenPlus Landscaping Services",
+  description: siteConfig.description,
+  hasPart: landscapeServices.map((service) => ({
+    "@type": "Service",
+    name: service.title,
+    description: service.description,
+    provider: { "@id": `${siteConfig.url}/#local-business` },
+    areaServed,
+    url: absoluteUrl(service.href),
+  })),
 };
+
+// The same questions render on the page and in structured data.
+export const lahoreFaqs = [
+  {
+    question: "Do you handle both design and construction?",
+    answer: "Yes. GardenPlus provides landscape design and planning, development, civil works, planting, irrigation planning and landscape maintenance.",
+  },
+  {
+    question: "Can you maintain an existing garden?",
+    answer: "Yes. Landscape Maintenance covers day-to-day garden upkeep, plants, water bodies, irrigation equipment, pest control and fertilization.",
+  },
+  {
+    question: "Does landscape design include a warranty?",
+    answer: "Landscape Design & Planning includes site visits, 3D proposals, execution planning and detailed quotations, with a one-year service warranty/guarantee.",
+  },
+];
 
 export const lahorePageJsonLd = {
   "@context": "https://schema.org",
@@ -288,39 +246,16 @@ export const lahorePageJsonLd = {
       "@id": `${siteConfig.url}/landscaping-lahore#webpage`,
       url: absoluteUrl("/landscaping-lahore"),
       name: "Landscaping Services in Lahore",
-      description:
-        "GardenPlus provides landscaping, garden design, lawn maintenance, irrigation systems, artificial grass, and plant supply across Lahore.",
+      description: siteConfig.description,
       about: { "@id": `${siteConfig.url}/#landscaping-service` },
     },
     {
       "@type": "FAQPage",
-      "@id": `${siteConfig.url}/landscaping-lahore#faq`,
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "Which areas of Lahore does GardenPlus serve?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "GardenPlus serves residential, commercial, and corporate clients across Lahore, including DHA, Bahria Town, Gulberg, Model Town, Cantt, Bedian Road, and nearby Punjab projects.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "What landscaping services are most requested in Lahore?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Common requests include garden design, lawn installation, lawn maintenance, drip and sprinkler irrigation, seasonal flower beds, artificial grass, outdoor plants, indoor plants, and commercial grounds maintenance.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Can GardenPlus recommend plants for hot Pakistan and Gulf climates?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Yes. GardenPlus plans planting around heat, sun exposure, soil, wind, water availability, and maintenance needs for Pakistan and similar Middle East climate conditions.",
-          },
-        },
-      ],
+      mainEntity: lahoreFaqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: { "@type": "Answer", text: faq.answer },
+      })),
     },
   ],
 };

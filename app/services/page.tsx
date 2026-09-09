@@ -4,19 +4,18 @@ import { Footer } from "@/components/footer";
 import { PageBanner } from "@/components/page-banner";
 import { CTASection } from "@/components/cta-section";
 import { ServiceSegments } from "@/components/service-segments";
-import { ServicesSeoSection } from "@/components/seo-content";
 import { createPageMetadata, servicesPageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Landscaping, Garden Design, Lawn Care & Irrigation Services",
   description:
-    "Explore GardenPlus services: residential garden design, commercial landscaping, corporate grounds, lawn maintenance, irrigation systems, artificial grass, plant supply and large-scale projects in Lahore.",
+    "Landscape design, development, civil works, lighting, soft landscaping, irrigation, water features, BOQs and maintenance. Explore GardenPlus services in Lahore.",
   path: "/services",
   keywords: [
     "garden design Lahore",
     "lawn maintenance Lahore",
     "irrigation systems Pakistan",
-    "artificial grass Pakistan",
+    "landscape civil works Lahore",
   ],
 });
 
@@ -32,12 +31,11 @@ export default function ServicesPage() {
       <PageBanner
         title="Our Services"
         subtitle="What We Do"
-        description="Design, build and maintenance across four areas — from a single home garden to a multi-acre development"
+        description="Landscape design, development and maintenance for homes, businesses and larger projects."
         backgroundImage="https://images.unsplash.com/photo-1534710961216-75c88202f43e?q=80&w=1600&auto=format&fit=crop"
       />
 
       <ServiceSegments />
-      <ServicesSeoSection />
 
       <CTASection />
 

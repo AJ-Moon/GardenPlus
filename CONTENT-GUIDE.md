@@ -1,12 +1,16 @@
 # GardenPlus — Content Guide
 
-Everything you'll want to change lives in **two files**. You don't need to touch
-any page or component.
+The main content lives in the files below. Routine text edits do not require
+changing page components.
 
 | What you want to change | File |
 | --- | --- |
-| Phone, email, address, map, social links, services, projects, photos, videos, clients, testimonials | `lib/site-content.ts` |
-| Blog articles | `lib/blog.ts` |
+| Phone, email, address, map, social links, shared photos, videos, clients, testimonials | `lib/site-content.ts` |
+| Current service names, descriptions and photos | `lib/services.ts` |
+| Service scope, process and FAQs | `lib/service-details.ts` |
+| Completed projects, in display order | `lib/completed-projects.ts` |
+| Existing blog articles | `lib/blog.ts` |
+| Ten Pakistan-focused articles added September 2026 | `lib/blog-pakistan.ts` |
 
 After any edit, save the file — the site reloads automatically while `npm run dev`
 is running.
@@ -38,17 +42,10 @@ export const photos = {
 
 Every place that photo appears across the site updates at once.
 
-**Or**, to change one project only, edit that project directly in the `segments`
-list further down:
-
-```ts
-{
-  title: "Villa Garden & Lawn",
-  description: "A complete garden makeover...",
-  image: "/projects/villa-lawn.jpg",   // ← your file
-  category: "Residential",
-},
-```
+Service photos live in `public/services/`; change their paths and descriptive
+alt text in `lib/services.ts`. Source details are in
+`public/services/PHOTO-CREDITS.md`. The completed project list uses the supplied
+names and details without years. Stock images are not attached to named projects.
 
 **Image tips**
 - Landscape orientation, at least 1600px wide.
@@ -107,11 +104,9 @@ whatsapp: "923008450025",        // no "+" — used for the WhatsApp button
 email: "gardenpluslahore@hotmail.com",
 ```
 
-The map is generated from `coordinates`. Update the lat/lng and both the
-embedded map and the "Open in Google Maps" link move together.
-
-To get exact coordinates: right-click your location in Google Maps → click the
-numbers at the top of the menu to copy them.
+The map and Google Maps link use `fullAddress`, assembled from `address.line1`
+and `address.line2`. Updating the address updates both. The previous coordinates
+were removed because an exact pin for the supplied address has not been confirmed.
 
 ---
 
@@ -136,10 +131,10 @@ they were photographs of real, unrelated people.
 Twelve company names that read as placeholders ("Golden Gate Developers",
 "Blue Sky Resorts"). Swap in real clients you can name, and delete the rest.
 
-### ⚠️ Project photos
-All 24 project images are stock photography of other people's gardens, captioned
-with GardenPlus project names. They're placeholders to keep the layout intact —
-replace them with your own work as soon as you can.
+### Completed projects
+The 33 owner-supplied entries are in `lib/completed-projects.ts`. Preserve the
+names, details and ordering. There is no year field. Only use photographs of the
+actual project if a project gallery is added later.
 
 ### ⚠️ Stats (`stats`)
 "1,000+ projects", "850+ homeowners", "7+ awards" — confirm these are accurate.
@@ -178,3 +173,8 @@ simple blocks:
 Add `featured: true` to make it the large card at the top of the blog page
 (only one post should have it). The page, its SEO tags and the sitemap entry are
 all generated automatically.
+
+New posts can also include `imageAlt`, `keywords`, `relatedServices` (service
+slugs from `lib/services.ts`) and `sources` (objects with `title` and `url`).
+The September articles calculate reading time from their content. Use the actual
+publication date; do not change it on every build.

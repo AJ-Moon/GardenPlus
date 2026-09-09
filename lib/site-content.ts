@@ -20,7 +20,7 @@ export const siteConfig = {
   url: "https://gardenplus.pk",
   tagline: "Professional Landscaping & Gardening Services",
   description:
-    "GardenPlus delivers landscaping services, garden design, lawn maintenance, irrigation systems, plant supply and outdoor transformations for homes, businesses, campuses and developments across Lahore, Pakistan and climate-similar Middle East projects.",
+    "GardenPlus provides landscape design, development, civil works, lighting, planting, irrigation and maintenance for homes and businesses in Lahore, Pakistan.",
 
   phone: "+92 300 8450025",
   phoneHref: "+923008450025",
@@ -29,13 +29,9 @@ export const siteConfig = {
   email: "gardenpluslahore@hotmail.com",
 
   address: {
-    line1: "Adjacent Lahore School of Economics, Bedian Road",
-    line2: "Lahore, Punjab, Pakistan",
+    line1: "Half Km Main Canal Road, Mustafa Abad, Ferozepur Road,",
+    line2: "Near Toll Plaza & Barki Road, Lahore.",
   },
-
-  // Single source of truth for the map. Both the embed and the "open in Maps"
-  // link are generated from these coordinates, so they can never disagree.
-  coordinates: { lat: 31.507158, lng: 74.471428 },
 
   hours: ["Monday – Saturday: 9am – 6pm", "Sunday: By Appointment"],
 
@@ -49,8 +45,10 @@ export const siteConfig = {
   founded: 1990,
 } as const;
 
-export const mapEmbedUrl = `https://maps.google.com/maps?q=${siteConfig.coordinates.lat},${siteConfig.coordinates.lng}&z=15&output=embed`;
-export const mapLinkUrl = `https://maps.google.com/?q=${siteConfig.coordinates.lat},${siteConfig.coordinates.lng}`;
+export const fullAddress = `${siteConfig.address.line1} ${siteConfig.address.line2}`;
+// Use the supplied address until an exact pin for this location is confirmed.
+export const mapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(fullAddress)}&z=15&output=embed`;
+export const mapLinkUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(fullAddress)}`;
 
 export const whatsappUrl = (
   message = "Hi! I'm interested in your landscaping services. Could you please provide more information?",
@@ -163,287 +161,40 @@ export const altForPhoto = (url: string) => photoUrlToAlt[url] ?? "";
 // 4. SERVICES  (the four sections of the /services page)
 // ---------------------------------------------------------------------------
 
-export type Project = {
-  title: string;
-  description: string;
-  image: string;
-  category: SegmentId;
-};
-
-export type SegmentId =
-  | "Residential"
-  | "Commercial"
-  | "Corporate"
-  | "Large Scale";
+export type SegmentId = "Residential" | "Commercial" | "Corporate" | "Large Scale";
 
 export type Segment = {
   id: SegmentId;
-  /** URL anchor, e.g. /services#residential */
   slug: string;
-  eyebrow: string;
   heading: string;
   intro: string;
-  offerings: string[];
-  projects: Project[];
 };
 
 export const segments: Segment[] = [
   {
     id: "Residential",
     slug: "residential",
-    eyebrow: "For Homeowners",
     heading: "Residential Gardens",
-    intro:
-      "Beautiful, low-maintenance garden design and lawn care in Lahore, planned around your home and the way you actually live in it - from compact courtyards to full farmhouse estates.",
-    offerings: [
-      "Full garden design & build",
-      "Lawn installation and year-round lawn maintenance",
-      "Drip and sprinkler irrigation",
-      "Artificial grass and low-maintenance turf options",
-      "Seasonal planting and flower beds",
-      "Paving, pathways and water features",
-    ],
-    projects: [
-      {
-        title: "Villa Garden & Lawn",
-        description:
-          "A complete garden makeover with lush lawn, flower beds and paved pathways.",
-        image: photos.estateHouseGarden,
-        category: "Residential",
-      },
-      {
-        title: "Courtyard Herb Garden",
-        description:
-          "Raised beds and structured planting for a compact city courtyard.",
-        image: photos.herbRaisedBeds,
-        category: "Residential",
-      },
-      {
-        title: "Family Lawn & Play Area",
-        description:
-          "A hard-wearing lawn built to take daily family use and stay green.",
-        image: photos.gardenLawn,
-        category: "Residential",
-      },
-      {
-        title: "Farmhouse Estate Garden",
-        description: "Expansive lawn, mature trees and cottage flower borders.",
-        image: photos.lushGardenTrees,
-        category: "Residential",
-      },
-      {
-        title: "Rose Walk & Pergola",
-        description:
-          "A formal planted walkway with seasonal colour and structured hedging.",
-        image: photos.roseGardenPath,
-        category: "Residential",
-      },
-      {
-        title: "Modern Home Lawn",
-        description:
-          "Clean lines, feature tree and fully automated irrigation.",
-        image: photos.houseLawnTree,
-        category: "Residential",
-      },
-    ],
+    intro: "Garden design, planting, irrigation and maintenance for homes and farmhouses.",
   },
   {
     id: "Commercial",
     slug: "commercial",
-    eyebrow: "Business Spaces",
     heading: "Commercial Projects",
-    intro:
-      "Commercial landscaping that earns its keep - entrances, courtyards and terraces for hotels, restaurants, retail and wellness spaces where first impressions convert.",
-    offerings: [
-      "Entrance and frontage landscaping",
-      "Courtyard and al fresco terrace design",
-      "Scheduled maintenance contracts",
-      "Indoor and outdoor plants for guest-facing spaces",
-      "Seasonal colour rotation",
-      "Outdoor lighting and ambience",
-    ],
-    projects: [
-      {
-        title: "Hotel Entrance Gardens",
-        description:
-          "Layered borders and seasonal colour at a hotel arrival frontage.",
-        image: photos.perennialBorder,
-        category: "Commercial",
-      },
-      {
-        title: "Resort Pool & Garden Areas",
-        description:
-          "Pool surrounds planted with palms, screening and evening lighting.",
-        image: photos.resortPoolDusk,
-        category: "Commercial",
-      },
-      {
-        title: "Boutique Hotel Courtyard",
-        description:
-          "An intimate courtyard with dense foliage and a shaded seating area.",
-        image: photos.tropicalFoliage,
-        category: "Commercial",
-      },
-      {
-        title: "Restaurant Terrace Planting",
-        description:
-          "Container planting and herb beds for an al fresco dining terrace.",
-        image: photos.pottedPlants,
-        category: "Commercial",
-      },
-      {
-        title: "Wellness Centre Garden",
-        description:
-          "A calm, therapeutic walking route through soft woodland planting.",
-        image: photos.woodlandPath,
-        category: "Commercial",
-      },
-      {
-        title: "Poolside Resort Landscaping",
-        description:
-          "Tropical planting scheme and irrigation across a resort pool deck.",
-        image: photos.resortPoolPalms,
-        category: "Commercial",
-      },
-    ],
+    intro: "Landscaping, outdoor lighting and upkeep for business premises.",
   },
   {
     id: "Corporate",
     slug: "corporate",
-    eyebrow: "For Businesses",
     heading: "Corporate Landscaping",
-    intro:
-      "Corporate landscaping for employee wellbeing and brand image - campuses, plazas and rooftop gardens built to look composed every day of the year.",
-    offerings: [
-      "Campus and business park master planning",
-      "Plaza, courtyard and rooftop gardens",
-      "Sustainable, water-efficient irrigation",
-      "Smart irrigation systems and water-use audits",
-      "Ongoing grounds maintenance",
-      "Shaded walkways and seating landscapes",
-    ],
-    projects: [
-      {
-        title: "Corporate Campus Grounds",
-        description:
-          "Open lawns and mature planting across a multi-building campus.",
-        image: photos.campusLawn,
-        category: "Corporate",
-      },
-      {
-        title: "Office Plaza Planting",
-        description:
-          "Dense flowering beds softening a hard-surfaced entrance plaza.",
-        image: photos.roseBed,
-        category: "Corporate",
-      },
-      {
-        title: "Business Park Lawn Care",
-        description:
-          "Scheduled mowing, feeding and weed control across shared grounds.",
-        image: photos.lawnCloseUp,
-        category: "Corporate",
-      },
-      {
-        title: "HQ Grounds Maintenance",
-        description:
-          "A year-round maintenance contract keeping headquarters presentation-ready.",
-        image: photos.gardenerAtWork,
-        category: "Corporate",
-      },
-      {
-        title: "Rooftop Garden Terrace",
-        description:
-          "Drought-tolerant rooftop planting designed for low water use.",
-        image: photos.succulents,
-        category: "Corporate",
-      },
-      {
-        title: "Campus Seasonal Colour",
-        description:
-          "Rotating bedding displays at reception and main entrance points.",
-        image: photos.tulips,
-        category: "Corporate",
-      },
-    ],
+    intro: "Planting and landscape maintenance for offices, factories and campuses.",
   },
   {
     id: "Large Scale",
     slug: "large-scale",
-    eyebrow: "Major Developments",
     heading: "Large Scale Projects",
-    intro:
-      "End-to-end landscaping for public parks, campuses, infrastructure and large communities across Pakistan and GCC-style climates - planned, planted and maintained by one accountable team.",
-    offerings: [
-      "Master planning across multi-acre sites",
-      "Native and climate-appropriate planting schemes",
-      "Large-scale irrigation infrastructure",
-      "Plant nursery supply and phased plantation programs",
-      "Phased delivery and handover",
-      "Long-term maintenance programmes",
-    ],
-    projects: [
-      {
-        title: "Community Park & Trails",
-        description:
-          "Walking trails and native planting across a public parkland site.",
-        image: photos.parkPath,
-        category: "Large Scale",
-      },
-      {
-        title: "Residential Development Landscaping",
-        description:
-          "Street trees, verges and shared green space for a housing scheme.",
-        image: photos.aerialNeighbourhood,
-        category: "Large Scale",
-      },
-      {
-        title: "Seasonal Planting Scheme",
-        description:
-          "Large-format colour planting delivered and maintained at scale.",
-        image: photos.lavender,
-        category: "Large Scale",
-      },
-      {
-        title: "Nursery & Plant Production",
-        description:
-          "Our own growing operation supplying stock for large contracts.",
-        image: photos.nurseryField,
-        category: "Large Scale",
-      },
-      {
-        title: "Community Allotment Gardens",
-        description:
-          "Raised growing beds and irrigation for a shared community scheme.",
-        image: photos.raisedVegBeds,
-        category: "Large Scale",
-      },
-      {
-        title: "Public Realm Greening",
-        description:
-          "Phased planting programme across civic and public spaces.",
-        image: photos.plantingFlowers,
-        category: "Large Scale",
-      },
-    ],
+    intro: "Landscape planning and development for housing schemes and larger sites.",
   },
-];
-
-/** Every project across all four segments — powers the /portfolio gallery. */
-export const allProjects: Project[] = segments.flatMap((s) => s.projects);
-
-/** Filter tabs on /portfolio. */
-export const projectCategories: ("All" | SegmentId)[] = [
-  "All",
-  ...segments.map((s) => s.id),
-];
-
-/** The four cards shown in the homepage "Recent Projects" strip. */
-export const featuredProjects: Project[] = [
-  segments[0].projects[0],
-  segments[2].projects[0],
-  segments[1].projects[0],
-  segments[3].projects[0],
 ];
 
 // ---------------------------------------------------------------------------

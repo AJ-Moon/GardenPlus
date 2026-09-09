@@ -121,7 +121,11 @@ components/             shared UI
   ui/                   shadcn/ui primitives (mostly unused, kept for future use)
 lib/
   site-content.ts       ← main content file
+  services.ts           ← current service catalogue and photos
+  service-details.ts    ← service-page scope, process and FAQs
+  completed-projects.ts ← owner-supplied project list, without years
   blog.ts               ← blog articles
+  blog-pakistan.ts       ← Pakistan-focused guides added September 2026
 public/                 static assets; put photos in public/projects/
 gardenplus-cms/         separate Strapi CMS, not used by this site
 ```

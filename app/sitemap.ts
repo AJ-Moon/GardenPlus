@@ -5,7 +5,7 @@ import { seoServicePages } from "@/lib/seo-service-pages";
 import { seoLocations } from "@/lib/seo-locations";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+  const contentUpdated = new Date("2026-09-09");
 
   const staticRoutes = [
     { path: "", priority: 1, changeFrequency: "monthly" as const },
@@ -31,25 +31,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticRoutes.map((route) => ({
       url: `${siteConfig.url}${route.path}`,
-      lastModified: now,
+      lastModified: contentUpdated,
       changeFrequency: route.changeFrequency,
       priority: route.priority,
     })),
     ...seoServicePages.map((page) => ({
       url: `${siteConfig.url}/services/${page.slug}`,
-      lastModified: now,
+      lastModified: contentUpdated,
+      images: [new URL(page.image, siteConfig.url).toString()],
       changeFrequency: "monthly" as const,
       priority: 0.85,
     })),
     ...seoLocations.map((location) => ({
       url: `${siteConfig.url}/landscaping/${location.slug}`,
-      lastModified: now,
+      lastModified: contentUpdated,
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
     ...posts.map((post) => ({
       url: `${siteConfig.url}/blog/${post.slug}`,
       lastModified: new Date(post.date),
+      images: [new URL(post.image, siteConfig.url).toString()],
       changeFrequency: "yearly" as const,
       priority: 0.5,
     })),

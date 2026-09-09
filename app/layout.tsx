@@ -107,7 +107,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
+    <html lang="en-PK" className={`${inter.variable} ${cormorant.variable}`}>
       <body className="font-sans antialiased">
         {/* Hero images are served from Unsplash — open the connection early so
             the LCP image is not waiting on DNS and TLS. React hoists these. */}

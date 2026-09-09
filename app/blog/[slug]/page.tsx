@@ -7,8 +7,9 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta-section";
 import { posts, getPost, sortedPosts, formatDate } from "@/lib/blog";
-import { siteConfig } from "@/lib/site-content";
-import { absoluteUrl, breadcrumbJsonLd, primaryKeywords } from "@/lib/seo";
+import { siteConfig, altForPhoto } from "@/lib/site-content";
+import { landscapeServices } from "@/lib/services";
+import { absoluteUrl, breadcrumbJsonLd } from "@/lib/seo";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title: post.title,
     description: post.excerpt,
-    keywords: [post.category, ...primaryKeywords],
+    keywords: post.keywords ?? [post.category],
     alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
       type: "article",
@@ -36,13 +37,14 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       publishedTime: post.date,
       authors: [siteConfig.name],
       section: post.category,
-      images: [{ url: post.image }],
+      locale: "en_PK",
+      images: [{ url: absoluteUrl(post.image), alt: post.imageAlt ?? altForPhoto(post.image) }],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
-      images: [post.image],
+      images: [absoluteUrl(post.image)],
     },
   };
 }
@@ -63,7 +65,8 @@ export default async function BlogPostPage({ params }: Params) {
     "@id": `${siteConfig.url}/blog/${post.slug}#article`,
     headline: post.title,
     description: post.excerpt,
-    image: post.image,
+    image: absoluteUrl(post.image),
+    inLanguage: "en-PK",
     datePublished: post.date,
     dateModified: post.date,
     articleSection: post.category,
@@ -88,10 +91,10 @@ export default async function BlogPostPage({ params }: Params) {
       />
 
       {/* Hero */}
-      <header className="relative flex h-[65vh] min-h-[420px] w-full items-end overflow-hidden">
+      <header className="relative flex min-h-[540px] w-full items-end overflow-hidden pt-36 md:min-h-[65vh]">
         <Image
           src={post.image}
-          alt=""
+          alt={post.imageAlt ?? altForPhoto(post.image)}
           fill
           sizes="100vw"
           className="object-cover"
@@ -173,6 +176,31 @@ export default async function BlogPostPage({ params }: Params) {
               );
             })}
           </div>
+
+          {post.relatedServices && (
+            <aside className="mt-12 border-t border-border pt-8" aria-label="Related services">
+              <h2 className="font-serif text-2xl text-foreground">Related Services</h2>
+              <ul className="mt-4 space-y-3">
+                {landscapeServices.filter((service) => post.relatedServices?.includes(service.slug)).map((service) => (
+                  <li key={service.slug}>
+                    <Link href={service.href} className="inline-flex items-center gap-2 text-sm text-primary hover:underline">
+                      {service.title}<ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          )}
+          {post.sources && (
+            <aside className="mt-10 border-t border-border pt-8" aria-label="Article references">
+              <h2 className="font-serif text-2xl text-foreground">References</h2>
+              <ul className="mt-4 space-y-3">
+                {post.sources.map((source) => (
+                  <li key={source.url}><a href={source.url} className="text-sm leading-6 text-primary underline underline-offset-4">{source.title}</a></li>
+                ))}
+              </ul>
+            </aside>
+          )}
 
           {/* Post navigation */}
           <nav

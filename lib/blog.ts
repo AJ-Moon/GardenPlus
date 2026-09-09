@@ -14,6 +14,8 @@
 // Images live in /public — set `image: "/blog/my-photo.jpg"` to use your own.
 // ============================================================================
 
+import { pakistanPosts } from "@/lib/blog-pakistan";
+
 export type Block =
   | { type: "h2"; text: string }
   | { type: "p"; text: string }
@@ -25,6 +27,10 @@ export type Post = {
   title: string;
   excerpt: string;
   image: string;
+  imageAlt?: string;
+  keywords?: string[];
+  relatedServices?: string[];
+  sources?: { title: string; url: string }[];
   category: string;
   readTime: string;
   /** ISO date — controls ordering and the displayed date. */
@@ -37,6 +43,7 @@ const stock = (id: string) =>
   `https://images.unsplash.com/${id}?q=80&w=1600&auto=format&fit=crop`;
 
 export const posts: Post[] = [
+  ...pakistanPosts,
   {
     slug: "designing-a-lawn-that-stays-green-all-year",
     title: "How to Design a Lawn That Stays Green All Year in Lahore",
@@ -46,7 +53,6 @@ export const posts: Post[] = [
     category: "Lawn Care",
     readTime: "7 min read",
     date: "2026-07-22",
-    featured: true,
     content: [
       {
         type: "p",

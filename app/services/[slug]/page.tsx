@@ -7,7 +7,9 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta-section";
 import { createPageMetadata } from "@/lib/seo";
-import { altForPhoto } from "@/lib/site-content";
+import { altForPhoto, fullAddress } from "@/lib/site-content";
+import { posts } from "@/lib/blog";
+import { landscapeServices } from "@/lib/services";
 import {
   getSeoServicePage,
   seoServicePages,
@@ -40,6 +42,9 @@ export default async function SeoServicePage({ params }: Params) {
 
   if (!page) notFound();
 
+  const service = landscapeServices.find((item) => item.href === `/services/${slug}`);
+  const guides = service ? posts.filter((post) => post.relatedServices?.includes(service.slug)).slice(0, 3) : [];
+
   return (
     <main>
       <script
@@ -51,11 +56,12 @@ export default async function SeoServicePage({ params }: Params) {
       <header className="relative min-h-[72vh] overflow-hidden pt-28 md:pt-32">
         <Image
           src={page.image}
-          alt={altForPhoto(page.image)}
+          alt={page.imageAlt ?? altForPhoto(page.image)}
           fill
           sizes="100vw"
           priority
           className="object-cover"
+          style={{ objectPosition: page.imagePosition }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/45 to-black/75" />
         <div className="relative z-10 mx-auto flex min-h-[calc(72vh-7rem)] max-w-7xl items-center px-6 pb-16 lg:px-8">
@@ -63,7 +69,7 @@ export default async function SeoServicePage({ params }: Params) {
             <p className="mb-5 text-xs font-medium uppercase tracking-[0.28em] text-white/75">
               {page.eyebrow}
             </p>
-            <h1 className="font-serif text-5xl font-light leading-tight text-white md:text-6xl lg:text-7xl">
+            <h1 className="font-serif text-4xl font-light leading-tight text-white md:text-6xl lg:text-7xl">
               {page.h1}
             </h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-white/82 md:text-xl">
@@ -74,7 +80,7 @@ export default async function SeoServicePage({ params }: Params) {
                 href="/contact"
                 className="rounded-sm bg-white px-7 py-3.5 text-center text-sm font-medium text-foreground transition-colors hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
-                Get a Free Quote
+                Request a Quote
               </Link>
               <Link
                 href="/portfolio"
@@ -91,10 +97,10 @@ export default async function SeoServicePage({ params }: Params) {
         <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
           <div>
             <p className="mb-4 text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground">
-              Why it matters
+              About the Service
             </p>
             <h2 className="font-serif text-4xl font-light leading-tight text-foreground md:text-5xl">
-              Planned for Pakistan&apos;s climate, maintenance and daily use
+              {page.h1}
             </h2>
           </div>
           <div className="space-y-5 leading-8 text-muted-foreground">
@@ -139,7 +145,7 @@ export default async function SeoServicePage({ params }: Params) {
               Process
             </p>
             <h2 className="font-serif text-4xl font-light text-foreground md:text-5xl">
-              A practical sequence from site review to care plan
+              Planning Your Project
             </h2>
             <ol className="mt-10 space-y-5">
               {page.process.map((step, index) => (
@@ -155,7 +161,7 @@ export default async function SeoServicePage({ params }: Params) {
             </ol>
           </div>
 
-          <div className="border-l border-border pl-0 lg:pl-12">
+          <div className="lg:border-l lg:border-border lg:pl-12">
             <p className="mb-4 text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground">
               Areas
             </p>
@@ -163,10 +169,8 @@ export default async function SeoServicePage({ params }: Params) {
               Service areas
             </h2>
             <p className="mt-6 leading-8 text-muted-foreground">
-              GardenPlus is based in Lahore and works across nearby Punjab
-              projects. For Middle East work, GardenPlus focuses on
-              climate-aware planning and consulting where heat, irrigation and
-              plant resilience are central to the brief.
+              GardenPlus is based at {fullAddress} Contact us to discuss your
+              project location and requirements.
             </p>
             <ul className="mt-8 grid gap-3 sm:grid-cols-2">
               {page.areas.map((area) => (
@@ -212,6 +216,21 @@ export default async function SeoServicePage({ params }: Params) {
         </div>
       </section>
 
+      {guides.length > 0 && (
+        <section className="bg-background py-16">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <h2 className="font-serif text-3xl text-foreground">Related Reading</h2>
+            <ul className="mt-6 grid gap-6 md:grid-cols-3">
+              {guides.map((post) => (
+                <li key={post.slug} className="border-t border-border pt-4">
+                  <Link href={`/blog/${post.slug}`} className="font-serif text-xl text-primary hover:underline">{post.title}</Link>
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">{post.excerpt}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
       <CTASection />
       <Footer />
     </main>

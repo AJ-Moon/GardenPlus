@@ -3,7 +3,8 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { PageBanner } from "@/components/page-banner";
 import { PortfolioGallery } from "@/components/portfolio-gallery";
-import { createPageMetadata } from "@/lib/seo";
+import { createPageMetadata, absoluteUrl } from "@/lib/seo";
+import { completedProjects } from "@/lib/completed-projects";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Landscaping Portfolio - Gardens, Lawns, Parks & Corporate Grounds",
@@ -25,11 +26,30 @@ export default function PortfolioPage() {
       <PageBanner
         title="Our Portfolio"
         subtitle="Our Work"
-        description="Browse our collection of landscaping, garden design and outdoor transformation projects"
+        description="Completed work for residences, factories, offices, schools and housing schemes."
         backgroundImage="https://images.unsplash.com/photo-1598902108854-10e335adac99?q=80&w=1600&auto=format&fit=crop"
       />
 
       <PortfolioGallery />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: "GardenPlus Completed Projects",
+            url: absoluteUrl("/portfolio"),
+            numberOfItems: completedProjects.length,
+            itemListElement: completedProjects.map((project, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              name: project.detail
+                ? `${project.name} — ${project.detail}`
+                : project.name,
+            })),
+          }),
+        }}
+      />
 
       <Footer />
     </main>

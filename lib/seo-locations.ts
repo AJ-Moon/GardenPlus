@@ -54,7 +54,7 @@ export const seoLocations: SeoLocation[] = [
     intro: [
       "DHA is the most landscaping-intensive part of Lahore, and also the most demanding. Plots are large enough for a real garden, houses are close enough together that privacy planting matters, and standards on a street tend to set the standard for the whole street.",
       "The older phases have mature trees and settled soil, which is an advantage worth designing around. The newer phases are usually starting from builder's rubble, where the first job is stripping out construction debris and rebuilding a soil profile that grass can actually root into.",
-      "GardenPlus works across DHA on new garden builds, lawn replacement, irrigation installation and ongoing maintenance contracts, with our base on Bedian Road putting us minutes from most of the phases.",
+      "GardenPlus provides landscape design, planting, irrigation planning and maintenance for residential projects in DHA. Share your site location and requirements to arrange a visit.",
     ],
     popular: [
       "Full front and back garden design and build",
@@ -93,7 +93,7 @@ export const seoLocations: SeoLocation[] = [
       {
         question: "Do you cover every phase of DHA Lahore?",
         answer:
-          "Yes, from Phases 1 to 8 and the EME sector. Our yard on Bedian Road is close to most of DHA, which makes regular maintenance visits practical rather than occasional.",
+          "Contact GardenPlus with your DHA phase and property location to discuss the scope and schedule for maintenance visits.",
       },
       {
         question: "Can you replace a lawn that never took properly?",
@@ -463,7 +463,7 @@ export const seoLocations: SeoLocation[] = [
     title: "Landscaping on Bedian Road Lahore - Farmhouse & Garden Design",
     h1: "Landscaping on Bedian Road, Lahore",
     metaDescription:
-      "Landscaping on Bedian Road Lahore: farmhouse and estate grounds, large lawns, orchards, borewell irrigation, tree planting and long-term maintenance. GardenPlus is based here.",
+      "Landscape design, development, planting, irrigation planning and maintenance for Bedian Road properties in Lahore. Discuss your project with GardenPlus.",
     primaryKeyword: "landscaping Bedian Road",
     keywords: [
       "landscaping Bedian Road",
@@ -474,7 +474,7 @@ export const seoLocations: SeoLocation[] = [
     ],
     image: photos.lushGardenTrees,
     intro: [
-      "Bedian Road is where GardenPlus is based, adjacent to the Lahore School of Economics, so this is the area we know in the most detail and can reach fastest.",
+      "GardenPlus's completed work includes Farmhouse of Mr. Zafar Bhatti & Green Earth Villas on Bedian Road, Lahore.",
       "The landscaping here is a different scale from the city phases. Farmhouses, private estates and event venues sit on plots measured in kanals and acres, where the design starts with water source, access routes and tree structure rather than bed layouts.",
       "Water is usually from a borewell rather than mains supply, which changes irrigation design entirely: pump capacity, mainline sizing and zoning decide what is realistically possible to keep green.",
     ],
@@ -513,7 +513,7 @@ export const seoLocations: SeoLocation[] = [
       {
         question: "Where exactly is GardenPlus based?",
         answer:
-          `${siteConfig.name} is at ${siteConfig.address.line1}, ${siteConfig.address.line2}, which puts us close to the farmhouse belt along Bedian and Barki Road as well as the outer DHA phases.`,
+          `${siteConfig.name} is at ${siteConfig.address.line1} ${siteConfig.address.line2} Contact the team to arrange a site visit.`,
       },
       {
         question: "Can you supply plants in bulk for a large site?",

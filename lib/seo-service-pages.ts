@@ -1,5 +1,7 @@
 import { photos, siteConfig } from "@/lib/site-content";
 import { absoluteUrl, serviceAreas } from "@/lib/seo";
+import { landscapeServices } from "@/lib/services";
+import { serviceDetails } from "@/lib/service-details";
 
 export type SeoServicePage = {
   slug: string;
@@ -11,6 +13,8 @@ export type SeoServicePage = {
   primaryKeyword: string;
   keywords: string[];
   image: string;
+  imageAlt?: string;
+  imagePosition?: string;
   intro: string[];
   deliverables: string[];
   process: string[];
@@ -18,7 +22,7 @@ export type SeoServicePage = {
   faqs: { question: string; answer: string }[];
 };
 
-export const seoServicePages: SeoServicePage[] = [
+const existingServicePages: SeoServicePage[] = [
   {
     slug: "garden-design-lahore",
     title: "Garden Design Lahore - Residential & Commercial Landscape Plans",
@@ -44,7 +48,7 @@ export const seoServicePages: SeoServicePage[] = [
     deliverables: [
       "Site survey, sun and shade study, soil and drainage notes",
       "Concept layout for lawn, planting, paths, sitting areas and focal points",
-      "Plant palette selected for Lahore and climate-similar Middle East conditions",
+      "Plant palette selected for the site's growing conditions",
       "Irrigation, lighting and maintenance recommendations",
       "Phased implementation plan for budget or construction timelines",
     ],
@@ -1037,6 +1041,32 @@ export const seoServicePages: SeoServicePage[] = [
  * are too long to scan as a list, so anything that doesn't shorten cleanly by
  * dropping " in Lahore" gets an explicit label here.
  */
+// Keep established URLs while making the current service catalogue authoritative.
+const currentServicePages: SeoServicePage[] = landscapeServices.map((service) => {
+  const slug = service.href.split("/").pop()!;
+  const existing = existingServicePages.find((page) => page.slug === slug);
+  return {
+    slug,
+    title: `${service.title} in Lahore`,
+    h1: service.title,
+    eyebrow: "GardenPlus Services",
+    description: service.description,
+    metaDescription: service.description,
+    primaryKeyword: existing?.primaryKeyword ?? `${service.title} Lahore`,
+    keywords: existing?.keywords ?? [service.title, "landscaping Lahore"],
+    image: service.image,
+    imageAlt: service.imageAlt,
+    imagePosition: service.imagePosition,
+    areas: ["Lahore", "Punjab", "Pakistan"],
+    ...serviceDetails[service.slug],
+  };
+});
+
+export const seoServicePages: SeoServicePage[] = [
+  ...currentServicePages,
+  ...existingServicePages.filter((page) => !currentServicePages.some((current) => current.slug === page.slug)),
+];
+
 const shortLabels: Record<string, string> = {
   "irrigation-systems-pakistan": "Irrigation Systems",
   "artificial-grass-pakistan": "Artificial Grass",

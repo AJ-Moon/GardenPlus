@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Check, Droplets, Leaf, MapPin, Sprout } from "lucide-react";
+import { Check } from "lucide-react";
+import { ServiceCards } from "@/components/service-cards";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta-section";
-import { createPageMetadata, lahorePageJsonLd, serviceAreas } from "@/lib/seo";
-import { siteConfig } from "@/lib/site-content";
-import { seoServicePageLinks } from "@/lib/seo-service-pages";
+import { createPageMetadata, lahorePageJsonLd, serviceAreas, lahoreFaqs } from "@/lib/seo";
+import { siteConfig, fullAddress } from "@/lib/site-content";
+import { landscapeServices } from "@/lib/services";
+const seoServicePageLinks = landscapeServices.map((service) => ({ name: service.title, href: service.href }));
 import { seoLocations } from "@/lib/seo-locations";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Landscaping Services Lahore - Garden Design, Lawn Care & Irrigation",
   description:
-    "GardenPlus provides landscaping services in Lahore including garden design, lawn maintenance, irrigation systems, plant supply, artificial grass, commercial landscaping and outdoor plants.",
+    "Landscape design, development, civil works, lighting, planting, irrigation and maintenance in Lahore. Explore GardenPlus services and completed projects.",
   path: "/landscaping-lahore",
   keywords: [
     "landscaping services Lahore",
@@ -24,46 +26,7 @@ export const metadata: Metadata = createPageMetadata({
   ],
 });
 
-const serviceHighlights = [
-  {
-    icon: Leaf,
-    title: "Garden Design",
-    text: "Concept layouts, planting plans, lawns, paths, water features and outdoor living spaces planned for Lahore homes and farmhouses.",
-  },
-  {
-    icon: Droplets,
-    title: "Irrigation Systems",
-    text: "Drip and sprinkler irrigation planned around sunlight, soil, grass, plant beds and water pressure to reduce waste.",
-  },
-  {
-    icon: Sprout,
-    title: "Plant Supply",
-    text: "Outdoor plants, indoor plants, seasonal flowers, trees, shrubs, ground covers and nursery stock selected for heat and maintenance needs.",
-  },
-  {
-    icon: MapPin,
-    title: "Commercial Landscaping",
-    text: "Entrances, hotel gardens, campuses, office grounds, retail frontages and development landscapes built for consistent presentation.",
-  },
-];
-
-const faqs = [
-  {
-    question: "Do you handle both design and construction?",
-    answer:
-      "Yes. GardenPlus can manage design, soil preparation, hardscape coordination, plantation, lawn installation, irrigation and maintenance planning.",
-  },
-  {
-    question: "Can you maintain an existing lawn or garden?",
-    answer:
-      "Yes. GardenPlus provides lawn maintenance, pruning, seasonal planting, irrigation checks, weed control and ongoing grounds care for homes and businesses.",
-  },
-  {
-    question: "Do you recommend artificial grass?",
-    answer:
-      "Artificial grass can work well for low-maintenance areas, shaded spots and high-use spaces. GardenPlus recommends it only where it fits the design, drainage and heat exposure.",
-  },
-];
+const faqs = lahoreFaqs;
 
 export default function LandscapingLahorePage() {
   return (
@@ -93,9 +56,8 @@ export default function LandscapingLahorePage() {
               Landscaping Services in Lahore
             </h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-white/82 md:text-xl">
-              Garden design, lawn maintenance, irrigation systems, plant supply,
-              artificial grass and commercial landscaping for homes, hotels,
-              offices, campuses and developments.
+              Landscape design, civil works, planting, irrigation and
+              maintenance for homes, businesses and larger projects.
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <Link
@@ -133,10 +95,9 @@ export default function LandscapingLahorePage() {
               planned from the beginning.
             </p>
             <p>
-              GardenPlus designs and maintains residential gardens, commercial
-              landscapes, corporate grounds and large-scale outdoor spaces with
-              practical plant selection and water-aware systems for Pakistan
-              and climate-similar Middle East environments.
+              Our planning service includes site visits, 3D landscape design
+              proposals, execution planning and detailed quotations, with a
+              one-year service warranty/guarantee.
             </p>
           </div>
         </div>
@@ -152,19 +113,7 @@ export default function LandscapingLahorePage() {
               What GardenPlus handles in Lahore
             </h2>
           </div>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {serviceHighlights.map((item) => (
-              <article key={item.title} className="border-t border-border pt-6">
-                <item.icon className="mb-5 h-7 w-7 text-primary" />
-                <h3 className="font-serif text-2xl text-foreground">
-                  {item.title}
-                </h3>
-                <p className="mt-4 text-sm leading-7 text-muted-foreground">
-                  {item.text}
-                </p>
-              </article>
-            ))}
-          </div>
+          <ServiceCards preview />
         </div>
       </section>
 
@@ -178,11 +127,8 @@ export default function LandscapingLahorePage() {
               Serving Lahore and nearby projects
             </h2>
             <p className="mt-6 leading-8 text-muted-foreground">
-              GardenPlus works from Bedian Road and serves homeowners,
-              developers and businesses across Lahore and Punjab. For GCC and
-              Middle East projects, the same climate-aware design approach is
-              useful for plant selection, irrigation planning and outdoor
-              comfort.
+              Visit GardenPlus at {fullAddress} Contact the team to discuss
+              your site and arrange a visit.
             </p>
           </div>
           <ul className="grid content-start gap-3 sm:grid-cols-2">

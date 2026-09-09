@@ -9,6 +9,7 @@ import {
   categories,
   featuredPost,
   otherPosts,
+  sortedPosts,
   formatDate,
 } from "@/lib/blog";
 import { NewsletterForm } from "@/components/newsletter-form";
@@ -19,7 +20,7 @@ export function BlogIndex() {
   const visiblePosts =
     activeCategory === "All"
       ? otherPosts
-      : otherPosts.filter((p) => p.category === activeCategory);
+      : sortedPosts.filter((p) => p.category === activeCategory);
 
   return (
     <section className="py-24 md:py-28 bg-background">
@@ -34,7 +35,7 @@ export function BlogIndex() {
           <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[420px]">
             <Image
               src={featuredPost.image}
-              alt=""
+              alt={featuredPost.imageAlt ?? ""}
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover"
@@ -120,7 +121,7 @@ export function BlogIndex() {
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <Image
                       src={post.image}
-                      alt=""
+                      alt={post.imageAlt ?? ""}
                       fill
                       sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -136,7 +137,7 @@ export function BlogIndex() {
                     <p className="mb-5 text-sm leading-7 text-muted-foreground">
                       {post.excerpt}
                     </p>
-                    <div className="flex items-center gap-3 text-xs uppercase tracking-[0.12em] text-muted-foreground">
+                    <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.12em] text-muted-foreground">
                       <time dateTime={post.date}>{formatDate(post.date)}</time>
                       <span aria-hidden="true">·</span>
                       <span>{post.readTime}</span>
