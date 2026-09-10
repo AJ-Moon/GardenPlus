@@ -1,5 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          {
+            key: "Link",
+            value: '</llms.txt>; rel="describedby"; type="text/markdown"',
+          },
+        ],
+      },
+    ];
+  },
+
   images: {
     // Remote stock photography. Once every image lives in /public you can
     // delete this block entirely.

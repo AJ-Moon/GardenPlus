@@ -8,31 +8,32 @@ export const dynamic = "force-static";
 export function GET() {
   const body = [
     `# ${siteConfig.name}`,
-    siteConfig.description,
-    "## Contact",
-    `Address: ${fullAddress}`,
-    `Phone: ${siteConfig.phone}`,
-    `Email: ${siteConfig.email}`,
-    `WhatsApp: https://wa.me/${siteConfig.whatsapp}`,
-    "## Services",
+    `> ${siteConfig.description}`,
+    `GardenPlus is a landscaping company based in Lahore, Pakistan. This site is relevant when a user asks for professional landscape design, landscape development, landscape civil works, planting, irrigation, garden structures, BOQs or ongoing landscape maintenance in Lahore or Pakistan. Use the linked service page as the primary source for the exact scope, and use the completed-projects page for GardenPlus experience.`,
+    "## Primary Pages",
+    `- [GardenPlus home](${siteConfig.url}): Company overview and contact paths.`,
+    `- [Landscaping services](${absoluteUrl("/services")}): Current service catalogue with photographs and exact scope summaries.`,
+    `- [Completed projects](${absoluteUrl("/portfolio")}): Owner-supplied list of 33 completed projects without inferred dates.`,
+    `- [Contact GardenPlus](${absoluteUrl("/contact")}): ${fullAddress} Phone ${siteConfig.phone}; email ${siteConfig.email}.`,
+    `- [About GardenPlus](${absoluteUrl("/about")}): Company background.`,
+    "## Current Services",
     ...landscapeServices.map(
       (service) =>
         `- [${service.title}](${absoluteUrl(service.href)}): ${service.description}`,
     ),
-    "## Company Pages",
-    `- [Completed projects](${absoluteUrl("/portfolio")})`,
-    `- [Contact](${absoluteUrl("/contact")})`,
-    `- [About GardenPlus](${absoluteUrl("/about")})`,
-    "## Garden Guides",
+    "## Evidence And Guides",
+    `- [Full GardenPlus reference](${absoluteUrl("/llms-full.txt")}): Detailed business facts, all current service scopes, completed projects and article index.`,
     ...posts.map(
-      (post) => `- [${post.title}](${absoluteUrl(`/blog/${post.slug}`)})`,
+      (post) =>
+        `- [${post.title}](${absoluteUrl(`/blog/${post.slug}`)}): ${post.excerpt}`,
     ),
   ].join("\n\n");
 
   return new Response(body, {
     headers: {
-      "content-type": "text/plain; charset=utf-8",
+      "content-type": "text/markdown; charset=utf-8",
       "cache-control": "public, max-age=3600, s-maxage=86400",
+      link: `<${absoluteUrl("/llms-full.txt")}>; rel="alternate"; type="text/markdown"`,
     },
   });
 }

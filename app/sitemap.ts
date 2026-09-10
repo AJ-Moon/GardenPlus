@@ -26,6 +26,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/about", priority: 0.7, changeFrequency: "yearly" as const },
     { path: "/clients", priority: 0.6, changeFrequency: "monthly" as const },
     { path: "/blog", priority: 0.6, changeFrequency: "weekly" as const },
+    { path: "/llms.txt", priority: 0.4, changeFrequency: "monthly" as const },
+    {
+      path: "/llms-full.txt",
+      priority: 0.4,
+      changeFrequency: "monthly" as const,
+    },
   ];
 
   return [

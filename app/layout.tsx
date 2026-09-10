@@ -33,7 +33,8 @@ export const metadata: Metadata = {
   creator: siteConfig.name,
   publisher: siteConfig.name,
   category: "Landscaping",
-  classification: "Landscaping, garden design, lawn maintenance, irrigation systems, plant nursery",
+  classification:
+    "Landscaping, garden design, lawn maintenance, irrigation systems, plant nursery",
   alternates: {
     canonical: "/",
     languages: {
@@ -109,6 +110,12 @@ export default function RootLayout({
   return (
     <html lang="en-PK" className={`${inter.variable} ${cormorant.variable}`}>
       <body className="font-sans antialiased">
+        <link
+          rel="describedby"
+          href="/llms.txt"
+          type="text/markdown"
+          title="GardenPlus AI-readable site index"
+        />
         {/* Hero images are served from Unsplash — open the connection early so
             the LCP image is not waiting on DNS and TLS. React hoists these. */}
         <link rel="preconnect" href="https://images.unsplash.com" />
