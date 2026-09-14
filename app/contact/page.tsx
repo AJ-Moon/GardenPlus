@@ -6,9 +6,9 @@ import { ContactSection } from "@/components/contact-section";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Contact GardenPlus - Free Landscaping Quote in Lahore",
+  title: "Contact GardenPlus - Landscaping Quote in Pakistan",
   description:
-    "Call, WhatsApp or email GardenPlus for a landscaping quote in Lahore. Share details for garden design, lawn maintenance, irrigation, plant supply, artificial grass or commercial landscaping.",
+    "Call, WhatsApp or email GardenPlus for landscaping projects across Pakistan. Visit the Gulberg office or contact the Mustafa Abad location in Lahore.",
   path: "/contact",
   keywords: ["landscaping quote Lahore", "garden maintenance near me"],
 });
@@ -22,7 +22,8 @@ export default function ContactPage() {
         title="Contact Us"
         subtitle="Get in Touch"
         description="Tell us about your project and get a free quote within 24 hours"
-        backgroundImage="https://images.unsplash.com/photo-1571939228382-b2f2b585ce15?q=80&w=1600&auto=format&fit=crop"
+        backgroundImage="/gardenplus-work/garden-pergola.jpg"
+        imageAlt="GardenPlus garden pavilion surrounded by lawn and planting"
       />
 
       <ContactSection />

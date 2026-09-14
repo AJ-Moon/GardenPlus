@@ -5,15 +5,24 @@ import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Clock, Send, AlertCircle } from "lucide-react";
 import {
   siteConfig,
+  fullAddress,
+  fullOfficeAddress,
   mapEmbedUrl,
   mapLinkUrl,
+  mustafaAbadMapLinkUrl,
   whatsappUrl,
 } from "@/lib/site-content";
+import { landscapeServices } from "@/lib/services";
 
 const contactInfo = [
   {
     icon: MapPin,
-    title: "Visit Us",
+    title: "Office Address",
+    details: [siteConfig.officeAddress.line1, siteConfig.officeAddress.line2],
+  },
+  {
+    icon: MapPin,
+    title: "Mustafa Abad Address",
     details: [siteConfig.address.line1, siteConfig.address.line2],
   },
   { icon: Phone, title: "Call Us", details: [siteConfig.phone] },
@@ -21,14 +30,7 @@ const contactInfo = [
   { icon: Clock, title: "Business Hours", details: [...siteConfig.hours] },
 ];
 
-const projectTypes = [
-  "Lawn Maintenance",
-  "Garden Design",
-  "Plant Supply",
-  "Irrigation Systems",
-  "Outdoor Landscaping",
-  "Corporate / Commercial",
-];
+const projectTypes = landscapeServices.map((service) => service.title);
 
 const emptyForm = {
   name: "",
@@ -398,19 +400,32 @@ export function ContactSection() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title={`Map showing the ${siteConfig.name} office location`}
+                title={`Map showing the ${siteConfig.name} Gulberg office location`}
               />
             </div>
 
-            <a
-              href={mapLinkUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
-            >
-              <MapPin className="h-4 w-4" />
-              Open location in Google Maps
-            </a>
+            <div className="flex flex-col items-start gap-3 sm:flex-row sm:gap-6">
+              <a
+                href={mapLinkUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
+              >
+                <MapPin className="h-4 w-4" />
+                Open Gulberg office map
+                <span className="sr-only">: {fullOfficeAddress}</span>
+              </a>
+              <a
+                href={mustafaAbadMapLinkUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
+              >
+                <MapPin className="h-4 w-4" />
+                Open Mustafa Abad map
+                <span className="sr-only">: {fullAddress}</span>
+              </a>
+            </div>
           </motion.div>
         </div>
       </div>

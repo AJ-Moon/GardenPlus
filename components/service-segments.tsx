@@ -1,6 +1,6 @@
 import { ServiceCards } from "@/components/service-cards";
 import { VideoGrid } from "@/components/video-grid";
-import { segments, videosForSegment } from "@/lib/site-content";
+import { segments, videos } from "@/lib/site-content";
 
 export function ServiceSegments() {
   return (
@@ -31,14 +31,14 @@ export function ServiceSegments() {
                 <p className="mt-3 text-sm leading-7 text-muted-foreground">
                   {segment.intro}
                 </p>
-                <VideoGrid
-                  videos={videosForSegment(segment.id)}
-                  heading="Project Videos"
-                  className="mt-6"
-                />
               </div>
             ))}
           </div>
+          <VideoGrid
+            videos={videos}
+            heading="Real GardenPlus Project Videos"
+            className="mt-16"
+          />
         </div>
       </section>
     </>

@@ -13,8 +13,8 @@ export function HeroSection() {
     <section className="relative h-[100dvh] min-h-[560px] w-full overflow-hidden">
       <div className="absolute inset-0 animate-hero-zoom">
         <Image
-          src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=2000&auto=format&fit=crop"
-          alt="Landscaped garden path with mature planting"
+          src="/gardenplus-work/development.jpg"
+          alt="Completed GardenPlus lawn with mature trees and landscape planting"
           fill
           sizes="100vw"
           priority
@@ -36,8 +36,9 @@ export function HeroSection() {
           </h1>
 
           <p className="mx-auto mt-8 max-w-2xl animate-rise-in text-lg leading-relaxed text-white/80 [animation-delay:320ms] md:text-xl">
-            From lush lawn maintenance to full outdoor landscaping — GardenPlus
-            brings expertise, creativity and care to every green space we touch.
+            From landscape planning and civil works to planting, irrigation and
+            maintenance, GardenPlus delivers complete outdoor projects across
+            Pakistan.
           </p>
 
           <div className="mt-12 flex animate-rise-in flex-col items-center justify-center gap-4 [animation-delay:480ms] sm:flex-row">

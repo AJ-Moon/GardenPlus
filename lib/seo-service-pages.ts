@@ -59,10 +59,17 @@ const existingServicePages: SeoServicePage[] = [
       "Plan irrigation and maintenance access",
       "Build, plant and hand over with care instructions",
     ],
-    areas: ["DHA Lahore", "Bahria Town Lahore", "Gulberg", "Cantt", "Bedian Road"],
+    areas: [
+      "DHA Lahore",
+      "Bahria Town Lahore",
+      "Gulberg",
+      "Cantt",
+      "Bedian Road",
+    ],
     faqs: [
       {
-        question: "Can GardenPlus design a garden before construction finishes?",
+        question:
+          "Can GardenPlus design a garden before construction finishes?",
         answer:
           "Yes. Early landscape planning is best because levels, drainage, lighting conduits and irrigation lines can be coordinated before final paving and planting.",
       },
@@ -114,7 +121,13 @@ const existingServicePages: SeoServicePage[] = [
       "Feed according to season",
       "Track recurring problems and adjust the care plan",
     ],
-    areas: ["Lahore", "DHA Lahore", "Bahria Town Lahore", "Model Town", "Punjab"],
+    areas: [
+      "Lahore",
+      "DHA Lahore",
+      "Bahria Town Lahore",
+      "Model Town",
+      "Punjab",
+    ],
     faqs: [
       {
         question: "How often should a lawn be maintained in Lahore?",
@@ -169,7 +182,7 @@ const existingServicePages: SeoServicePage[] = [
       "Install lines, valves, heads and controls",
       "Test coverage and set a seasonal schedule",
     ],
-    areas: ["Pakistan", "Lahore", "Punjab", "Dubai", "Riyadh"],
+    areas: ["Pakistan", "Lahore", "Punjab"],
     faqs: [
       {
         question: "Is drip irrigation better than sprinklers?",
@@ -224,7 +237,13 @@ const existingServicePages: SeoServicePage[] = [
       "Install turf with correct falls and joins",
       "Finish with planting and maintenance guidance",
     ],
-    areas: ["Lahore", "Pakistan", "DHA Lahore", "Bahria Town Lahore", "Gulberg"],
+    areas: [
+      "Lahore",
+      "Pakistan",
+      "DHA Lahore",
+      "Bahria Town Lahore",
+      "Gulberg",
+    ],
     faqs: [
       {
         question: "Is artificial grass good for Lahore heat?",
@@ -245,7 +264,8 @@ const existingServicePages: SeoServicePage[] = [
   },
   {
     slug: "plant-supply-lahore",
-    title: "Plant Supply Lahore - Outdoor Plants, Indoor Plants & Nursery Stock",
+    title:
+      "Plant Supply Lahore - Outdoor Plants, Indoor Plants & Nursery Stock",
     h1: "Plant Supply and Nursery Stock in Lahore",
     eyebrow: "Plants and seasonal color",
     description:
@@ -334,7 +354,7 @@ const existingServicePages: SeoServicePage[] = [
       "Install in phases where sites stay operational",
       "Maintain presentation through a scheduled program",
     ],
-    areas: ["Lahore", "Punjab", "Pakistan", "Dubai", "Doha"],
+    areas: ["Pakistan", "Lahore", "Punjab"],
     faqs: [
       {
         question: "Can landscaping be phased around business operations?",
@@ -389,7 +409,7 @@ const existingServicePages: SeoServicePage[] = [
       "Install plants with service access",
       "Maintain growth density and plant health",
     ],
-    areas: ["Lahore", "Pakistan", "Dubai", "Abu Dhabi", "Doha"],
+    areas: ["Pakistan", "Lahore", "Punjab"],
     faqs: [
       {
         question: "Can a vertical garden work indoors?",
@@ -447,7 +467,14 @@ const existingServicePages: SeoServicePage[] = [
       "Lay turf or seed, then roll and water in",
       "Hand over with a watering, mowing and feeding schedule",
     ],
-    areas: ["DHA Lahore", "Bahria Town Lahore", "Gulberg", "Model Town", "Cantt", "Bedian Road"],
+    areas: [
+      "DHA Lahore",
+      "Bahria Town Lahore",
+      "Gulberg",
+      "Model Town",
+      "Cantt",
+      "Bedian Road",
+    ],
     faqs: [
       {
         question: "How long before a new lawn can be walked on?",
@@ -509,7 +536,14 @@ const existingServicePages: SeoServicePage[] = [
       "Set planters, plants and irrigation",
       "Hand over with a watering and seasonal care plan",
     ],
-    areas: ["DHA Lahore", "Gulberg", "Model Town", "Johar Town", "Cantt", "Bahria Town Lahore"],
+    areas: [
+      "DHA Lahore",
+      "Gulberg",
+      "Model Town",
+      "Johar Town",
+      "Cantt",
+      "Bahria Town Lahore",
+    ],
     faqs: [
       {
         question: "Will a rooftop garden damage the waterproofing?",
@@ -572,7 +606,14 @@ const existingServicePages: SeoServicePage[] = [
       "Plant the first season and set the irrigation schedule",
       "Hand over a planting calendar, or continue with maintenance visits",
     ],
-    areas: ["DHA Lahore", "Bahria Town Lahore", "Gulberg", "Model Town", "Bedian Road", "Raiwind Road"],
+    areas: [
+      "DHA Lahore",
+      "Bahria Town Lahore",
+      "Gulberg",
+      "Model Town",
+      "Bedian Road",
+      "Raiwind Road",
+    ],
     faqs: [
       {
         question: "How much space does a kitchen garden need?",
@@ -635,7 +676,14 @@ const existingServicePages: SeoServicePage[] = [
       "Build, lay and finish surfaces and structures",
       "Integrate planting and hand over with care notes",
     ],
-    areas: ["DHA Lahore", "Bahria Town Lahore", "Gulberg", "Cantt", "Model Town", "Bedian Road"],
+    areas: [
+      "DHA Lahore",
+      "Bahria Town Lahore",
+      "Gulberg",
+      "Cantt",
+      "Model Town",
+      "Bedian Road",
+    ],
     faqs: [
       {
         question: "Should hardscaping come before planting?",
@@ -697,7 +745,14 @@ const existingServicePages: SeoServicePage[] = [
       "Commission, balance flow and check for leaks",
       "Hand over with cleaning and seasonal running instructions",
     ],
-    areas: ["DHA Lahore", "Bahria Town Lahore", "Gulberg", "Cantt", "Punjab", "Pakistan"],
+    areas: [
+      "DHA Lahore",
+      "Bahria Town Lahore",
+      "Gulberg",
+      "Cantt",
+      "Punjab",
+      "Pakistan",
+    ],
     faqs: [
       {
         question: "How much water does a fountain lose in summer?",
@@ -760,7 +815,14 @@ const existingServicePages: SeoServicePage[] = [
       "Carry out pruning or sectional removal",
       "Clear arisings and advise on aftercare or replanting",
     ],
-    areas: ["DHA Lahore", "Bahria Town Lahore", "Gulberg", "Model Town", "Cantt", "Bedian Road"],
+    areas: [
+      "DHA Lahore",
+      "Bahria Town Lahore",
+      "Gulberg",
+      "Model Town",
+      "Cantt",
+      "Bedian Road",
+    ],
     faqs: [
       {
         question: "When is the best time to prune trees in Lahore?",
@@ -823,7 +885,14 @@ const existingServicePages: SeoServicePage[] = [
       "Set the watering and care schedule",
       "Return on a fixed visit cycle to maintain and replace as needed",
     ],
-    areas: ["Lahore", "DHA Lahore", "Gulberg", "Model Town", "Johar Town", "Cantt"],
+    areas: [
+      "Lahore",
+      "DHA Lahore",
+      "Gulberg",
+      "Model Town",
+      "Johar Town",
+      "Cantt",
+    ],
     faqs: [
       {
         question: "Which indoor plants survive low-light offices?",
@@ -885,7 +954,14 @@ const existingServicePages: SeoServicePage[] = [
       "Build surfaces and structures, then plant",
       "Hand over with a maintenance plan for the surround",
     ],
-    areas: ["DHA Lahore", "Bahria Town Lahore", "Bedian Road", "Raiwind Road", "Punjab", "Pakistan"],
+    areas: [
+      "DHA Lahore",
+      "Bahria Town Lahore",
+      "Bedian Road",
+      "Raiwind Road",
+      "Punjab",
+      "Pakistan",
+    ],
     faqs: [
       {
         question: "Which plants should be avoided near a swimming pool?",
@@ -947,7 +1023,14 @@ const existingServicePages: SeoServicePage[] = [
       "Deliver in phases, starting with services and tree planting",
       "Move onto a scheduled grounds maintenance programme",
     ],
-    areas: ["Bedian Road", "Raiwind Road", "Barki Road", "DHA Lahore", "Punjab", "Pakistan"],
+    areas: [
+      "Bedian Road",
+      "Raiwind Road",
+      "Barki Road",
+      "DHA Lahore",
+      "Punjab",
+      "Pakistan",
+    ],
     faqs: [
       {
         question: "How long does a farmhouse landscape take to deliver?",
@@ -1010,7 +1093,14 @@ const existingServicePages: SeoServicePage[] = [
       "Report on condition and flag anything needing separate work",
       "Review the plan each season as the planting matures",
     ],
-    areas: ["DHA Lahore", "Bahria Town Lahore", "Gulberg", "Model Town", "Johar Town", "Cantt"],
+    areas: [
+      "DHA Lahore",
+      "Bahria Town Lahore",
+      "Gulberg",
+      "Model Town",
+      "Johar Town",
+      "Cantt",
+    ],
     faqs: [
       {
         question: "How often should a Lahore garden be maintained?",
@@ -1042,29 +1132,34 @@ const existingServicePages: SeoServicePage[] = [
  * dropping " in Lahore" gets an explicit label here.
  */
 // Keep established URLs while making the current service catalogue authoritative.
-const currentServicePages: SeoServicePage[] = landscapeServices.map((service) => {
-  const slug = service.href.split("/").pop()!;
-  const existing = existingServicePages.find((page) => page.slug === slug);
-  return {
-    slug,
-    title: `${service.title} in Lahore`,
-    h1: service.title,
-    eyebrow: "GardenPlus Services",
-    description: service.description,
-    metaDescription: service.description,
-    primaryKeyword: existing?.primaryKeyword ?? `${service.title} Lahore`,
-    keywords: existing?.keywords ?? [service.title, "landscaping Lahore"],
-    image: service.image,
-    imageAlt: service.imageAlt,
-    imagePosition: service.imagePosition,
-    areas: ["Lahore", "Punjab", "Pakistan"],
-    ...serviceDetails[service.slug],
-  };
-});
+const currentServicePages: SeoServicePage[] = landscapeServices.map(
+  (service) => {
+    const slug = service.href.split("/").pop()!;
+    const existing = existingServicePages.find((page) => page.slug === slug);
+    return {
+      slug,
+      title: `${service.title} in Pakistan`,
+      h1: service.title,
+      eyebrow: "GardenPlus Services",
+      description: service.description,
+      metaDescription: service.description,
+      primaryKeyword: existing?.primaryKeyword ?? `${service.title} Lahore`,
+      keywords: existing?.keywords ?? [service.title, "landscaping Lahore"],
+      image: service.image,
+      imageAlt: service.imageAlt,
+      imagePosition: service.imagePosition,
+      areas: ["Pakistan", "Lahore", "Punjab"],
+      ...serviceDetails[service.slug],
+    };
+  },
+);
 
 export const seoServicePages: SeoServicePage[] = [
   ...currentServicePages,
-  ...existingServicePages.filter((page) => !currentServicePages.some((current) => current.slug === page.slug)),
+  ...existingServicePages.filter(
+    (page) =>
+      !currentServicePages.some((current) => current.slug === page.slug),
+  ),
 ];
 
 const shortLabels: Record<string, string> = {
@@ -1124,7 +1219,12 @@ export const servicePageJsonLd = (page: SeoServicePage) => ({
       "@type": "BreadcrumbList",
       "@id": `${siteConfig.url}/services/${page.slug}#breadcrumb`,
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: siteConfig.url,
+        },
         {
           "@type": "ListItem",
           position: 2,

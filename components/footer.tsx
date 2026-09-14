@@ -44,12 +44,17 @@ export function Footer() {
               </span>
             </Link>
             <p className="mb-8 max-w-md leading-relaxed text-background/70">
-              Professional landscaping and gardening services that transform
-              outdoor spaces into thriving, beautiful environments your family
-              and clients will love.
+              Professional landscaping and gardening services for homes,
+              businesses and larger projects across Pakistan.
             </p>
 
             <address className="space-y-2 text-sm not-italic text-background/70">
+              <p className="font-medium text-background">Gulberg Office</p>
+              <p>{siteConfig.officeAddress.line1}</p>
+              <p>{siteConfig.officeAddress.line2}</p>
+              <p className="pt-3 font-medium text-background">
+                Mustafa Abad Address
+              </p>
               <p>{siteConfig.address.line1}</p>
               <p>{siteConfig.address.line2}</p>
               <p className="pt-2">
@@ -110,11 +115,15 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Areas — every location page linked from every page on the site */}
+        {/* Nationwide positioning with useful links to the dedicated Lahore pages. */}
         <div className="mt-14 border-t border-background/10 pt-8">
           <h2 className="mb-5 text-sm font-medium uppercase tracking-wider text-background">
-            Areas We Cover in Lahore
+            Service Area
           </h2>
+          <p className="mb-5 max-w-2xl text-sm leading-6 text-background/70">
+            GardenPlus undertakes landscaping projects across Pakistan. Explore
+            our dedicated Lahore service pages below.
+          </p>
           <ul className="flex flex-wrap gap-x-6 gap-y-3">
             {seoLocationLinks.map((location) => (
               <li key={location.href}>

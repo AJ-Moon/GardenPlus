@@ -3,9 +3,10 @@ import { siteConfig } from "@/lib/site-content";
 import { posts } from "@/lib/blog";
 import { seoServicePages } from "@/lib/seo-service-pages";
 import { seoLocations } from "@/lib/seo-locations";
+import { landscapeServices } from "@/lib/services";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const contentUpdated = new Date("2026-09-09");
+  const contentUpdated = new Date("2026-09-15");
 
   const staticRoutes = [
     { path: "", priority: 1, changeFrequency: "monthly" as const },
@@ -41,15 +42,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: route.changeFrequency,
       priority: route.priority,
     })),
-    ...seoServicePages.map((page) => ({
-      url: `${siteConfig.url}/services/${page.slug}`,
-      lastModified: contentUpdated,
-      images: page.image.startsWith("/")
-        ? [new URL(page.image, siteConfig.url).toString()]
-        : undefined,
-      changeFrequency: "monthly" as const,
-      priority: 0.85,
-    })),
+    ...seoServicePages.map((page) => {
+      const service = landscapeServices.find(
+        (item) => item.href === `/services/${page.slug}`,
+      );
+      const images = [
+        page.image,
+        ...(service?.gallery.map((image) => image.src) ?? []),
+      ]
+        .filter((image) => image.startsWith("/"))
+        .map((image) => new URL(image, siteConfig.url).toString());
+
+      return {
+        url: `${siteConfig.url}/services/${page.slug}`,
+        lastModified: contentUpdated,
+        images: images.length > 0 ? [...new Set(images)] : undefined,
+        changeFrequency: "monthly" as const,
+        priority: 0.85,
+      };
+    }),
     ...seoLocations.map((location) => ({
       url: `${siteConfig.url}/landscaping/${location.slug}`,
       lastModified: contentUpdated,

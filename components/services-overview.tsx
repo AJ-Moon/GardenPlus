@@ -15,7 +15,7 @@ export function ServicesOverview() {
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-muted-foreground">
             Landscape design, construction, planting and maintenance for homes
-            and businesses.
+            and businesses across Pakistan.
           </p>
         </div>
         <ServiceCards preview />

@@ -6,8 +6,14 @@ import { ArrowRight, Check, MapPin } from "lucide-react";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta-section";
+import { ServiceProjectMedia } from "@/components/service-project-media";
 import { createPageMetadata } from "@/lib/seo";
-import { altForPhoto, fullAddress } from "@/lib/site-content";
+import {
+  altForPhoto,
+  fullAddress,
+  fullOfficeAddress,
+  videos,
+} from "@/lib/site-content";
 import { posts } from "@/lib/blog";
 import { landscapeServices } from "@/lib/services";
 import {
@@ -42,14 +48,25 @@ export default async function SeoServicePage({ params }: Params) {
 
   if (!page) notFound();
 
-  const service = landscapeServices.find((item) => item.href === `/services/${slug}`);
-  const guides = service ? posts.filter((post) => post.relatedServices?.includes(service.slug)).slice(0, 3) : [];
+  const service = landscapeServices.find(
+    (item) => item.href === `/services/${slug}`,
+  );
+  const guides = service
+    ? posts
+        .filter((post) => post.relatedServices?.includes(service.slug))
+        .slice(0, 3)
+    : [];
+  const serviceVideos = service?.videoIds
+    ? videos.filter((video) => service.videoIds?.includes(video.id))
+    : [];
 
   return (
     <main>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicePageJsonLd(page)) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(servicePageJsonLd(page)),
+        }}
       />
       <Navigation />
 
@@ -138,6 +155,15 @@ export default async function SeoServicePage({ params }: Params) {
         </div>
       </section>
 
+      {service && (
+        <ServiceProjectMedia
+          images={service.gallery}
+          videos={serviceVideos}
+          title={`${service.title} Project Media`}
+          description="Real GardenPlus photographs and videos selected from the material supplied by the company."
+        />
+      )}
+
       <section className="bg-background py-20 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:px-8">
           <div>
@@ -169,8 +195,10 @@ export default async function SeoServicePage({ params }: Params) {
               Service areas
             </h2>
             <p className="mt-6 leading-8 text-muted-foreground">
-              GardenPlus is based at {fullAddress} Contact us to discuss your
-              project location and requirements.
+              GardenPlus undertakes landscaping projects across Pakistan. Our
+              Lahore office is at {fullOfficeAddress}, with an additional
+              address at {fullAddress} Contact us to discuss your project
+              location and requirements.
             </p>
             <ul className="mt-8 grid gap-3 sm:grid-cols-2">
               {page.areas.map((area) => (
@@ -219,12 +247,21 @@ export default async function SeoServicePage({ params }: Params) {
       {guides.length > 0 && (
         <section className="bg-background py-16">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <h2 className="font-serif text-3xl text-foreground">Related Reading</h2>
+            <h2 className="font-serif text-3xl text-foreground">
+              Related Reading
+            </h2>
             <ul className="mt-6 grid gap-6 md:grid-cols-3">
               {guides.map((post) => (
                 <li key={post.slug} className="border-t border-border pt-4">
-                  <Link href={`/blog/${post.slug}`} className="font-serif text-xl text-primary hover:underline">{post.title}</Link>
-                  <p className="mt-3 text-sm leading-6 text-muted-foreground">{post.excerpt}</p>
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="font-serif text-xl text-primary hover:underline"
+                  >
+                    {post.title}
+                  </Link>
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                    {post.excerpt}
+                  </p>
                 </li>
               ))}
             </ul>

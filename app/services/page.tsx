@@ -7,9 +7,9 @@ import { ServiceSegments } from "@/components/service-segments";
 import { createPageMetadata, servicesPageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Landscaping, Garden Design, Lawn Care & Irrigation Services",
+  title: "Landscaping, Garden Design & Irrigation Services Pakistan",
   description:
-    "Landscape design, development, civil works, lighting, soft landscaping, irrigation, water features, BOQs and maintenance. Explore GardenPlus services in Lahore.",
+    "Landscape design, development, civil works, lighting, soft landscaping, irrigation, water features, BOQs and maintenance across Pakistan.",
   path: "/services",
   keywords: [
     "garden design Lahore",
@@ -31,8 +31,9 @@ export default function ServicesPage() {
       <PageBanner
         title="Our Services"
         subtitle="What We Do"
-        description="Landscape design, development and maintenance for homes, businesses and larger projects."
-        backgroundImage="https://images.unsplash.com/photo-1534710961216-75c88202f43e?q=80&w=1600&auto=format&fit=crop"
+        description="Landscape design, development and maintenance for homes, businesses and larger projects across Pakistan."
+        backgroundImage="/gardenplus-work/services-hero.jpg"
+        imageAlt="GardenPlus fountain garden with flowering borders and mature planting"
       />
 
       <ServiceSegments />

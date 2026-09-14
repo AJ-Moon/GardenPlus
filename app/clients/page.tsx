@@ -9,9 +9,9 @@ import { clients, testimonials } from "@/lib/site-content";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Landscaping Clients & Testimonials in Lahore",
+  title: "GardenPlus Landscaping Clients & Completed Projects",
   description:
-    "See why homeowners, hotels, developers and corporate campuses trust GardenPlus for landscaping, garden design, lawn maintenance and irrigation projects in Lahore.",
+    "View named GardenPlus clients and project records across residential, commercial, industrial and institutional landscaping work in Pakistan.",
   path: "/clients",
   keywords: [
     "commercial landscaping Lahore",
@@ -26,10 +26,11 @@ export default function ClientsPage() {
       <Navigation />
 
       <PageBanner
-        title="Clients & Testimonials"
-        subtitle="Our Partners"
-        description="Trusted by homeowners, businesses and developers to create exceptional outdoor spaces"
-        backgroundImage="https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1600&auto=format&fit=crop"
+        title="Our Valued Clients"
+        subtitle="Completed Projects"
+        description="Named clients and homeowners from the GardenPlus completed-project record"
+        backgroundImage="/gardenplus-work/development.jpg"
+        imageAlt="Completed GardenPlus lawn with mature trees and garden planting"
       />
 
       {/* Clients */}
@@ -52,12 +53,12 @@ export default function ClientsPage() {
                 duration={0.45}
                 className="h-full"
               >
-                <div className="h-full rounded-2xl border border-border bg-card p-6 text-center transition-colors hover:border-primary/30 md:p-7">
+                <div className="h-full rounded-lg border border-border bg-card p-6 text-center transition-colors hover:border-primary/30 md:p-7">
                   <h3 className="mb-2 font-serif text-xl leading-tight text-foreground">
                     {client.name}
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    {client.industry}
+                    {client.project}
                   </p>
                 </div>
               </Reveal>

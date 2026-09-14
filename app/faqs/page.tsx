@@ -6,14 +6,14 @@ import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta-section";
 import { PageBanner } from "@/components/page-banner";
 import { absoluteUrl, breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
-import { altForPhoto, photos, siteConfig } from "@/lib/site-content";
+import { fullAddress, fullOfficeAddress, siteConfig } from "@/lib/site-content";
 import { seoServicePageLinks } from "@/lib/seo-service-pages";
 import { seoLocationLinks } from "@/lib/seo-locations";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Landscaping FAQs - Quotes, Timelines, Maintenance & Water",
   description:
-    "Answers to the questions people actually ask before hiring a landscaper in Lahore: how quotes work, how long a garden takes, what maintenance costs, water use, and what happens if plants die.",
+    "Answers to practical questions before hiring GardenPlus for landscaping in Pakistan: quotations, timelines, maintenance, irrigation and aftercare.",
   path: "/faqs",
   keywords: [
     "landscaping questions Lahore",
@@ -107,7 +107,8 @@ const groups: FaqGroup[] = [
   },
   {
     heading: "Maintenance and aftercare",
-    blurb: "What keeps a finished landscape looking like the day it was handed over.",
+    blurb:
+      "What keeps a finished landscape looking like the day it was handed over.",
     faqs: [
       {
         question: "Do you maintain gardens you did not build?",
@@ -137,7 +138,7 @@ const groups: FaqGroup[] = [
     faqs: [
       {
         question: "Where is GardenPlus based and which areas do you cover?",
-        answer: `GardenPlus is at ${siteConfig.address.line1}, ${siteConfig.address.line2}. We work across Lahore — including DHA, Bahria Town, Gulberg, Model Town, Johar Town, Cantt, Wapda Town and the Bedian and Raiwind Road belts — and on larger projects elsewhere in Punjab.`,
+        answer: `GardenPlus undertakes landscaping projects across Pakistan. The Gulberg office is at ${fullOfficeAddress} The Mustafa Abad address is ${fullAddress}`,
       },
       {
         question: "How long has GardenPlus been operating?",
@@ -192,9 +193,9 @@ export default function FaqsPage() {
       <PageBanner
         subtitle="Before you hire anyone"
         title="Landscaping Questions, Answered"
-        description="The things worth knowing before you commission a garden in Lahore — how quotes work, how long it takes, what it costs to maintain, and what happens when something dies."
-        backgroundImage={photos.plantingFlowers}
-        imageAlt={altForPhoto(photos.plantingFlowers)}
+        description="What to know before commissioning a garden in Pakistan: quotations, timelines, maintenance, water use and aftercare."
+        backgroundImage="/gardenplus-work/flower-beds.jpg"
+        imageAlt="GardenPlus flowering border beside a paved garden path"
       />
 
       {groups.map((group, index) => (

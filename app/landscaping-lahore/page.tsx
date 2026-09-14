@@ -6,10 +6,18 @@ import { ServiceCards } from "@/components/service-cards";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta-section";
-import { createPageMetadata, lahorePageJsonLd, serviceAreas, lahoreFaqs } from "@/lib/seo";
-import { siteConfig, fullAddress } from "@/lib/site-content";
+import {
+  createPageMetadata,
+  lahorePageJsonLd,
+  serviceAreas,
+  lahoreFaqs,
+} from "@/lib/seo";
+import { siteConfig, fullAddress, fullOfficeAddress } from "@/lib/site-content";
 import { landscapeServices } from "@/lib/services";
-const seoServicePageLinks = landscapeServices.map((service) => ({ name: service.title, href: service.href }));
+const seoServicePageLinks = landscapeServices.map((service) => ({
+  name: service.title,
+  href: service.href,
+}));
 import { seoLocations } from "@/lib/seo-locations";
 
 export const metadata: Metadata = createPageMetadata({
@@ -39,8 +47,8 @@ export default function LandscapingLahorePage() {
 
       <header className="relative min-h-[78vh] overflow-hidden pt-28 md:pt-32">
         <Image
-          src="https://images.unsplash.com/photo-1598902108854-10e335adac99?q=80&w=2000&auto=format&fit=crop"
-          alt=""
+          src="/gardenplus-work/fountain-garden.jpg"
+          alt="GardenPlus fountain garden with flowering borders in Lahore"
           fill
           sizes="100vw"
           priority
@@ -89,8 +97,8 @@ export default function LandscapingLahorePage() {
           </div>
           <div className="space-y-5 leading-8 text-muted-foreground">
             <p>
-              A successful Lahore garden needs more than attractive planting.
-              It needs soil preparation, drainage, deep-rooted lawn choices,
+              A successful Lahore garden needs more than attractive planting. It
+              needs soil preparation, drainage, deep-rooted lawn choices,
               heat-tolerant trees, efficient irrigation and maintenance access
               planned from the beginning.
             </p>
@@ -127,8 +135,9 @@ export default function LandscapingLahorePage() {
               Serving Lahore and nearby projects
             </h2>
             <p className="mt-6 leading-8 text-muted-foreground">
-              Visit GardenPlus at {fullAddress} Contact the team to discuss
-              your site and arrange a visit.
+              Our Gulberg office is at {fullOfficeAddress} The Mustafa Abad
+              address is {fullAddress} Contact the team to discuss your site and
+              arrange a visit.
             </p>
           </div>
           <ul className="grid content-start gap-3 sm:grid-cols-2">

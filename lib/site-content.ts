@@ -20,7 +20,7 @@ export const siteConfig = {
   url: "https://gardenplus.pk",
   tagline: "Professional Landscaping & Gardening Services",
   description:
-    "GardenPlus provides landscape design, development, civil works, lighting, planting, irrigation and maintenance for homes and businesses in Lahore, Pakistan.",
+    "GardenPlus provides landscape design, development, civil works, lighting, planting, irrigation and maintenance for homes and businesses across Pakistan.",
 
   phone: "+92 300 8450025",
   phoneHref: "+923008450025",
@@ -31,6 +31,11 @@ export const siteConfig = {
   address: {
     line1: "Half Km Main Canal Road, Mustafa Abad, Ferozepur Road,",
     line2: "Near Toll Plaza & Barki Road, Lahore.",
+  },
+
+  officeAddress: {
+    line1: "22, 2nd Floor, Center Point Plaza,",
+    line2: "Main Boulevard, Gulberg, Lahore.",
   },
 
   hours: ["Monday – Saturday: 9am – 6pm", "Sunday: By Appointment"],
@@ -46,14 +51,14 @@ export const siteConfig = {
 } as const;
 
 export const fullAddress = `${siteConfig.address.line1} ${siteConfig.address.line2}`;
-// Use the supplied address until an exact pin for this location is confirmed.
-export const mapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(fullAddress)}&z=15&output=embed`;
-export const mapLinkUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(fullAddress)}`;
+export const fullOfficeAddress = `${siteConfig.officeAddress.line1} ${siteConfig.officeAddress.line2}`;
+export const mapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(fullOfficeAddress)}&z=15&output=embed`;
+export const mapLinkUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(fullOfficeAddress)}`;
+export const mustafaAbadMapLinkUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(fullAddress)}`;
 
 export const whatsappUrl = (
   message = "Hi! I'm interested in your landscaping services. Could you please provide more information?",
-) =>
-  `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(message)}`;
+) => `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(message)}`;
 
 // ---------------------------------------------------------------------------
 // 2. STATS  (shown on the homepage)
@@ -61,7 +66,11 @@ export const whatsappUrl = (
 
 export const stats = [
   { value: 1000, suffix: "+", label: "Projects Completed" },
-  { value: new Date().getFullYear() - siteConfig.founded, suffix: "+", label: "Years of Excellence" },
+  {
+    value: new Date().getFullYear() - siteConfig.founded,
+    suffix: "+",
+    label: "Years of Excellence",
+  },
   { value: 850, suffix: "+", label: "Happy Homeowners" },
   { value: 7, suffix: "+", label: "Industry Awards" },
 ];
@@ -121,11 +130,14 @@ export const photos = {
  * search has to go on. Describe the picture, not the page it sits on.
  */
 export const photoAlt: Record<keyof typeof photos, string> = {
-  roseGardenPath: "Garden path lined with flowering rose bushes and clipped hedging",
+  roseGardenPath:
+    "Garden path lined with flowering rose bushes and clipped hedging",
   lushGardenTrees: "Green garden with mature trees and dense underplanting",
   campusLawn: "Wide mown lawn in front of a large institutional building",
-  estateHouseGarden: "Large house with a landscaped front lawn and mature planting",
-  nurseryField: "Nursery worker tending rows of young plants in a growing field",
+  estateHouseGarden:
+    "Large house with a landscaped front lawn and mature planting",
+  nurseryField:
+    "Nursery worker tending rows of young plants in a growing field",
   raisedVegBeds: "Raised vegetable beds planted with leafy crops",
   resortPoolDusk: "Resort swimming pool surrounded by planting and lit at dusk",
   lawnCloseUp: "Lawn mower cutting a strip through healthy green grass",
@@ -143,7 +155,8 @@ export const photoAlt: Record<keyof typeof photos, string> = {
   lavender: "Rows of lavender in flower across a field",
   gardenerAtWork: "Gardener mowing a lawn outside a house",
   resortPoolPalms: "Swimming pool framed by tall palm trees",
-  aerialNeighbourhood: "Aerial view of a residential neighbourhood with gardens and street trees",
+  aerialNeighbourhood:
+    "Aerial view of a residential neighbourhood with gardens and street trees",
   parkPath: "Path curving through a public park with trees on both sides",
 };
 
@@ -161,7 +174,8 @@ export const altForPhoto = (url: string) => photoUrlToAlt[url] ?? "";
 // 4. SERVICES  (the four sections of the /services page)
 // ---------------------------------------------------------------------------
 
-export type SegmentId = "Residential" | "Commercial" | "Corporate" | "Large Scale";
+export type SegmentId =
+  "Residential" | "Commercial" | "Corporate" | "Large Scale";
 
 export type Segment = {
   id: SegmentId;
@@ -175,7 +189,8 @@ export const segments: Segment[] = [
     id: "Residential",
     slug: "residential",
     heading: "Residential Gardens",
-    intro: "Garden design, planting, irrigation and maintenance for homes and farmhouses.",
+    intro:
+      "Garden design, planting, irrigation and maintenance for homes and farmhouses.",
   },
   {
     id: "Commercial",
@@ -187,51 +202,69 @@ export const segments: Segment[] = [
     id: "Corporate",
     slug: "corporate",
     heading: "Corporate Landscaping",
-    intro: "Planting and landscape maintenance for offices, factories and campuses.",
+    intro:
+      "Planting and landscape maintenance for offices, factories and campuses.",
   },
   {
     id: "Large Scale",
     slug: "large-scale",
     heading: "Large Scale Projects",
-    intro: "Landscape planning and development for housing schemes and larger sites.",
+    intro:
+      "Landscape planning and development for housing schemes and larger sites.",
   },
 ];
 
 // ---------------------------------------------------------------------------
 // 5. VIDEOS
 // ---------------------------------------------------------------------------
-// This list is intentionally EMPTY. Any section that shows videos simply
-// hides itself while the list is empty, so there are no broken players.
-//
-// ➜ TO ADD YOUR VIDEOS: uncomment a block below and fill it in.
-//
-//   id        — the YouTube video ID only, NOT the whole URL.
-//               From https://www.youtube.com/watch?v=AbC123xyZ  →  "AbC123xyZ"
-//   title     — shown underneath the player.
-//   thumbnail — leave it out to use YouTube's own thumbnail (easiest),
-//               or point at your own image, e.g. "/projects/villa-1.jpg".
-//   segment   — optional. Tags the video to one of the four service sections
-//               so it appears there too. Omit to show it site-wide only.
+// Local project footage supplied by GardenPlus. Entries without `src` can
+// still use a YouTube video ID and optional thumbnail.
 // ---------------------------------------------------------------------------
 
 export type Video = {
   id: string;
   title: string;
+  src?: string;
   thumbnail?: string;
   segment?: SegmentId;
 };
 
 export const videos: Video[] = [
-  // {
-  //   id: "AbC123xyZ",
-  //   title: "From Bare Lawn to Dream Garden",
-  //   segment: "Residential",
-  // },
-  // {
-  //   id: "DeF456uvW",
-  //   title: "Corporate Green Space Makeover",
-  //   segment: "Corporate",
-  // },
+  {
+    id: "landscape-design-3d",
+    title: "3D Landscape Design Walkthrough",
+    src: "/gardenplus-work/landscape-design-3d.mp4",
+    thumbnail: "/gardenplus-work/landscape-design-3d-poster.jpg",
+    segment: "Large Scale",
+  },
+  {
+    id: "garden-pond",
+    title: "Garden Pond and Gazebo Landscape",
+    src: "/gardenplus-work/garden-pond.mp4",
+    thumbnail: "/gardenplus-work/garden-pond-poster.jpg",
+    segment: "Commercial",
+  },
+  {
+    id: "garden-water-wall",
+    title: "Garden Water Wall and Bridge",
+    src: "/gardenplus-work/garden-water-wall.mp4",
+    thumbnail: "/gardenplus-work/garden-water-wall-poster.jpg",
+    segment: "Residential",
+  },
+  {
+    id: "landscape-pathway",
+    title: "Landscaped Garden Pathway",
+    src: "/gardenplus-work/landscape-pathway.mp4",
+    thumbnail: "/gardenplus-work/landscape-pathway-poster.jpg",
+    segment: "Corporate",
+  },
+  {
+    id: "garden-walkthrough",
+    title: "Completed Garden Walkthrough",
+    src: "/gardenplus-work/garden-walkthrough.mp4",
+    thumbnail: "/gardenplus-work/garden-walkthrough-poster.jpg",
+    segment: "Residential",
+  },
 ];
 
 /** YouTube's auto-generated thumbnail, used when you don't supply your own. */
@@ -244,23 +277,46 @@ export const videosForSegment = (id: SegmentId) =>
 // ---------------------------------------------------------------------------
 // 6. CLIENTS
 // ---------------------------------------------------------------------------
-// ⚠️ REPLACE — these are placeholder company names. Swap in real clients you
-// have permission to name, and delete any you can't verify.
+// Owner-supplied names from the completed-project record. No logos, sectors or
+// endorsements are inferred.
 // ---------------------------------------------------------------------------
 
 export const clients = [
-  { name: "Greenfield Estates", industry: "Real Estate" },
-  { name: "Parkview Residences", industry: "Residential Development" },
-  { name: "Summit Properties", industry: "Property Management" },
-  { name: "Grand Park Hotel", industry: "Hospitality" },
-  { name: "Valley Wellness Center", industry: "Healthcare" },
-  { name: "Metro Business Hub", industry: "Commercial Real Estate" },
-  { name: "Sunrise Communities", industry: "Residential" },
-  { name: "Golden Gate Developers", industry: "Development" },
-  { name: "Horizon Tech Park", industry: "Corporate" },
-  { name: "Coastal Living Homes", industry: "Luxury Residential" },
-  { name: "Blue Sky Resorts", industry: "Hospitality" },
-  { name: "Urban Green Initiative", industry: "Public Sector" },
+  { name: "Sapphire Electric", project: "234 MW Power Plant, Sheikhupura" },
+  { name: "Tricon Village Housing Scheme", project: "Lahore" },
+  { name: "Medipak", project: "Manga Mandi, Lahore" },
+  { name: "D.G. Khan Cement Factory", project: "Khairpur, District Chakwal" },
+  { name: "Lahore American School (LAS)", project: "Lahore" },
+  { name: "ICI Paints", project: "Ferozepur Road, Lahore" },
+  { name: "SNOHS A Block Park", project: "Lahore" },
+  { name: "Prime Tannery", project: "G.T. Road, Muridke" },
+  { name: "Style Textile", project: "Multiple completed projects" },
+  { name: "Sapphire Finishing Mills", project: "Raiwind" },
+  { name: "Beacon Impex / Masood Textile Mills", project: "Faisalabad" },
+  { name: "Diamond Fabrics", project: "Ferozewatwan" },
+  { name: "Halmore Head Office", project: "DHA" },
+  { name: "Mindbridge", project: "Lahore Cantt" },
+  { name: "Arbisoft Office", project: "Indoor plantation" },
+  { name: "Medequips", project: "Indoor plantation" },
+  { name: "Naveena Tower & Residence", project: "Gulberg" },
+  { name: "Gulf Packaging", project: "Adda Plot" },
+  { name: "Clinix", project: "Completed landscaping project" },
+  { name: "Kamal Textile", project: "Completed landscaping project" },
+  { name: "Masterfoam", project: "Completed landscaping project" },
+  { name: "EHS", project: "Eastern Housing Society" },
+  {
+    name: "Farmhouse of Mr. Zafar Bhatti & Green Earth Villas",
+    project: "Bedian Road, Lahore",
+  },
+  { name: "Residence of Mr. Yahya Saleem", project: "Main Canal Road, Lahore" },
+  { name: "Residence of Mr. Nasim Shafi", project: "124-W, DHA" },
+  { name: "Residence of Mian Azam Saigol", project: "Gulberg, Lahore" },
+  { name: "Residence of Mr. Fahad Saigol", project: "Phase 6, DHA" },
+  {
+    name: "Residence of Dr. Shujaat Nadeem of Samba Bank",
+    project: "Lahore Cantt",
+  },
+  { name: "Qureshi Farm", project: "Adda Plot" },
 ];
 
 // ---------------------------------------------------------------------------
@@ -288,44 +344,7 @@ export type Testimonial = {
   title: string;
 };
 
-export const testimonials: Testimonial[] = [
-  {
-    quote:
-      "GardenPlus transformed the outdoor area of our villa completely. The lawn maintenance team is professional, punctual, and the results speak for themselves. Our garden has never looked this good.",
-    author: "Amna Malik",
-    title: "Homeowner, DHA Phase 5",
-  },
-  {
-    quote:
-      "We hired GardenPlus to design and maintain the grounds of our office campus. Their team created a beautiful green environment our employees truly enjoy. This has been an ongoing project for years, and they have remained consistent, professional, and reliable throughout.",
-    author: "Faisal Ahmed",
-    title: "Operations Manager, Style Textile",
-  },
-  {
-    quote:
-      "GardenPlus designed and developed my house and my four brothers' houses across acres of land. They delivered premium lawns, buggy tracks, fountains, and complete landscaping with outstanding detail. The execution was top-class from planning to handover.",
-    author: "Zainab Qureshi",
-    title: "Villa Owner, Bahria Town",
-  },
-  {
-    quote:
-      "The irrigation system GardenPlus installed across our hotel grounds is outstanding. Water bills are down, plants are thriving, and our guests always comment on the beautiful gardens.",
-    author: "Sarah Noor",
-    title: "General Manager, Grand Park Hotel",
-  },
-  {
-    quote:
-      "GardenPlus handled the landscaping for our entire residential development. Professional from start to finish, and they delivered on time. Every homeowner in our community is thrilled.",
-    author: "Bilal Khan",
-    title: "Director, Sunrise Communities",
-  },
-  {
-    quote:
-      "GardenPlus designed and planted our community park, and it has become the heart of our neighbourhood. Families use it daily. They delivered exactly what we envisioned, on schedule and on budget.",
-    author: "Omar Tariq",
-    title: "President, Urban Green Initiative",
-  },
-];
+export const testimonials: Testimonial[] = [];
 
 /** The three shown on the homepage. */
 export const featuredTestimonials = testimonials.slice(0, 3);

@@ -9,7 +9,7 @@
 // conditions there, never invent project counts or client names.
 // ============================================================================
 
-import { photos, siteConfig } from "@/lib/site-content";
+import { fullOfficeAddress, photos, siteConfig } from "@/lib/site-content";
 import { absoluteUrl } from "@/lib/seo";
 
 export type SeoLocation = {
@@ -380,7 +380,8 @@ export const seoLocations: SeoLocation[] = [
           "It can be, particularly in heavily shaded areas where natural grass will never establish, or where the space takes constant foot traffic. It still needs proper base preparation and drainage.",
       },
       {
-        question: "Can a rooftop garden be added to a standard Johar Town house?",
+        question:
+          "Can a rooftop garden be added to a standard Johar Town house?",
         answer:
           "Usually yes, using lightweight media and container planting rather than deep soil beds, and keeping the existing waterproofing and drainage outlets protected.",
       },
@@ -512,8 +513,7 @@ export const seoLocations: SeoLocation[] = [
     faqs: [
       {
         question: "Where exactly is GardenPlus based?",
-        answer:
-          `${siteConfig.name} is at ${siteConfig.address.line1} ${siteConfig.address.line2} Contact the team to arrange a site visit.`,
+        answer: `${siteConfig.name}'s Gulberg office is at ${fullOfficeAddress} The Mustafa Abad address is ${siteConfig.address.line1} ${siteConfig.address.line2} Contact the team to arrange a site visit.`,
       },
       {
         question: "Can you supply plants in bulk for a large site?",
@@ -781,7 +781,12 @@ export const locationPageJsonLd = (location: SeoLocation) => ({
       "@type": "BreadcrumbList",
       "@id": `${siteConfig.url}/landscaping/${location.slug}#breadcrumb`,
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: siteConfig.url,
+        },
         {
           "@type": "ListItem",
           position: 2,

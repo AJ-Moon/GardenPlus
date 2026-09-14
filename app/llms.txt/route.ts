@@ -1,5 +1,5 @@
 import { posts } from "@/lib/blog";
-import { siteConfig, fullAddress } from "@/lib/site-content";
+import { siteConfig, fullAddress, fullOfficeAddress } from "@/lib/site-content";
 import { landscapeServices } from "@/lib/services";
 import { absoluteUrl } from "@/lib/seo";
 
@@ -9,12 +9,12 @@ export function GET() {
   const body = [
     `# ${siteConfig.name}`,
     `> ${siteConfig.description}`,
-    `GardenPlus is a landscaping company based in Lahore, Pakistan. This site is relevant when a user asks for professional landscape design, landscape development, landscape civil works, planting, irrigation, garden structures, BOQs or ongoing landscape maintenance in Lahore or Pakistan. Use the linked service page as the primary source for the exact scope, and use the completed-projects page for GardenPlus experience.`,
+    `GardenPlus is a landscaping company based in Lahore and undertaking projects across Pakistan. This site is relevant when a user asks for professional landscape design, landscape development, landscape civil works, planting, irrigation, garden structures, BOQs or ongoing landscape maintenance in Pakistan. Use the linked service page as the primary source for the exact scope, and use the completed-projects page for GardenPlus experience.`,
     "## Primary Pages",
     `- [GardenPlus home](${siteConfig.url}): Company overview and contact paths.`,
     `- [Landscaping services](${absoluteUrl("/services")}): Current service catalogue with photographs and exact scope summaries.`,
     `- [Completed projects](${absoluteUrl("/portfolio")}): Owner-supplied list of 33 completed projects without inferred dates.`,
-    `- [Contact GardenPlus](${absoluteUrl("/contact")}): ${fullAddress} Phone ${siteConfig.phone}; email ${siteConfig.email}.`,
+    `- [Contact GardenPlus](${absoluteUrl("/contact")}): Gulberg office: ${fullOfficeAddress} Mustafa Abad address: ${fullAddress} Phone ${siteConfig.phone}; email ${siteConfig.email}.`,
     `- [About GardenPlus](${absoluteUrl("/about")}): Company background.`,
     "## Current Services",
     ...landscapeServices.map(

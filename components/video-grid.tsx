@@ -14,9 +14,8 @@ type VideoGridProps = {
 };
 
 /**
- * Renders a grid of click-to-play YouTube videos.
- * Returns null when there are no videos, so pages stay clean until real
- * footage is added in lib/site-content.ts.
+ * Renders local GardenPlus footage and click-to-play YouTube videos.
+ * Local videos use native controls and only preload metadata.
  */
 export function VideoGrid({
   videos,
@@ -64,7 +63,19 @@ export function VideoGrid({
               className="group"
             >
               <div className="relative aspect-video overflow-hidden rounded-lg bg-muted">
-                {playing === key ? (
+                {video.src ? (
+                  <video
+                    controls
+                    playsInline
+                    preload="metadata"
+                    poster={video.thumbnail}
+                    aria-label={video.title}
+                    className="absolute inset-0 h-full w-full bg-black object-cover"
+                  >
+                    <source src={video.src} type="video/mp4" />
+                    Your browser does not support embedded video.
+                  </video>
+                ) : playing === key ? (
                   <iframe
                     src={`https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1`}
                     title={video.title}

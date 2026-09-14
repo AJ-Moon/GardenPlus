@@ -2,7 +2,7 @@ import { clients } from "@/lib/site-content";
 
 /**
  * Compact scrolling client strip for the homepage.
- * The full client list with testimonials lives on /clients.
+ * The full owner-supplied client list lives on /clients.
  *
  * Uses a CSS animation (not JS) so it costs nothing at runtime and pauses
  * automatically for visitors who prefer reduced motion.

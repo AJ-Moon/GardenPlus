@@ -27,7 +27,8 @@ export default function PortfolioPage() {
         title="Our Portfolio"
         subtitle="Our Work"
         description="Completed work for residences, factories, offices, schools and housing schemes."
-        backgroundImage="https://images.unsplash.com/photo-1598902108854-10e335adac99?q=80&w=1600&auto=format&fit=crop"
+        backgroundImage="/gardenplus-work/landscape-courtyard.jpg"
+        imageAlt="GardenPlus courtyard landscape with geometric paving and a pavilion"
       />
 
       <PortfolioGallery />

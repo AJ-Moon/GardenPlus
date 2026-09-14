@@ -10,9 +10,9 @@ import { siteConfig } from "@/lib/site-content";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "About GardenPlus - Lahore Landscaping Company Since 1990",
+  title: "About GardenPlus - Pakistan Landscaping Company Since 1990",
   description:
-    "Learn about GardenPlus, a Lahore landscaping company founded in 1990 for garden design, lawn care, plant supply, irrigation and outdoor transformation projects.",
+    "Learn about GardenPlus, a Pakistan landscaping company founded in 1990 for garden design, development, planting, irrigation and maintenance projects.",
   path: "/about",
   keywords: ["landscaping company Lahore", "garden design company Pakistan"],
 });
@@ -67,7 +67,7 @@ const journey = [
     year: "Today",
     title: "Timeless Outdoor Living",
     description:
-      "Now trusted by homeowners and businesses alike, GardenPlus continues to create serene, practical and premium landscapes across the region.",
+      "Now trusted by homeowners and businesses alike, GardenPlus creates serene, practical and premium landscapes across Pakistan.",
   },
 ];
 
@@ -80,7 +80,8 @@ export default function AboutPage() {
         title="About GardenPlus"
         subtitle="Our Story"
         description="Passionate about plants, committed to quality, dedicated to transforming your outdoor space"
-        backgroundImage="https://images.unsplash.com/photo-1605117882932-f9e32b03fea9?q=80&w=1600&auto=format&fit=crop"
+        backgroundImage="/gardenplus-work/fountain-garden.jpg"
+        imageAlt="GardenPlus fountain garden framed by flowering borders"
       />
 
       {/* Philosophy */}
@@ -110,8 +111,8 @@ export default function AboutPage() {
                 </p>
                 <p>
                   GardenPlus also operates a strong nursery and plant sourcing
-                  network across Lahore, supplying both unique specialty plants
-                  and everyday garden staples.
+                  network serving projects across Pakistan, supplying both
+                  specialty plants and everyday garden staples.
                 </p>
                 <p>
                   With decades of experience across residential, commercial and
@@ -122,11 +123,16 @@ export default function AboutPage() {
               </div>
             </Reveal>
 
-            <Reveal from="right" delay={0.15} duration={0.8} className="relative">
+            <Reveal
+              from="right"
+              delay={0.15}
+              duration={0.8}
+              className="relative"
+            >
               <div className="relative aspect-[4/5] overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1530968033775-2c92736b131e?q=80&w=1600&auto=format&fit=crop"
-                  alt="A GardenPlus landscaping project in progress"
+                  src="/gardenplus-work/garden-structures.jpg"
+                  alt="GardenPlus timber gazebo surrounded by a completed landscape"
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"
                   className="object-cover"

@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import { posts } from "@/lib/blog";
-import { siteConfig, fullAddress } from "@/lib/site-content";
+import { siteConfig, fullAddress, fullOfficeAddress } from "@/lib/site-content";
 import { landscapeServices } from "@/lib/services";
 
 export const primaryKeywords = [
+  "landscaping services Pakistan",
+  "landscaping company Pakistan",
+  "landscape design Pakistan",
   "landscaping services Lahore",
   "landscaping company Lahore",
   "garden design Lahore",
@@ -18,7 +21,6 @@ export const primaryKeywords = [
   "swimming pool landscaping Lahore",
   "farmhouse landscaping Lahore",
   "outdoor plants Pakistan",
-  "landscape design Pakistan",
   "commercial landscaping Pakistan",
   "corporate landscaping Pakistan",
   "landscape lighting Lahore",
@@ -27,6 +29,8 @@ export const primaryKeywords = [
 ];
 
 export const serviceAreas = [
+  "Pakistan",
+  "Punjab",
   "Lahore",
   "DHA Lahore",
   "Bahria Town Lahore",
@@ -39,19 +43,19 @@ export const serviceAreas = [
   "Bedian Road",
   "Raiwind Road",
   "Allama Iqbal Town",
-  "Punjab",
-  "Pakistan",
 ];
 
 export const seoFacts = [
-  `${siteConfig.name} is a Lahore-based landscaping and gardening company founded in ${siteConfig.founded}.`,
+  `${siteConfig.name} is a Pakistan-wide landscaping and gardening company based in Lahore and founded in ${siteConfig.founded}.`,
   `Services: ${landscapeServices.map((service) => service.title).join(", ")}.`,
   "The company serves homeowners, developers, hospitality venues, offices, campuses, and public-space projects.",
-  `Address: ${fullAddress}`,
+  `Gulberg office: ${fullOfficeAddress}`,
+  `Mustafa Abad address: ${fullAddress}`,
   `Contact: ${siteConfig.phone}, WhatsApp ${siteConfig.whatsapp}, ${siteConfig.email}.`,
 ];
 
-export const absoluteUrl = (path = "/") => new URL(path, siteConfig.url).toString();
+export const absoluteUrl = (path = "/") =>
+  new URL(path, siteConfig.url).toString();
 
 export function createPageMetadata({
   title,
@@ -117,6 +121,7 @@ export const businessJsonLd = {
       description: siteConfig.description,
       foundingDate: String(siteConfig.founded),
       knowsAbout: primaryKeywords,
+      areaServed: { "@type": "Country", name: "Pakistan" },
       sameAs: siteConfig.social.map((s) => s.href),
       contactPoint: [
         {
@@ -136,15 +141,23 @@ export const businessJsonLd = {
       url: siteConfig.url,
       telephone: siteConfig.phone,
       email: siteConfig.email,
-      priceRange: "$$",
       description: siteConfig.description,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: fullAddress,
-        addressLocality: "Lahore",
-        addressRegion: "Punjab",
-        addressCountry: "PK",
-      },
+      address: [
+        {
+          "@type": "PostalAddress",
+          streetAddress: fullOfficeAddress,
+          addressLocality: "Lahore",
+          addressRegion: "Punjab",
+          addressCountry: "PK",
+        },
+        {
+          "@type": "PostalAddress",
+          streetAddress: fullAddress,
+          addressLocality: "Lahore",
+          addressRegion: "Punjab",
+          addressCountry: "PK",
+        },
+      ],
       openingHoursSpecification: [
         {
           "@type": "OpeningHoursSpecification",
@@ -200,7 +213,7 @@ export const homePageJsonLd = {
   "@type": "WebPage",
   "@id": `${siteConfig.url}/#homepage`,
   url: siteConfig.url,
-  name: `${siteConfig.name} - Landscaping Services in Lahore`,
+  name: `${siteConfig.name} - Landscaping Services Across Pakistan`,
   description: siteConfig.description,
   about: { "@id": `${siteConfig.url}/#landscaping-service` },
 };
@@ -226,15 +239,18 @@ export const servicesPageJsonLd = {
 export const lahoreFaqs = [
   {
     question: "Do you handle both design and construction?",
-    answer: "Yes. GardenPlus provides landscape design and planning, development, civil works, planting, irrigation planning and landscape maintenance.",
+    answer:
+      "Yes. GardenPlus provides landscape design and planning, development, civil works, planting, irrigation planning and landscape maintenance.",
   },
   {
     question: "Can you maintain an existing garden?",
-    answer: "Yes. Landscape Maintenance covers day-to-day garden upkeep, plants, water bodies, irrigation equipment, pest control and fertilization.",
+    answer:
+      "Yes. Landscape Maintenance covers day-to-day garden upkeep, plants, water bodies, irrigation equipment, pest control and fertilization.",
   },
   {
     question: "Does landscape design include a warranty?",
-    answer: "Landscape Design & Planning includes site visits, 3D proposals, execution planning and detailed quotations, with a one-year service warranty/guarantee.",
+    answer:
+      "Landscape Design & Planning includes site visits, 3D proposals, execution planning and detailed quotations, with a one-year service warranty/guarantee.",
   },
 ];
 

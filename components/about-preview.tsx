@@ -10,14 +10,14 @@ export function AboutPreview() {
         <div className="grid items-center gap-16 lg:grid-cols-2">
           <Reveal from="left" duration={0.8} className="relative">
             <div className="aspect-[4/5] overflow-hidden">
-              {/* Local file in /public — swap for your own footage any time. */}
               <video
-                src="/1.mp4"
+                src="/gardenplus-work/garden-walkthrough.mp4"
                 autoPlay
                 loop
                 muted
                 playsInline
-                aria-label="GardenPlus landscaping work in progress"
+                poster="/gardenplus-work/garden-walkthrough-poster.jpg"
+                aria-label="Completed GardenPlus residential landscape"
                 className="h-full w-full object-cover"
               />
             </div>
@@ -49,9 +49,10 @@ export function AboutPreview() {
                 not only visually stunning but also practical and sustainable.
               </p>
               <p>
-                From elegant garden layouts to complete landscaping solutions,
-                we combine creativity with expertise to bring your vision to
-                life — while respecting the natural character of the land.
+                From elegant garden layouts to complete landscaping solutions
+                across Pakistan, we combine creativity with expertise to bring
+                your vision to life while respecting the natural character of
+                the land.
               </p>
             </div>
             <Link
