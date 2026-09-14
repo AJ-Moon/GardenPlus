@@ -12,10 +12,13 @@ export const metadata: Metadata = createPageMetadata({
     "Landscape design, development, civil works, lighting, soft landscaping, irrigation, water features, BOQs and maintenance across Pakistan.",
   path: "/services",
   keywords: [
+    "landscaping services Pakistan",
+    "landscape design Pakistan",
+    "garden maintenance Pakistan",
     "garden design Lahore",
     "lawn maintenance Lahore",
     "irrigation systems Pakistan",
-    "landscape civil works Lahore",
+    "landscape civil works Pakistan",
   ],
 });
 

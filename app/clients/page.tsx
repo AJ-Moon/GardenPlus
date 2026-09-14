@@ -14,9 +14,10 @@ export const metadata: Metadata = createPageMetadata({
     "View named GardenPlus clients and project records across residential, commercial, industrial and institutional landscaping work in Pakistan.",
   path: "/clients",
   keywords: [
-    "commercial landscaping Lahore",
+    "commercial landscaping Pakistan",
     "corporate landscaping Pakistan",
-    "landscaping company Lahore reviews",
+    "industrial landscaping Pakistan",
+    "landscaping projects Pakistan",
   ],
 });
 

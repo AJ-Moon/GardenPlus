@@ -9,6 +9,7 @@ import { absoluteUrl, breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 import { fullAddress, fullOfficeAddress, siteConfig } from "@/lib/site-content";
 import { seoServicePageLinks } from "@/lib/seo-service-pages";
 import { seoLocationLinks } from "@/lib/seo-locations";
+import { pakistanSeoLocationLinks } from "@/lib/seo-pakistan-locations";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Landscaping FAQs - Quotes, Timelines, Maintenance & Water",
@@ -16,11 +17,11 @@ export const metadata: Metadata = createPageMetadata({
     "Answers to practical questions before hiring GardenPlus for landscaping in Pakistan: quotations, timelines, maintenance, irrigation and aftercare.",
   path: "/faqs",
   keywords: [
-    "landscaping questions Lahore",
+    "landscaping questions Pakistan",
     "hiring a landscaper Pakistan",
     "garden design process Lahore",
-    "landscaping maintenance Lahore",
-    "landscaping quote Lahore",
+    "landscape design quotation Pakistan",
+    "landscaping project FAQ",
   ],
 });
 
@@ -260,6 +261,21 @@ export default function FaqsPage() {
             Questions about a specific area
           </h2>
           <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              href="/landscaping-pakistan"
+              className="rounded-sm border border-border px-4 py-2 text-sm font-medium text-primary transition-colors hover:border-primary/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            >
+              Pakistan Nationwide
+            </Link>
+            {pakistanSeoLocationLinks.map((location) => (
+              <Link
+                key={location.href}
+                href={location.href}
+                className="rounded-sm border border-border px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              >
+                {location.name}
+              </Link>
+            ))}
             {seoLocationLinks.map((location) => (
               <Link
                 key={location.href}

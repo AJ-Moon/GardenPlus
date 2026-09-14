@@ -18,7 +18,7 @@ const seoServicePageLinks = landscapeServices.map((service) => ({
   name: service.title,
   href: service.href,
 }));
-import { seoLocations } from "@/lib/seo-locations";
+import { lahoreSeoLocations } from "@/lib/seo-locations";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Landscaping Services Lahore - Garden Design, Lawn Care & Irrigation",
@@ -193,7 +193,7 @@ export default function LandscapingLahorePage() {
             cover what gardens in each part of Lahore actually need.
           </p>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {seoLocations.map((location) => (
+            {lahoreSeoLocations.map((location) => (
               <Link
                 key={location.slug}
                 href={`/landscaping/${location.slug}`}

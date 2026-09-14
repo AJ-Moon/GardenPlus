@@ -1132,10 +1132,25 @@ const existingServicePages: SeoServicePage[] = [
  * dropping " in Lahore" gets an explicit label here.
  */
 // Keep established URLs while making the current service catalogue authoritative.
+const nationwideServiceKeywords: Record<string, string> = {
+  "landscape-design-planning": "landscape design Pakistan",
+  "landscape-development": "landscape development Pakistan",
+  "landscape-civil-works": "landscape civil works Pakistan",
+  "landscape-lighting": "landscape lighting Pakistan",
+  "hard-semi-hard-landscaping": "hard landscaping Pakistan",
+  "soft-landscaping": "soft landscaping Pakistan",
+  "water-bodies-water-play": "water features Pakistan",
+  "irrigation-systems": "irrigation systems Pakistan",
+  "garden-structures-special-effects": "garden structures Pakistan",
+  "bill-of-quantities": "landscape BOQ Pakistan",
+  "landscape-maintenance": "landscape maintenance Pakistan",
+};
+
 const currentServicePages: SeoServicePage[] = landscapeServices.map(
   (service) => {
     const slug = service.href.split("/").pop()!;
     const existing = existingServicePages.find((page) => page.slug === slug);
+    const nationwideKeyword = nationwideServiceKeywords[service.slug];
     return {
       slug,
       title: `${service.title} in Pakistan`,
@@ -1143,8 +1158,12 @@ const currentServicePages: SeoServicePage[] = landscapeServices.map(
       eyebrow: "GardenPlus Services",
       description: service.description,
       metaDescription: service.description,
-      primaryKeyword: existing?.primaryKeyword ?? `${service.title} Lahore`,
-      keywords: existing?.keywords ?? [service.title, "landscaping Lahore"],
+      primaryKeyword: nationwideKeyword,
+      keywords: [
+        nationwideKeyword,
+        ...(existing?.keywords ?? []),
+        "landscaping services Pakistan",
+      ],
       image: service.image,
       imageAlt: service.imageAlt,
       imagePosition: service.imagePosition,

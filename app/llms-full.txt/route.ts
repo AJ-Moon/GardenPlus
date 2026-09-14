@@ -3,6 +3,7 @@ import { completedProjects } from "@/lib/completed-projects";
 import { absoluteUrl } from "@/lib/seo";
 import { landscapeServices } from "@/lib/services";
 import { fullAddress, fullOfficeAddress, siteConfig } from "@/lib/site-content";
+import { pakistanSeoLocationLinks } from "@/lib/seo-pakistan-locations";
 
 export const dynamic = "force-static";
 
@@ -26,6 +27,12 @@ export function GET() {
     ...landscapeServices.map(
       (service) =>
         `- [${service.title}](${absoluteUrl(service.href)}): ${service.description}`,
+    ),
+    "## Pakistan Service Locations",
+    `- [Pakistan nationwide landscaping](${absoluteUrl("/landscaping-pakistan")}): National coverage overview and project enquiry requirements.`,
+    ...pakistanSeoLocationLinks.map(
+      (location) =>
+        `- [Landscaping in ${location.name}](${absoluteUrl(location.href)}): City-specific service information. This is a service-area page, not a claim of a local GardenPlus office.`,
     ),
     "## Completed Projects",
     ...completedProjects.map((project) => {

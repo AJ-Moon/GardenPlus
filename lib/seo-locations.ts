@@ -1,9 +1,9 @@
 // ============================================================================
 // GARDENPLUS — LOCATION LANDING PAGES
 // ----------------------------------------------------------------------------
-// One page per Lahore area at /landscaping/<slug>. These target the searches
-// people actually type when they are ready to hire ("landscaping in DHA
-// Lahore", "gardener in Model Town") rather than generic city-wide terms.
+// Lahore-area pages and Pakistan city pages share the /landscaping/<slug>
+// route. The scope field determines which parent hub and related locations a
+// page uses.
 //
 // Each entry must stay factually honest: describe the AREA and the gardening
 // conditions there, never invent project counts or client names.
@@ -11,11 +11,17 @@
 
 import { fullOfficeAddress, photos, siteConfig } from "@/lib/site-content";
 import { absoluteUrl } from "@/lib/seo";
+import {
+  pakistanSeoLocationLinks,
+  pakistanSeoLocations,
+} from "@/lib/seo-pakistan-locations";
 
 export type SeoLocation = {
   slug: string;
   /** Area name as people write it in search, e.g. "DHA Lahore". */
   name: string;
+  scope?: "lahore" | "pakistan";
+  region?: string;
   title: string;
   h1: string;
   metaDescription: string;
@@ -33,7 +39,7 @@ export type SeoLocation = {
   faqs: { question: string; answer: string }[];
 };
 
-export const seoLocations: SeoLocation[] = [
+export const lahoreSeoLocations: SeoLocation[] = [
   {
     slug: "dha-lahore",
     name: "DHA Lahore",
@@ -736,13 +742,20 @@ export const seoLocations: SeoLocation[] = [
   },
 ];
 
+export const seoLocations: SeoLocation[] = [
+  ...lahoreSeoLocations,
+  ...pakistanSeoLocations,
+];
+
 export const getSeoLocation = (slug: string) =>
   seoLocations.find((location) => location.slug === slug);
 
-export const seoLocationLinks = seoLocations.map((location) => ({
+export const seoLocationLinks = lahoreSeoLocations.map((location) => ({
   name: location.name,
   href: `/landscaping/${location.slug}`,
 }));
+
+export { pakistanSeoLocationLinks };
 
 export const locationPageJsonLd = (location: SeoLocation) => ({
   "@context": "https://schema.org",
@@ -790,8 +803,15 @@ export const locationPageJsonLd = (location: SeoLocation) => ({
         {
           "@type": "ListItem",
           position: 2,
-          name: "Landscaping in Lahore",
-          item: absoluteUrl("/landscaping-lahore"),
+          name:
+            location.scope === "pakistan"
+              ? "Landscaping Across Pakistan"
+              : "Landscaping in Lahore",
+          item: absoluteUrl(
+            location.scope === "pakistan"
+              ? "/landscaping-pakistan"
+              : "/landscaping-lahore",
+          ),
         },
         {
           "@type": "ListItem",

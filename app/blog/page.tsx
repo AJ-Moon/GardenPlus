@@ -11,9 +11,10 @@ export const metadata: Metadata = createPageMetadata({
     "Read GardenPlus guides on garden design, lawn maintenance, irrigation systems, outdoor plants, indoor plants and seasonal landscaping for Lahore, Pakistan and hot climates.",
   path: "/blog",
   keywords: [
-    "garden design guide Lahore",
+    "garden design guide Pakistan",
+    "landscaping guides Pakistan",
     "outdoor plants Pakistan",
-    "irrigation system guide",
+    "irrigation system Pakistan guide",
   ],
 });
 

@@ -2,11 +2,15 @@ import Link from "next/link";
 import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 import { siteConfig } from "@/lib/site-content";
 import { landscapeServices } from "@/lib/services";
-import { seoLocationLinks } from "@/lib/seo-locations";
+import {
+  pakistanSeoLocationLinks,
+  seoLocationLinks,
+} from "@/lib/seo-locations";
 
 const companyLinks = [
   { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
+  { name: "Landscaping Pakistan", href: "/landscaping-pakistan" },
   { name: "Landscaping Lahore", href: "/landscaping-lahore" },
   { name: "Portfolio", href: "/portfolio" },
   { name: "Blog", href: "/blog" },
@@ -115,14 +119,37 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Nationwide positioning with useful links to the dedicated Lahore pages. */}
+        {/* Crawlable national and Lahore location links. */}
         <div className="mt-14 border-t border-background/10 pt-8">
           <h2 className="mb-5 text-sm font-medium uppercase tracking-wider text-background">
             Service Area
           </h2>
           <p className="mb-5 max-w-2xl text-sm leading-6 text-background/70">
-            GardenPlus undertakes landscaping projects across Pakistan. Explore
-            our dedicated Lahore service pages below.
+            GardenPlus undertakes suitable landscaping projects across Pakistan,
+            coordinated from Lahore.
+          </p>
+          <ul className="flex flex-wrap gap-x-6 gap-y-3">
+            <li>
+              <Link
+                href="/landscaping-pakistan"
+                className="rounded-sm text-sm font-medium text-background transition-colors hover:text-background/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-background"
+              >
+                Pakistan Nationwide
+              </Link>
+            </li>
+            {pakistanSeoLocationLinks.map((location) => (
+              <li key={location.href}>
+                <Link
+                  href={location.href}
+                  className="rounded-sm text-sm text-background/70 transition-colors hover:text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-background"
+                >
+                  {location.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p className="mb-4 mt-7 text-xs font-medium uppercase tracking-wider text-background/70">
+            Lahore Areas
           </p>
           <ul className="flex flex-wrap gap-x-6 gap-y-3">
             {seoLocationLinks.map((location) => (

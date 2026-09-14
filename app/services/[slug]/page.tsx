@@ -21,6 +21,7 @@ import {
   seoServicePages,
   servicePageJsonLd,
 } from "@/lib/seo-service-pages";
+import { pakistanSeoLocationLinks } from "@/lib/seo-pakistan-locations";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -208,6 +209,27 @@ export default async function SeoServicePage({ params }: Params) {
                 </li>
               ))}
             </ul>
+            <p className="mt-9 text-sm font-medium text-foreground">
+              Explore service information by city
+            </p>
+            <div className="mt-4 flex flex-wrap gap-x-5 gap-y-3">
+              {pakistanSeoLocationLinks.map((location) => (
+                <Link
+                  key={location.href}
+                  href={location.href}
+                  className="text-sm text-muted-foreground transition-colors hover:text-primary hover:underline"
+                >
+                  {location.name}
+                </Link>
+              ))}
+            </div>
+            <Link
+              href="/landscaping-pakistan"
+              className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+            >
+              Pakistan-wide project coverage
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>

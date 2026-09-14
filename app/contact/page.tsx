@@ -10,7 +10,12 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "Call, WhatsApp or email GardenPlus for landscaping projects across Pakistan. Visit the Gulberg office or contact the Mustafa Abad location in Lahore.",
   path: "/contact",
-  keywords: ["landscaping quote Lahore", "garden maintenance near me"],
+  keywords: [
+    "landscaping quote Pakistan",
+    "landscape design consultation Pakistan",
+    "landscaping quote Lahore",
+    "landscaping company contact Pakistan",
+  ],
 });
 
 export default function ContactPage() {
@@ -21,7 +26,7 @@ export default function ContactPage() {
       <PageBanner
         title="Contact Us"
         subtitle="Get in Touch"
-        description="Tell us about your project and get a free quote within 24 hours"
+        description="Tell us your project location, scope and requirements to request a landscaping quotation"
         backgroundImage="/gardenplus-work/garden-pergola.jpg"
         imageAlt="GardenPlus garden pavilion surrounded by lawn and planting"
       />

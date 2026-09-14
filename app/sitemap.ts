@@ -15,6 +15,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.95,
       changeFrequency: "monthly" as const,
     },
+    {
+      path: "/landscaping-pakistan",
+      priority: 0.95,
+      changeFrequency: "monthly" as const,
+    },
     { path: "/services", priority: 0.9, changeFrequency: "monthly" as const },
     {
       path: "/landscaping-cost-lahore",

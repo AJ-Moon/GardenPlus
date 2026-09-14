@@ -13,6 +13,7 @@ import {
   seoLocations,
 } from "@/lib/seo-locations";
 import { seoServicePageLinks } from "@/lib/seo-service-pages";
+import { landscapeServices } from "@/lib/services";
 import { altForPhoto, siteConfig } from "@/lib/site-content";
 
 type Params = { params: Promise<{ area: string }> };
@@ -41,7 +42,22 @@ export default async function LocationPage({ params }: Params) {
 
   if (!location) notFound();
 
-  const otherLocations = seoLocations.filter((l) => l.slug !== location.slug);
+  const isPakistanCity = location.scope === "pakistan";
+  const parentPath = isPakistanCity
+    ? "/landscaping-pakistan"
+    : "/landscaping-lahore";
+  const parentLabel = isPakistanCity ? "Pakistan" : "Lahore";
+  const otherLocations = seoLocations.filter(
+    (item) =>
+      item.slug !== location.slug &&
+      (isPakistanCity ? item.scope === "pakistan" : item.scope !== "pakistan"),
+  );
+  const serviceLinks = isPakistanCity
+    ? landscapeServices.map((service) => ({
+        name: service.title,
+        href: service.href,
+      }))
+    : seoServicePageLinks;
 
   return (
     <main>
@@ -56,7 +72,10 @@ export default async function LocationPage({ params }: Params) {
       <header className="relative min-h-[68vh] overflow-hidden pt-28 md:pt-32">
         <Image
           src={location.image}
-          alt={altForPhoto(location.image)}
+          alt={
+            altForPhoto(location.image) ||
+            "Completed GardenPlus landscape with lawn, planting and built garden features"
+          }
           fill
           sizes="100vw"
           priority
@@ -75,8 +94,8 @@ export default async function LocationPage({ params }: Params) {
                 </li>
                 <li aria-hidden="true">/</li>
                 <li>
-                  <Link href="/landscaping-lahore" className="hover:text-white">
-                    Lahore
+                  <Link href={parentPath} className="hover:text-white">
+                    {parentLabel}
                   </Link>
                 </li>
                 <li aria-hidden="true">/</li>
@@ -114,7 +133,8 @@ export default async function LocationPage({ params }: Params) {
               {location.name}
             </p>
             <h2 className="font-serif text-4xl font-light leading-tight text-foreground md:text-5xl">
-              What gardens in {location.name} actually need
+              What {isPakistanCity ? "landscapes" : "gardens"} in{" "}
+              {location.name} actually need
             </h2>
           </div>
           <div className="space-y-5 leading-8 text-muted-foreground">
@@ -162,7 +182,10 @@ export default async function LocationPage({ params }: Params) {
           </h2>
           <div className="mt-12 grid gap-10 md:grid-cols-3">
             {location.considerations.map((item) => (
-              <article key={item.heading} className="border-t border-border pt-6">
+              <article
+                key={item.heading}
+                className="border-t border-border pt-6"
+              >
                 <h3 className="font-serif text-2xl text-foreground">
                   {item.heading}
                 </h3>
@@ -221,7 +244,7 @@ export default async function LocationPage({ params }: Params) {
             Services available in {location.name}
           </h2>
           <div className="mt-6 flex flex-wrap gap-3">
-            {seoServicePageLinks.map((page) => (
+            {serviceLinks.map((page) => (
               <Link
                 key={page.href}
                 href={page.href}
@@ -248,10 +271,10 @@ export default async function LocationPage({ params }: Params) {
           </div>
 
           <Link
-            href="/landscaping-lahore"
+            href={parentPath}
             className="mt-10 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
           >
-            All landscaping services in Lahore
+            All landscaping services in {parentLabel}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

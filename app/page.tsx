@@ -19,9 +19,16 @@ export const metadata: Metadata = createPageMetadata({
     "GardenPlus provides landscape design, development, civil works, planting, lighting, irrigation and maintenance across Pakistan. View our real work and completed projects.",
   path: "/",
   keywords: [
+    "landscaping services Pakistan",
+    "landscaping company Pakistan",
+    "landscape design Pakistan",
     "landscaping services Lahore",
     "garden design Lahore",
-    "landscaping company Pakistan",
+    "landscaping Islamabad",
+    "landscaping Rawalpindi",
+    "landscaping Karachi",
+    "landscaping Faisalabad",
+    "landscaping Multan",
   ],
 });
 
