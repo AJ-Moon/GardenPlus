@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 import { videoThumbnail, type Video } from "@/lib/site-content";
+import { LazyVideo } from "@/components/lazy-video";
 
 type VideoGridProps = {
   videos: Video[];
@@ -15,7 +16,7 @@ type VideoGridProps = {
 
 /**
  * Renders local GardenPlus footage and click-to-play YouTube videos.
- * Local videos use native controls and only preload metadata.
+ * Local videos use native controls and load nothing until scrolled near.
  */
 export function VideoGrid({
   videos,
@@ -64,17 +65,12 @@ export function VideoGrid({
             >
               <div className="relative aspect-video overflow-hidden rounded-lg bg-muted">
                 {video.src ? (
-                  <video
-                    controls
-                    playsInline
-                    preload="metadata"
-                    poster={video.thumbnail}
-                    aria-label={video.title}
+                  <LazyVideo
+                    src={video.src}
+                    poster={video.thumbnail ?? ""}
+                    label={video.title}
                     className="absolute inset-0 h-full w-full bg-black object-cover"
-                  >
-                    <source src={video.src} type="video/mp4" />
-                    Your browser does not support embedded video.
-                  </video>
+                  />
                 ) : playing === key ? (
                   <iframe
                     src={`https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1`}

@@ -147,6 +147,20 @@
   }
 }
 
+/* Transform-only variant for hero text that can be the LCP element.
+   Chrome does not count an element as painted while its opacity is 0, so the
+   opacity fade in `rise-in` pushed homepage mobile LCP to 5.7–6.5 s
+   (Lighthouse, 21 Nov 2026). Sliding without fading keeps the motion while the
+   text is visible, and therefore measurable, from the first frame. */
+@keyframes rise-in-visible {
+  from {
+    transform: translateY(1.5rem);
+  }
+  to {
+    transform: none;
+  }
+}
+
 @keyframes hero-zoom {
   from {
     transform: scale(1.08);
@@ -169,6 +183,7 @@
 @theme {
   --animate-marquee: marquee 45s linear infinite;
   --animate-rise-in: rise-in 0.8s ease-out backwards;
+  --animate-rise-in-visible: rise-in-visible 0.8s ease-out backwards;
   --animate-hero-zoom: hero-zoom 1.5s ease-out backwards;
   --animate-scroll-nudge: scroll-nudge 1.5s ease-in-out infinite;
 }

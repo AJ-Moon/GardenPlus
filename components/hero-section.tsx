@@ -30,6 +30,29 @@ const slides = [
 export function HeroSection() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
+  // Only the first slide loads with the page. The other slides are stacked
+  // invisibly over the hero, so lazy loading never skipped them and their
+  // ~325 KB competed with the first paint (Lighthouse, 21 Nov 2026). Mount
+  // them shortly after load, before the first automatic rotation at 6.5 s.
+  const [loadAllSlides, setLoadAllSlides] = useState(false);
+
+  useEffect(() => {
+    let timer: number | undefined;
+    const schedule = () => {
+      timer = window.setTimeout(() => setLoadAllSlides(true), 2500);
+    };
+    if (document.readyState === "complete") schedule();
+    else window.addEventListener("load", schedule, { once: true });
+    return () => {
+      window.removeEventListener("load", schedule);
+      if (timer) window.clearTimeout(timer);
+    };
+  }, []);
+
+  const goTo = (index: number) => {
+    setLoadAllSlides(true);
+    setActiveSlide(index);
+  };
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
@@ -39,6 +62,7 @@ export function HeroSection() {
     if (!isPlaying || prefersReducedMotion) return;
 
     const timer = window.setInterval(() => {
+      setLoadAllSlides(true);
       setActiveSlide((current) => (current + 1) % slides.length);
     }, 6500);
 
@@ -46,16 +70,16 @@ export function HeroSection() {
   }, [isPlaying]);
 
   const showPrevious = () => {
-    setActiveSlide((current) => (current - 1 + slides.length) % slides.length);
+    goTo((activeSlide - 1 + slides.length) % slides.length);
   };
 
   const showNext = () => {
-    setActiveSlide((current) => (current + 1) % slides.length);
+    goTo((activeSlide + 1) % slides.length);
   };
 
   return (
     <section
-      className="relative h-[100dvh] min-h-[560px] w-full overflow-hidden"
+      className="relative h-[100dvh] min-h-[560px] w-full overflow-hidden bg-black"
       aria-roledescription="carousel"
       aria-label="GardenPlus project highlights"
     >
@@ -71,16 +95,18 @@ export function HeroSection() {
             aria-roledescription="slide"
             aria-label={`${index + 1} of ${slides.length}`}
           >
-            <Image
-              src={slide.src}
-              alt={index === activeSlide ? slide.alt : ""}
-              fill
-              sizes="100vw"
-              priority={index === 0}
-              fetchPriority={index === 0 ? "high" : "auto"}
-              style={{ objectPosition: slide.position }}
-              className="animate-hero-zoom object-cover"
-            />
+            {(index === 0 || loadAllSlides) && (
+              <Image
+                src={slide.src}
+                alt={index === activeSlide ? slide.alt : ""}
+                fill
+                sizes="100vw"
+                priority={index === 0}
+                fetchPriority={index === 0 ? "high" : "auto"}
+                style={{ objectPosition: slide.position }}
+                className="animate-hero-zoom object-cover"
+              />
+            )}
           </div>
         ))}
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/65" />
@@ -90,16 +116,16 @@ export function HeroSection() {
         <div className="max-w-4xl text-center">
           {/* SEO 2026-11: the H1 names the business and what it does; the
               slogan keeps its visual treatment as a paragraph. */}
-          <h1 className="mb-4 animate-rise-in text-sm font-medium uppercase tracking-[0.3em] text-white/80 [animation-delay:80ms]">
+          <h1 className="mb-4 animate-rise-in-visible text-sm font-medium uppercase tracking-[0.3em] text-white/80 [animation-delay:80ms]">
             GardenPlus: Landscaping Company in Lahore, Pakistan
           </h1>
 
-          <p className="animate-rise-in font-serif text-5xl font-light leading-tight tracking-tight text-white [animation-delay:160ms] md:text-6xl lg:text-7xl">
+          <p className="animate-rise-in-visible font-serif text-5xl font-light leading-tight tracking-tight text-white [animation-delay:160ms] md:text-6xl lg:text-7xl">
             <span className="block">Grow Beautiful.</span>
             <span className="mt-2 block italic font-normal">Live Green.</span>
           </p>
 
-          <p className="mx-auto mt-8 max-w-2xl animate-rise-in text-lg leading-relaxed text-white/80 [animation-delay:320ms] md:text-xl">
+          <p className="mx-auto mt-8 max-w-2xl animate-rise-in-visible text-lg leading-relaxed text-white/80 [animation-delay:320ms] md:text-xl">
             From landscape planning and civil works to planting, irrigation and
             maintenance, GardenPlus delivers complete outdoor projects across
             Pakistan.
@@ -147,7 +173,7 @@ export function HeroSection() {
           <button
             key={slide.src}
             type="button"
-            onClick={() => setActiveSlide(index)}
+            onClick={() => goTo(index)}
             className="flex h-11 w-8 items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             aria-label={`Show slide ${index + 1}`}
             aria-current={index === activeSlide ? "true" : undefined}

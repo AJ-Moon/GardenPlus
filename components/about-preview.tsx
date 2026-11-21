@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/reveal";
+import { LazyVideo } from "@/components/lazy-video";
 import { siteConfig } from "@/lib/site-content";
 
 export function AboutPreview() {
@@ -9,15 +10,13 @@ export function AboutPreview() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid items-center gap-16 lg:grid-cols-2">
           <Reveal from="left" duration={0.8} className="relative">
-            <div className="aspect-[4/5] overflow-hidden">
-              <video
+            <div className="aspect-[4/5] overflow-hidden bg-muted">
+              <LazyVideo
+                ambient
+                rootMargin="100px"
                 src="/gardenplus-work/garden-walkthrough.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
                 poster="/gardenplus-work/garden-walkthrough-poster.jpg"
-                aria-label="Completed GardenPlus residential landscape"
+                label="Completed GardenPlus residential landscape"
                 className="h-full w-full object-cover"
               />
             </div>
