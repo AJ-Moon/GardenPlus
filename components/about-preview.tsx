@@ -13,7 +13,7 @@ export function AboutPreview() {
             <div className="aspect-[4/5] overflow-hidden bg-muted">
               <LazyVideo
                 ambient
-                rootMargin="100px"
+                rootMargin="0px"
                 src="/gardenplus-work/garden-walkthrough.mp4"
                 poster="/gardenplus-work/garden-walkthrough-poster.jpg"
                 label="Completed GardenPlus residential landscape"

@@ -19,6 +19,9 @@ type LazyVideoProps = {
  * hero's stylesheet, fonts and image on first load, which pushed homepage
  * mobile LCP to 5.7–6.5 s in Lighthouse (21 Nov 2026).
  *
+ * Ambient videos (2.4 MB on the homepage) should use rootMargin="0px" so a
+ * visitor who never scrolls never downloads them.
+ *
  * Ambient videos autoplay muted once visible, unless the visitor prefers
  * reduced motion; they then get the poster and native controls instead.
  */
