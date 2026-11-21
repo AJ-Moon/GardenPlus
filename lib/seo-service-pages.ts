@@ -1146,20 +1146,112 @@ const nationwideServiceKeywords: Record<string, string> = {
   "landscape-maintenance": "landscape maintenance Pakistan",
 };
 
+// SEO 2026-11: the 11 core service URLs end in "-lahore" (irrigation is the
+// exception), but their titles and H1s were generated as "<Service> in
+// Pakistan", which no longer matched the URL, the internal anchor text or the
+// Lahore searches they are meant to answer. Each override below names the
+// Lahore service first and keeps Pakistan as secondary scope; the visible body
+// copy still comes from serviceDetails, so nothing new is claimed. Titles stay
+// at 47 characters or fewer because the layout template appends " | GardenPlus".
+const coreServiceSeo: Record<
+  string,
+  Pick<SeoServicePage, "title" | "h1" | "metaDescription" | "primaryKeyword">
+> = {
+  "landscape-design-planning": {
+    title: "Garden & Landscape Design in Lahore",
+    h1: "Garden and Landscape Design in Lahore",
+    metaDescription:
+      "Site visit, 3D landscape design, execution plan and a detailed quotation for homes, farmhouses and commercial sites in Lahore and across Pakistan. One-year warranty.",
+    primaryKeyword: "garden design Lahore",
+  },
+  "landscape-development": {
+    title: "Landscape Development in Lahore",
+    h1: "Landscape Development in Lahore",
+    metaDescription:
+      "Levelling, contouring, filling and drainage layers that prepare a site for lawns, planting and paving. GardenPlus landscape development in Lahore and Pakistan.",
+    primaryKeyword: "landscape development Lahore",
+  },
+  "landscape-civil-works": {
+    title: "Landscape Civil Works in Lahore",
+    h1: "Landscape Civil Works in Lahore",
+    metaDescription:
+      "Pathways, steps, retaining and boundary walls, arches, pergolas, water bodies, sit-outs and gates built by GardenPlus for gardens and grounds in Lahore and Pakistan.",
+    primaryKeyword: "landscape civil works Lahore",
+  },
+  "landscape-lighting": {
+    title: "Landscape & Garden Lighting in Lahore",
+    h1: "Landscape and Garden Lighting in Lahore",
+    metaDescription:
+      "Uplights, spotlights, underwater and path lighting planned and installed for gardens, pools and facades in Lahore. Fixture selection, layout and wiring plans.",
+    primaryKeyword: "landscape lighting Lahore",
+  },
+  "hard-semi-hard-landscaping": {
+    title: "Hardscaping in Lahore: Paving, Paths & Patios",
+    h1: "Hardscaping and Paving in Lahore",
+    metaDescription:
+      "Hard and semi-hard landscaping in Lahore: layouts, paving patterns, stone and tile specifications, paths, patios and driveways planned with drainage in mind.",
+    primaryKeyword: "hardscaping Lahore",
+  },
+  "soft-landscaping": {
+    title: "Soft Landscaping & Plant Supply in Lahore",
+    h1: "Soft Landscaping and Plant Supply in Lahore",
+    metaDescription:
+      "Lawns, trees, shrubs, ground cover and specimen plants supplied and planted in Lahore, with soil conditioning, manuring, transplanting and follow-up care.",
+    primaryKeyword: "soft landscaping Lahore",
+  },
+  "water-bodies-water-play": {
+    title: "Water Features & Fountains in Lahore",
+    h1: "Water Features and Fountains in Lahore",
+    metaDescription:
+      "Fountains, cascades, waterfalls and ponds for Lahore gardens, with pumps, filtration, aeration and plumbing planned so the feature stays clean and running.",
+    primaryKeyword: "water features Lahore",
+  },
+  "irrigation-systems": {
+    title: "Drip & Sprinkler Irrigation in Lahore",
+    h1: "Drip and Sprinkler Irrigation Systems",
+    metaDescription:
+      "Automated drip and sprinkler irrigation designed and installed in Lahore and across Pakistan: pipelines, valves, controllers, pumps and zoning for gardens and grounds.",
+    primaryKeyword: "drip irrigation installation Lahore",
+  },
+  "garden-structures-special-effects": {
+    title: "Pergolas, Gazebos & Garden Structures",
+    h1: "Pergolas, Gazebos and Garden Structures in Lahore",
+    metaDescription:
+      "Pergolas, gazebos, shelters, trellises, picket fencing and railings designed and built for gardens, rooftops and farmhouses in Lahore and across Pakistan.",
+    primaryKeyword: "pergola Lahore",
+  },
+  "bill-of-quantities": {
+    title: "Landscape BOQ & Cost Estimates in Lahore",
+    h1: "Landscape BOQ and Cost Estimates",
+    metaDescription:
+      "Detailed bills of quantities for landscaping projects in Lahore and Pakistan, so owners, architects and developers can compare quotes line by line.",
+    primaryKeyword: "landscape BOQ Pakistan",
+  },
+  "landscape-maintenance": {
+    title: "Lawn & Landscape Maintenance in Lahore",
+    h1: "Lawn and Landscape Maintenance in Lahore",
+    metaDescription:
+      "Regular lawn and landscape maintenance in Lahore: mowing, feeding, pest control, plant care, water bodies and irrigation checks for homes, offices and campuses.",
+    primaryKeyword: "lawn maintenance Lahore",
+  },
+};
+
 const currentServicePages: SeoServicePage[] = landscapeServices.map(
   (service) => {
     const slug = service.href.split("/").pop()!;
     const existing = existingServicePages.find((page) => page.slug === slug);
     const nationwideKeyword = nationwideServiceKeywords[service.slug];
+    const seo = coreServiceSeo[service.slug];
     return {
       slug,
-      title: `${service.title} in Pakistan`,
-      h1: service.title,
+      title: seo?.title ?? `${service.title} in Pakistan`,
+      h1: seo?.h1 ?? service.title,
       eyebrow: "GardenPlus Services",
       description: service.description,
-      metaDescription: service.description,
-      primaryKeyword: nationwideKeyword,
+      metaDescription: seo?.metaDescription ?? service.description,
+      primaryKeyword: seo?.primaryKeyword ?? nationwideKeyword,
       keywords: [
+        ...(seo ? [seo.primaryKeyword] : []),
         nationwideKeyword,
         ...(existing?.keywords ?? []),
         "landscaping services Pakistan",

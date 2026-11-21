@@ -14,9 +14,11 @@ import { Footer } from "@/components/footer";
 import { createPageMetadata, homePageJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Landscaping Services Across Pakistan",
+  // The root layout's title template does not apply to app/page.tsx (same
+  // segment), so the brand must be written into the homepage title itself.
+  title: "GardenPlus | Landscaping Company in Lahore, Pakistan",
   description:
-    "GardenPlus provides landscape design, development, civil works, planting, lighting, irrigation and maintenance across Pakistan. View our real work and completed projects.",
+    "GardenPlus, Lahore landscapers since 1990: garden design, construction, irrigation, planting and maintenance for homes and businesses across Pakistan. Get a quote.",
   path: "/",
   keywords: [
     "landscaping services Pakistan",

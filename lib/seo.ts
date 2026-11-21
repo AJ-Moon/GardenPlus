@@ -142,6 +142,9 @@ export const businessJsonLd = {
       "@type": "Organization",
       "@id": `${siteConfig.url}/#organization`,
       name: siteConfig.name,
+      // Searchers type the brand several ways; "Garden Plus" is also used by
+      // unrelated businesses in Hong Kong and elsewhere (SERP check 2026-11-21).
+      alternateName: ["Garden Plus", "GardenPlus Lahore", "gardenplus.pk"],
       url: siteConfig.url,
       logo: absoluteUrl("/icon.svg"),
       description: siteConfig.description,
@@ -168,22 +171,22 @@ export const businessJsonLd = {
       telephone: siteConfig.phone,
       email: siteConfig.email,
       description: siteConfig.description,
-      address: [
-        {
-          "@type": "PostalAddress",
-          streetAddress: fullOfficeAddress,
-          addressLocality: "Lahore",
-          addressRegion: "Punjab",
-          addressCountry: "PK",
-        },
-        {
-          "@type": "PostalAddress",
-          streetAddress: fullAddress,
-          addressLocality: "Lahore",
-          addressRegion: "Punjab",
-          addressCountry: "PK",
-        },
+      // One address per LocalBusiness entity. The Gulberg office is the
+      // public, staffed address (it is also the map on /contact). Keep this
+      // identical to the Google Business Profile once that profile exists.
+      // The Mustafa Abad site is described as its own Place below.
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "22, 2nd Floor, Center Point Plaza, Main Boulevard, Gulberg",
+        addressLocality: "Lahore",
+        addressRegion: "Punjab",
+        addressCountry: "PK",
+      },
+      location: [
+        { "@id": `${siteConfig.url}/#office` },
+        { "@id": `${siteConfig.url}/#mustafa-abad-site` },
       ],
+      parentOrganization: { "@id": `${siteConfig.url}/#organization` },
       openingHoursSpecification: [
         {
           "@type": "OpeningHoursSpecification",
@@ -203,10 +206,36 @@ export const businessJsonLd = {
       sameAs: siteConfig.social.map((s) => s.href),
     },
     {
+      "@type": "Place",
+      "@id": `${siteConfig.url}/#office`,
+      name: `${siteConfig.name} Gulberg office`,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "22, 2nd Floor, Center Point Plaza, Main Boulevard, Gulberg",
+        addressLocality: "Lahore",
+        addressRegion: "Punjab",
+        addressCountry: "PK",
+      },
+    },
+    {
+      "@type": "Place",
+      "@id": `${siteConfig.url}/#mustafa-abad-site`,
+      name: `${siteConfig.name} Mustafa Abad site`,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress:
+          "Half Km Main Canal Road, Mustafa Abad, Ferozepur Road, near Toll Plaza & Barki Road",
+        addressLocality: "Lahore",
+        addressRegion: "Punjab",
+        addressCountry: "PK",
+      },
+    },
+    {
       "@type": "WebSite",
       "@id": `${siteConfig.url}/#website`,
       url: siteConfig.url,
       name: siteConfig.name,
+      alternateName: ["Garden Plus", "gardenplus.pk"],
       publisher: { "@id": `${siteConfig.url}/#organization` },
       inLanguage: "en-PK",
     },

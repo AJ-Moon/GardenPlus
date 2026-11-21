@@ -88,14 +88,16 @@ export function HeroSection() {
 
       <div className="relative z-10 flex h-full items-center justify-center px-6">
         <div className="max-w-4xl text-center">
-          <p className="mb-4 animate-rise-in text-sm font-medium uppercase tracking-[0.3em] text-white/80 [animation-delay:80ms]">
-            Professional Landscaping &amp; Gardening
-          </p>
+          {/* SEO 2026-11: the H1 names the business and what it does; the
+              slogan keeps its visual treatment as a paragraph. */}
+          <h1 className="mb-4 animate-rise-in text-sm font-medium uppercase tracking-[0.3em] text-white/80 [animation-delay:80ms]">
+            GardenPlus: Landscaping Company in Lahore, Pakistan
+          </h1>
 
-          <h1 className="animate-rise-in font-serif text-5xl font-light leading-tight tracking-tight text-white [animation-delay:160ms] md:text-6xl lg:text-7xl">
+          <p className="animate-rise-in font-serif text-5xl font-light leading-tight tracking-tight text-white [animation-delay:160ms] md:text-6xl lg:text-7xl">
             <span className="block">Grow Beautiful.</span>
             <span className="mt-2 block italic font-normal">Live Green.</span>
-          </h1>
+          </p>
 
           <p className="mx-auto mt-8 max-w-2xl animate-rise-in text-lg leading-relaxed text-white/80 [animation-delay:320ms] md:text-xl">
             From landscape planning and civil works to planting, irrigation and

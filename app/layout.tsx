@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Cormorant_Garamond } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { WhatsAppButton } from "@/components/whatsapp-button";
+import { LeadTracking } from "@/components/lead-tracking";
 import { siteConfig } from "@/lib/site-content";
 import { businessJsonLd, primaryKeywords } from "@/lib/seo";
 import "./globals.css";
@@ -134,6 +135,7 @@ export default function RootLayout({
 
         <WhatsAppButton />
         <Analytics />
+        <LeadTracking />
 
         <script
           type="application/ld+json"

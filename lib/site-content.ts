@@ -42,10 +42,13 @@ export const siteConfig = {
 
   // ⚠️ REPLACE with your real profile URLs. Delete any you don't use —
   // the footer only renders the ones listed here.
-  social: [
-    { name: "Facebook", href: "https://facebook.com/gardenplus" },
-    { name: "Instagram", href: "https://instagram.com/gardenplus" },
-  ],
+  // SEO 2026-11: the previous entries (facebook.com/gardenplus and
+  // instagram.com/gardenplus) were template placeholders, not GardenPlus
+  // profiles, and were also published as schema.org sameAs. Add only profiles
+  // GardenPlus controls. Candidate seen in Google results, to confirm with the
+  // owner: https://www.instagram.com/gardenplus_pk/ . Add the Google Business
+  // Profile share link here once it is verified.
+  social: [] as { name: string; href: string }[],
 
   founded: 1990,
 } as const;

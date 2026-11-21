@@ -1,5 +1,6 @@
 "use client";
 
+import { trackLead } from "@/lib/analytics";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Clock, Send, AlertCircle } from "lucide-react";
@@ -72,6 +73,7 @@ export function ContactSection() {
       });
 
       if (response.ok) {
+        trackLead("generate_lead", { method: "quote_form" });
         setStatus("sent");
         setFormData(emptyForm);
         return;
@@ -82,6 +84,7 @@ export function ContactSection() {
       // Email isn't configured (or the provider is down) — offer WhatsApp
       // rather than pretending the message went through.
       if (response.status === 503 || response.status === 502) {
+        trackLead("quote_whatsapp_fallback");
         setStatus("fallback");
         return;
       }
@@ -89,6 +92,7 @@ export function ContactSection() {
       setStatus("error");
       setErrorMessage(data.message ?? "Please check the form and try again.");
     } catch {
+      trackLead("quote_whatsapp_fallback");
       setStatus("fallback");
     }
   };
