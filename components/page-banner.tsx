@@ -12,7 +12,9 @@ type PageBannerProps = {
 /**
  * Shared page hero. Like HeroSection this is a server component with CSS
  * entrance animations, so the <h1> — the LCP element on these pages — is
- * visible in the server HTML instead of waiting on hydration.
+ * visible in the server HTML instead of waiting on hydration. The text uses
+ * the transform-only `rise-in-visible` animation: an opacity fade from 0 would
+ * hold LCP until the fade ended (see globals.css).
  */
 export function PageBanner({
   title,
@@ -37,17 +39,17 @@ export function PageBanner({
       <div className="relative z-10 flex h-full items-center justify-center px-6">
         <div className="max-w-4xl text-center">
           {subtitle && (
-            <p className="mb-4 animate-rise-in text-sm font-medium uppercase tracking-[0.3em] text-white/80 [animation-delay:80ms]">
+            <p className="mb-4 animate-rise-in-visible text-sm font-medium uppercase tracking-[0.3em] text-white/80 [animation-delay:80ms]">
               {subtitle}
             </p>
           )}
 
-          <h1 className="animate-rise-in font-serif text-5xl font-light leading-tight text-white [animation-delay:160ms] md:text-6xl lg:text-7xl">
+          <h1 className="animate-rise-in-visible font-serif text-5xl font-light leading-tight text-white [animation-delay:160ms] md:text-6xl lg:text-7xl">
             {title}
           </h1>
 
           {description && (
-            <p className="mx-auto mt-6 animate-rise-in max-w-2xl text-lg text-white/80 [animation-delay:320ms]">
+            <p className="mx-auto mt-6 animate-rise-in-visible max-w-2xl text-lg text-white/80 [animation-delay:320ms]">
               {description}
             </p>
           )}
