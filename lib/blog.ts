@@ -15,6 +15,7 @@
 // ============================================================================
 
 import { pakistanPosts } from "@/lib/blog-pakistan";
+import { brandbotPosts } from "@/lib/blog-brandbot";
 
 export type Block =
   | { type: "h2"; text: string }
@@ -45,6 +46,7 @@ const stock = (id: string) =>
   `https://images.unsplash.com/${id}?q=80&w=1600&auto=format&fit=crop`;
 
 export const posts: Post[] = [
+  ...brandbotPosts,
   ...pakistanPosts,
   {
     slug: "designing-a-lawn-that-stays-green-all-year",
