@@ -32,18 +32,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/about", priority: 0.7, changeFrequency: "yearly" as const },
     { path: "/clients", priority: 0.6, changeFrequency: "monthly" as const },
     { path: "/blog", priority: 0.6, changeFrequency: "weekly" as const },
-    { path: "/llms.txt", priority: 0.4, changeFrequency: "monthly" as const },
-    {
-      path: "/llms-full.txt",
-      priority: 0.4,
-      changeFrequency: "monthly" as const,
-    },
+    // SEO 2026-11-26: /llms.txt and /llms-full.txt are no longer listed here.
+    // They are plain-text files for AI crawlers (still served and still
+    // allowed in robots.txt), not pages for Google's index; Search Console
+    // reported them "Crawled - currently not indexed" on 2026-11-24.
   ];
+
+  // Pages whose content or titles changed after the site-wide date above.
+  const updatedOn: Record<string, Date> = {
+    "/landscaping-lahore": new Date("2026-11-26"),
+    "/landscaping-cost-lahore": new Date("2026-11-26"),
+    "/services/lawn-maintenance-lahore": new Date("2026-11-26"),
+    "/services/artificial-grass-pakistan": new Date("2026-11-26"),
+  };
 
   return [
     ...staticRoutes.map((route) => ({
       url: `${siteConfig.url}${route.path}`,
-      lastModified: contentUpdated,
+      lastModified: updatedOn[route.path] ?? contentUpdated,
       changeFrequency: route.changeFrequency,
       priority: route.priority,
     })),
@@ -60,7 +66,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
       return {
         url: `${siteConfig.url}/services/${page.slug}`,
-        lastModified: contentUpdated,
+        lastModified: updatedOn[`/services/${page.slug}`] ?? contentUpdated,
         images: images.length > 0 ? [...new Set(images)] : undefined,
         changeFrequency: "monthly" as const,
         priority: 0.85,

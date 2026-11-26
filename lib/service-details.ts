@@ -321,6 +321,16 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         answer:
           "Yes. The service includes water bodies, irrigation equipment and general garden upkeep as well as plant care, pest control and fertilization.",
       },
+      {
+        question: "Is lawn care part of landscape maintenance?",
+        answer:
+          "Yes. Lawn care is part of day-to-day landscape maintenance, alongside plant care, pest control and fertilization, irrigation equipment upkeep and water bodies. The scope and attendance arrangements are agreed for each property.",
+      },
+      {
+        question: "What does a Lahore lawn need through the year?",
+        answer:
+          "Warm-season lawns grow fastest from spring to autumn, when they need regular cutting and feeding. In peak summer, deep watering early in the morning works better than frequent light watering; in the monsoon, drainage matters more than water. In winter most warm-season grasses slow down and lose colour, so watering and cutting are reduced.",
+      },
     ],
   },
 };

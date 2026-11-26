@@ -203,13 +203,16 @@ const existingServicePages: SeoServicePage[] = [
   },
   {
     slug: "artificial-grass-pakistan",
-    title: "Artificial Grass Pakistan - Low-Maintenance Turf & Garden Areas",
+    // SEO 2026-11-26: title was 76 characters with the template and was cut
+    // off; "artificial grass" / "artificial turf" searches sit around
+    // position 11 (served by the comparison blog, which now links here).
+    title: "Artificial Grass & Turf Installation, Pakistan",
     h1: "Artificial Grass for Homes and Commercial Spaces",
     eyebrow: "Low-maintenance lawns",
     description:
       "Artificial grass planning and installation guidance for Pakistan homes, balconies, play areas, terraces, shaded lawns and high-use commercial spaces.",
     metaDescription:
-      "GardenPlus helps plan artificial grass in Pakistan for homes, terraces, balconies, play areas and commercial spaces, with drainage and heat exposure considered.",
+      "Artificial grass and turf for homes, terraces, balconies, play areas and commercial spaces in Lahore and Pakistan, planned for drainage and heat.",
     primaryKeyword: "artificial grass Pakistan",
     keywords: [
       "artificial grass Pakistan",
@@ -1227,12 +1230,15 @@ const coreServiceSeo: Record<
       "Detailed bills of quantities for landscaping projects in Lahore and Pakistan, so owners, architects and developers can compare quotes line by line.",
     primaryKeyword: "landscape BOQ Pakistan",
   },
+  // SEO 2026-11-26: "lawn care services" searches (38 impressions) landed on
+  // /landscaping-lahore at ~17 while this page sat at ~37 for the same query.
+  // Title and H1 now lead with "lawn care", the phrase people actually use.
   "landscape-maintenance": {
-    title: "Lawn & Landscape Maintenance in Lahore",
-    h1: "Lawn and Landscape Maintenance in Lahore",
+    title: "Lawn Care & Maintenance Services in Lahore",
+    h1: "Lawn Care and Landscape Maintenance in Lahore",
     metaDescription:
-      "Regular lawn and landscape maintenance in Lahore: mowing, feeding, pest control, plant care, water bodies and irrigation checks for homes, offices and campuses.",
-    primaryKeyword: "lawn maintenance Lahore",
+      "Lawn care and garden maintenance in Lahore: regular upkeep, plant care, fertilisation, pest control and irrigation checks for homes, offices and campuses.",
+    primaryKeyword: "lawn care services Lahore",
   },
 };
 

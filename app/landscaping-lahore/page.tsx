@@ -21,9 +21,12 @@ const seoServicePageLinks = landscapeServices.map((service) => ({
 import { lahoreSeoLocations } from "@/lib/seo-locations";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Landscaping Services Lahore - Garden Design, Lawn Care & Irrigation",
+  // SEO 2026-11-26: 916 impressions at 0.44% CTR (avg position 14.8). The old
+  // title ran to ~80 characters and was cut off; it also said "Lawn Care",
+  // which pulled lawn-care searches here instead of to the lawn care page.
+  title: "Landscaping Services in Lahore: Design, Build, Care",
   description:
-    "Landscape design, development, civil works, lighting, planting, irrigation and maintenance in Lahore. Explore GardenPlus services and completed projects.",
+    "Garden design, paving, planting, irrigation, lighting and maintenance for homes and businesses in DHA, Bahria Town, Gulberg and across Lahore. Get a quote.",
   path: "/landscaping-lahore",
   keywords: [
     "landscaping services Lahore",
@@ -106,6 +109,31 @@ export default function LandscapingLahorePage() {
               Our planning service includes site visits, 3D landscape design
               proposals, execution planning and detailed quotations, with a
               one-year service warranty/guarantee.
+            </p>
+            <p>
+              Already have a garden? Our{" "}
+              <Link
+                href="/services/lawn-maintenance-lahore"
+                className="text-primary underline underline-offset-4"
+              >
+                lawn care and maintenance service in Lahore
+              </Link>{" "}
+              looks after existing lawns, planting and irrigation. Planning a
+              new one? Start with{" "}
+              <Link
+                href="/services/garden-design-lahore"
+                className="text-primary underline underline-offset-4"
+              >
+                garden design
+              </Link>{" "}
+              or see{" "}
+              <Link
+                href="/landscaping-cost-lahore"
+                className="text-primary underline underline-offset-4"
+              >
+                what drives landscaping costs in Lahore
+              </Link>
+              .
             </p>
           </div>
         </div>

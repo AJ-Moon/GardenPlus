@@ -30,6 +30,8 @@ export type Post = {
   imageAlt?: string;
   keywords?: string[];
   relatedServices?: string[];
+  /** Extra service pages (outside the 11 core services) shown under "Related Services". */
+  relatedLinks?: { name: string; href: string }[];
   sources?: { title: string; url: string }[];
   category: string;
   readTime: string;
@@ -46,6 +48,10 @@ export const posts: Post[] = [
   ...pakistanPosts,
   {
     slug: "designing-a-lawn-that-stays-green-all-year",
+    relatedServices: ["landscape-maintenance", "irrigation-systems"],
+    relatedLinks: [
+      { name: "Lawn Grass Installation", href: "/services/lawn-grass-installation-lahore" },
+    ],
     title: "How to Design a Lawn That Stays Green All Year in Lahore",
     excerpt:
       "Soil preparation, irrigation planning, grass selection and a month-by-month maintenance rhythm — the four things that decide whether a lawn thrives or struggles.",
@@ -140,6 +146,7 @@ export const posts: Post[] = [
   },
   {
     slug: "outdoor-plants-for-lahore-homes",
+    relatedServices: ["soft-landscaping", "landscape-design-planning"],
     title: "Ten Outdoor Plants That Genuinely Thrive in Lahore",
     excerpt:
       "Hardy, good-looking plants that handle the local temperature swing — from 45°C summers to genuinely cold January nights — without constant intervention.",
@@ -213,6 +220,7 @@ export const posts: Post[] = [
   },
   {
     slug: "smart-irrigation-save-water",
+    relatedServices: ["irrigation-systems", "landscape-maintenance"],
     title: "Smart Irrigation: Cutting Water Use Without Losing Greenery",
     excerpt:
       "How drip zones, correct scheduling and moisture-aware controllers reduce consumption by a third or more while improving plant health.",
@@ -294,6 +302,11 @@ export const posts: Post[] = [
   },
   {
     slug: "what-a-full-landscape-build-involves",
+    relatedServices: [
+      "landscape-design-planning",
+      "landscape-development",
+      "landscape-civil-works",
+    ],
     title: "From Empty Plot to Finished Garden: What a Full Build Involves",
     excerpt:
       "The phases of a complete landscape project, what happens in each, and where timelines realistically slip — so you know what you're committing to.",
@@ -386,6 +399,11 @@ export const posts: Post[] = [
   },
   {
     slug: "design-elements-that-elevate-any-garden",
+    relatedServices: [
+      "landscape-design-planning",
+      "landscape-lighting",
+      "water-bodies-water-play",
+    ],
     title: "Five Design Elements That Instantly Elevate Any Garden",
     excerpt:
       "Pathways, a focal tree, considered lighting, water and layered texture — the moves that separate a planted space from a designed one.",
@@ -454,6 +472,11 @@ export const posts: Post[] = [
   },
   {
     slug: "commercial-landscape-maintenance-checklist",
+    relatedServices: ["landscape-maintenance"],
+    relatedLinks: [
+      { name: "Commercial Landscaping", href: "/services/commercial-landscaping-pakistan" },
+      { name: "Garden Maintenance Contracts", href: "/services/garden-maintenance-contracts-lahore" },
+    ],
     title: "A Commercial Landscape Maintenance Checklist",
     excerpt:
       "A monthly framework for offices, schools and hospitality sites to keep grounds presentation-ready without emergency call-outs.",
@@ -536,6 +559,7 @@ export const posts: Post[] = [
   },
   {
     slug: "seasonal-flowers-for-year-round-colour",
+    relatedServices: ["soft-landscaping", "landscape-maintenance"],
     title: "Choosing Seasonal Flowers for Year-Round Colour",
     excerpt:
       "A planting rotation for continuous blooms and curb appeal through every month of the Lahore calendar.",
@@ -617,9 +641,14 @@ export const posts: Post[] = [
   },
   {
     slug: "best-grass-for-lawns-in-lahore",
+    relatedServices: ["landscape-maintenance", "irrigation-systems"],
+    relatedLinks: [
+      { name: "Lawn Grass Installation", href: "/services/lawn-grass-installation-lahore" },
+      { name: "Artificial Grass", href: "/services/artificial-grass-pakistan" },
+    ],
     title: "Which Grass Is Best for a Lawn in Lahore?",
     excerpt:
-      "Kabuli, Dhaka, Bermuda, American Blue and artificial turf compared honestly — what each one costs you in water, mowing and winter colour before you commit an entire lawn to it.",
+      "Kabuli, Dhaka, Bermuda, American Blue or artificial turf? The best lawn grass for Lahore compared on water use, mowing and winter colour.",
     image: stock("photo-1568393691622-c7ba131d63b4"),
     category: "Lawn Care",
     readTime: "8 min read",
@@ -707,6 +736,7 @@ export const posts: Post[] = [
   },
   {
     slug: "lahore-gardening-calendar-month-by-month",
+    relatedServices: ["landscape-maintenance", "soft-landscaping"],
     title: "A Month-by-Month Gardening Calendar for Lahore",
     excerpt:
       "What to plant, prune, feed and prepare in each month of the Lahore year — including the two weeks in September that decide how good your winter flowers will be.",
@@ -808,9 +838,14 @@ export const posts: Post[] = [
   },
   {
     slug: "artificial-grass-vs-natural-grass-pakistan",
-    title: "Artificial Grass vs Natural Grass: An Honest Comparison",
+    relatedServices: ["landscape-maintenance"],
+    relatedLinks: [
+      { name: "Artificial Grass Installation", href: "/services/artificial-grass-pakistan" },
+      { name: "Lawn Grass Installation", href: "/services/lawn-grass-installation-lahore" },
+    ],
+    title: "Artificial Grass vs Natural Grass in Pakistan",
     excerpt:
-      "Surface temperature, lifespan, drainage, running cost and resale — where synthetic turf genuinely wins in Pakistan, and the three situations where it is the wrong call.",
+      "Artificial turf vs natural grass in Pakistan: heat, lifespan, drainage and running cost compared, and three cases where synthetic grass is the wrong call.",
     image: stock("photo-1458245201577-fc8a130b8829"),
     category: "Lawn Care",
     readTime: "7 min read",
@@ -891,6 +926,10 @@ export const posts: Post[] = [
   },
   {
     slug: "starting-a-rooftop-garden-in-lahore",
+    relatedServices: ["irrigation-systems"],
+    relatedLinks: [
+      { name: "Rooftop & Terrace Gardens", href: "/services/rooftop-garden-lahore" },
+    ],
     title: "How to Start a Rooftop Garden in Lahore",
     excerpt:
       "Weight, waterproofing, wind and heat — the four constraints that decide whether a terrace garden thrives or becomes an expensive leak, and how to work within them.",
@@ -972,6 +1011,10 @@ export const posts: Post[] = [
   },
   {
     slug: "best-indoor-plants-for-pakistani-homes-and-offices",
+    relatedServices: ["soft-landscaping"],
+    relatedLinks: [
+      { name: "Indoor & Office Plants", href: "/services/indoor-plants-office-lahore" },
+    ],
     title: "Indoor Plants That Actually Survive Pakistani Homes and Offices",
     excerpt:
       "Nearly every indoor plant dies from the same two mistakes. Here is how to measure the light you have, choose accordingly, and stop killing things with kindness.",
@@ -1049,6 +1092,9 @@ export const posts: Post[] = [
   },
   {
     slug: "starting-a-kitchen-garden-in-pakistan",
+    relatedLinks: [
+      { name: "Kitchen Gardening", href: "/services/kitchen-gardening-lahore" },
+    ],
     title: "Starting a Kitchen Garden in Pakistan: A Practical Guide",
     excerpt:
       "Six hours of sun, three raised beds and a planting calendar built around the rabi and kharif seasons — how to set up a kitchen garden that keeps producing past the first crop.",

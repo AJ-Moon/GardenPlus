@@ -177,10 +177,17 @@ export default async function BlogPostPage({ params }: Params) {
             })}
           </div>
 
-          {post.relatedServices && (
+          {(post.relatedServices || post.relatedLinks) && (
             <aside className="mt-12 border-t border-border pt-8" aria-label="Related services">
               <h2 className="font-serif text-2xl text-foreground">Related Services</h2>
               <ul className="mt-4 space-y-3">
+                {post.relatedLinks?.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="inline-flex items-center gap-2 text-sm text-primary hover:underline">
+                      {link.name}<ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" />
+                    </Link>
+                  </li>
+                ))}
                 {landscapeServices.filter((service) => post.relatedServices?.includes(service.slug)).map((service) => (
                   <li key={service.slug}>
                     <Link href={service.href} className="inline-flex items-center gap-2 text-sm text-primary hover:underline">

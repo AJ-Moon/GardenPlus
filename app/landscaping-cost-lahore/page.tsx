@@ -10,12 +10,17 @@ import { altForPhoto, photos, siteConfig } from "@/lib/site-content";
 import { seoServicePageLinks } from "@/lib/seo-service-pages";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Landscaping Cost in Lahore - What Drives the Price",
+  // SEO 2026-11-26: 301 impressions at 0.66% CTR. Most impressions came from
+  // "garden renovation cost" (157, position 5.7) and "courtyard renovation
+  // cost" (position 1), which the old title and description did not mention.
+  title: "Landscaping & Garden Renovation Cost in Lahore",
   description:
-    "What actually determines landscaping and garden design costs in Lahore: site condition, soil, irrigation, plant sizes, hardscape and maintenance. How to read and compare quotes.",
+    "What sets the cost of a new garden or a garden renovation in Lahore: soil, hardscape, irrigation, plant sizes and upkeep, and how to compare quotes.",
   path: "/landscaping-cost-lahore",
   keywords: [
     "landscaping cost Lahore",
+    "garden renovation cost",
+    "courtyard renovation cost",
     "garden design cost Pakistan",
     "landscaping price Lahore",
     "lawn installation cost Lahore",
@@ -64,6 +69,33 @@ const drivers = [
   },
 ];
 
+/**
+ * Renovation-specific drivers (added 2026-11-26 for "garden renovation cost"
+ * and "courtyard renovation cost" searches). Same rule as above: no rates.
+ */
+const renovationDrivers = [
+  {
+    heading: "What can be kept",
+    text: "Healthy trees, sound paving, working irrigation lines and established hedges are the cheapest part of any renovation, because they are already paid for. A careful survey of what is worth keeping is the first saving, and it often changes the design.",
+  },
+  {
+    heading: "Removal and disposal",
+    text: "Old turf, tired shrubs, broken paving and buried construction debris all have to come out and leave the site. On a courtyard or a rear garden with no vehicle access, everything is carried by hand through the house or a side passage, which adds labour that a new plot does not have.",
+  },
+  {
+    heading: "Fixing the ground underneath",
+    text: "Many renovations exist because the original garden was planted into poor fill or never drained properly. If the soil or drainage is the reason the old garden failed, correcting it is part of the job; otherwise the new planting goes the same way.",
+  },
+  {
+    heading: "Retrofitting services",
+    text: "Adding irrigation, lighting cables or drainage to a finished garden means cutting through paving and lawn that already exist. It is still worth doing, but it costs more than laying the same services on an empty plot.",
+  },
+  {
+    heading: "Courtyards and small spaces",
+    text: "A small courtyard can cost more per square metre than a large lawn. Most of its area is usually hard surface, planters or water features, the finish is seen up close, and access for materials is tight.",
+  },
+];
+
 const quoteContents = [
   "A measured site plan, not an estimate from photographs",
   "Soil and drainage findings, and what needs correcting before planting",
@@ -98,6 +130,41 @@ const comparisonTraps = [
   },
 ];
 
+// The same questions render on the page and in FAQPage structured data
+// (2026-11-26: they were previously in the schema only, which Google's FAQ
+// guidelines don't allow).
+const faqs = [
+  {
+    question: "How much does landscaping cost in Lahore?",
+    answer:
+      "There is no single rate, because the cost is driven mostly by site condition, the amount of hardscape, irrigation scope and plant sizes rather than by area alone. Two gardens of identical size can differ several times over in price. GardenPlus quotes after a site visit, with a measured plan and an itemised schedule.",
+  },
+  {
+    question: "Why do landscaping quotes vary so much for the same garden?",
+    answer:
+      "The usual gap is soil preparation, plant sizes and irrigation scope. A quote that plants straight into construction fill, uses small stock and omits a zoned irrigation system will always look cheaper than one that corrects the ground first. Comparing quotes fairly means comparing those line items, not the totals.",
+  },
+  {
+    question: "Is a free quote available for landscaping in Lahore?",
+    answer: `Yes. GardenPlus provides a free site visit and quotation across Lahore. Call ${siteConfig.phone} or send the plot details through the contact form.`,
+  },
+  {
+    question: "What is the most expensive part of a landscaping project?",
+    answer:
+      "Hardscape is the highest cost per square metre — paving, steps, seating walls, pergolas and gazebos. On plots handed over after construction, ground preparation can rival it, because the soil profile has to be rebuilt before anything is planted.",
+  },
+  {
+    question: "What does a garden or courtyard renovation cost?",
+    answer:
+      "It depends on what can be kept, how much has to be removed and carried out, whether the soil or drainage needs correcting, and whether irrigation or lighting has to be retrofitted under existing paving and lawn. Small courtyards are often dearer per square metre than open lawns because most of their area is hard surface and access is tight. GardenPlus prices renovations after a site visit.",
+  },
+  {
+    question: "Can a landscaping project be delivered in phases to spread cost?",
+    answer:
+      "Yes, and on larger sites it is usually the sensible route. Services, levels, irrigation infrastructure and tree planting go in first because they are disruptive to retrofit and trees need the longest to mature. Lawns, beds and detail areas follow as budget allows.",
+  },
+];
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -105,57 +172,20 @@ const jsonLd = {
       "@type": "WebPage",
       "@id": `${siteConfig.url}/landscaping-cost-lahore#webpage`,
       url: absoluteUrl("/landscaping-cost-lahore"),
-      name: "Landscaping Cost in Lahore",
+      name: "Landscaping and Garden Renovation Cost in Lahore",
       description:
-        "A guide to what determines landscaping and garden design costs in Lahore, what a complete quote should contain, and how to compare quotes fairly.",
+        "A guide to what determines landscaping, garden design and garden renovation costs in Lahore, what a complete quote should contain, and how to compare quotes fairly.",
       about: { "@id": `${siteConfig.url}/#landscaping-service` },
       publisher: { "@id": `${siteConfig.url}/#organization` },
     },
     {
       "@type": "FAQPage",
       "@id": `${siteConfig.url}/landscaping-cost-lahore#faq`,
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "How much does landscaping cost in Lahore?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "There is no single rate, because the cost is driven mostly by site condition, the amount of hardscape, irrigation scope and plant sizes rather than by area alone. Two gardens of identical size can differ several times over in price. GardenPlus quotes after a site visit, with a measured plan and an itemised schedule.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Why do landscaping quotes vary so much for the same garden?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "The usual gap is soil preparation, plant sizes and irrigation scope. A quote that plants straight into construction fill, uses small stock and omits a zoned irrigation system will always look cheaper than one that corrects the ground first. Comparing quotes fairly means comparing those line items, not the totals.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Is a free quote available for landscaping in Lahore?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: `Yes. GardenPlus provides a free site visit and quotation across Lahore. Call ${siteConfig.phone} or send the plot details through the contact form.`,
-          },
-        },
-        {
-          "@type": "Question",
-          name: "What is the most expensive part of a landscaping project?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Hardscape is the highest cost per square metre — paving, steps, seating walls, pergolas and gazebos. On plots handed over after construction, ground preparation can rival it, because the soil profile has to be rebuilt before anything is planted.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Can a landscaping project be delivered in phases to spread cost?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Yes, and on larger sites it is usually the sensible route. Services, levels, irrigation infrastructure and tree planting go in first because they are disruptive to retrofit and trees need the longest to mature. Lawns, beds and detail areas follow as budget allows.",
-          },
-        },
-      ],
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: { "@type": "Answer", text: faq.answer },
+      })),
     },
     breadcrumbJsonLd([
       { name: "Home", path: "/" },
@@ -242,6 +272,35 @@ export default function LandscapingCostPage() {
 
       <section className="bg-background py-20 md:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground">
+            Renovations
+          </p>
+          <h2 className="font-serif text-4xl font-light text-foreground md:text-5xl">
+            Renovating an existing garden or courtyard
+          </h2>
+          <p className="mt-6 max-w-3xl leading-8 text-muted-foreground">
+            Redoing a garden that already exists is priced differently from
+            landscaping an empty plot. Some costs disappear because good
+            elements can stay; others appear because the old garden has to come
+            out first.
+          </p>
+          <div className="mt-12 grid gap-x-10 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+            {renovationDrivers.map((driver) => (
+              <article key={driver.heading} className="border-t border-border pt-6">
+                <h3 className="font-serif text-2xl text-foreground">
+                  {driver.heading}
+                </h3>
+                <p className="mt-4 text-sm leading-7 text-muted-foreground">
+                  {driver.text}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-secondary py-20 md:py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
               <p className="mb-4 text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground">
@@ -275,7 +334,7 @@ export default function LandscapingCostPage() {
         </div>
       </section>
 
-      <section className="bg-secondary py-20 md:py-24">
+      <section className="bg-background py-20 md:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground">
             Comparing quotes
@@ -291,6 +350,29 @@ export default function LandscapingCostPage() {
                 </h3>
                 <p className="mt-4 text-sm leading-7 text-muted-foreground">
                   {trap.text}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-secondary py-20 md:py-24">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+          <p className="mb-4 text-center text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground">
+            Questions
+          </p>
+          <h2 className="text-center font-serif text-4xl font-light text-foreground md:text-5xl">
+            Landscaping cost FAQ
+          </h2>
+          <div className="mt-12 divide-y divide-border">
+            {faqs.map((faq) => (
+              <article key={faq.question} className="py-7">
+                <h3 className="font-serif text-2xl text-foreground">
+                  {faq.question}
+                </h3>
+                <p className="mt-3 leading-7 text-muted-foreground">
+                  {faq.answer}
                 </p>
               </article>
             ))}
